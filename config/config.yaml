@@ -19,10 +19,20 @@ filters:
   # the 90-day state prune can make a long-lived posting look new again.
   max_age_days: 30
 
-  # Reject a posting whose stated minimum experience exceeds this.
+  # Reject a posting whose stated minimum experience exceeds this. New grad is the
+  # emphasis, not the requirement: 1-2 year roles are a fair match and 3 years is a
+  # reasonable stretch, so the gate sits at 3 and scoring tapers gently below it
+  # rather than burying anything that isn't explicitly new-grad.
   max_years_experience: 3
   # He graduated in April 2026, so internships and co-ops are noise.
   allow_internships: false
+
+  # Count generic software engineering titles when the posting is clearly data/AI
+  # centric (needs 3+ distinct data signals in the body). Widens the pool given the
+  # Spring Boot / Docker / Kubernetes internship, without letting every web-dev
+  # posting through. Note that "Software Engineer" is not itself a USMCA TN
+  # profession, whereas data and analytics titles generally map cleanly.
+  allow_data_adjacent_swe: true
   # Postings with no parseable location ("Hybrid", "Remote") still alert - several
   # real matches surfaced this way - they just score lower than SF/NYC/Toronto.
   allow_unknown_location: true
@@ -63,15 +73,23 @@ filters:
     - globalhr
 
 scoring:
-  # Out of ~100. Below notify_min the posting is recorded but not sent.
-  notify_min: 55
-  # At or above this, the alert is flagged and can @-mention. Calibrated against a
-  # live sample: Lyft/Ramp/Loblaw-grade matches land in the 73-79 band.
-  priority_min: 70
+  # Out of 100. Below notify_min the posting is recorded but not sent.
+  #
+  # Set low deliberately: being slightly underqualified does not mean no chance, so
+  # the tool errs toward over-notifying and relies on the score to signal which are
+  # worth dropping everything for. Raise this if the volume ever gets tiring.
+  notify_min: 48
+  # At or above this the alert turns orange and @-mentions, so strong matches push to
+  # your phone while ordinary ones stay quiet. Set at roughly the 90th percentile of
+  # real scoring postings: at 70 about a third of matches pinged, which is too many
+  # for the ping to mean anything. Everything below still arrives, just silently.
+  priority_min: 75
 
 notify:
-  # Set to "<@your_discord_user_id>" for a phone ping on priority hits.
-  mention: ""
+  # Your Discord user ID, as "<@123456789012345678>", pinged on priority hits.
+  # To find it: Discord Settings > Advanced > enable Developer Mode, then right-click
+  # your own name and choose "Copy User ID".
+  mention: "158969094920470529"
 
 state:
   path: state/seen.json

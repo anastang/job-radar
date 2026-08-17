@@ -121,11 +121,47 @@ A posting must clear every hard gate before it is scored:
    non-North-America is rejected unless the posting also lists a target city.
 5. **Internships** are excluded by default.
 
-Survivors are scored out of 100: role family (36), resume skill overlap (32), location
-(22), early-career signals (6), freshness (4). Postings without a description are
-normalized against the points actually available rather than being penalized for text
-they never had — otherwise a real "Data Engineering New Grad" ranks below a generic
-role that merely had more text to keyword-match.
+Survivors are scored out of 100:
+
+| Component | Points | Notes |
+|---|---|---|
+| **Resume skill overlap** | **38** | weighted terms from `profile.yaml` — the dominant term |
+| Role family | 20 | 1.00 down to 0.85; a relevance check, not the ranking signal |
+| Location | 20 | major NA hubs 1.0, remote/elsewhere 0.65, unknown 0.35 |
+| Experience fit | 12 | new grad 1.0, 1 yr 0.82, 2 yrs 0.55, 3 yrs 0.28 |
+| Company character | 6 | startup 1.0, neutral 0.6, consultancy 0.0 |
+| Freshness | 4 | under 6h full marks, decaying to zero at 3 days |
+
+**Skill overlap dominates on purpose.** The title only establishes that a role is
+relevant at all; what makes him a strong *candidate* is how much of the posting's
+stack he has actually shipped. Family weights sit deliberately close together
+(1.00–0.85) so a variety of adjacent roles stay in play. In practice a data analyst
+posting asking for dbt, Airflow and Spark outranks a data engineer posting that
+shares almost nothing with his background — which is the intended behaviour.
+
+Postings without a description are normalized against the points actually available
+rather than being penalized for text they never had — otherwise a real "Data
+Engineering New Grad" ranks below a generic role that merely had more text to
+keyword-match.
+
+### Tuning it to your preferences
+
+The scoring is built to **rank rather than gate**: being slightly underqualified does
+not mean no chance, so `notify_min` sits low (48) and the score carries the signal
+about which roles are worth dropping everything for. Raise the threshold if volume
+gets tiring — that is the cleanest dial. The knobs that shape *what* gets surfaced:
+
+- **`max_years_experience`** (3) — the hard ceiling. 4+ year roles are rejected
+  outright; 1–3 year roles rank below new-grad ones but still alert.
+- **`allow_data_adjacent_swe`** (true) — counts generic "Software Engineer" titles
+  when the body carries at least three distinct data/AI signals. Widens the pool
+  without admitting every web-dev posting.
+- **`blocked_companies`** — never alert at all. Separate from consultancies, which
+  are scored down rather than excluded.
+- **`CONSULTANCIES`** in `scoring.py` — staffing and IT-services firms that post high
+  volumes of data-titled placement roles. They still alert, six points lower.
+- **Startup boost** — anything in `companies_yc.yaml` counts as a startup, since that
+  file is by construction actively-hiring YC companies.
 
 ### Work authorization is deliberately non-standard
 

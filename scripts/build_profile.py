@@ -93,7 +93,10 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--resume", required=True)
     parser.add_argument("--out", default=str(REPO / "config" / "profile.yaml"))
-    parser.add_argument("--skill-target", type=float, default=18.0)
+    # Raised from 18: at that level a posting mentioning Python, SQL and one tool
+    # already maxed the skill points, so a deep stack match looked identical to a
+    # shallow one. At 20, near-saturation needs most of the core data stack.
+    parser.add_argument("--skill-target", type=float, default=20.0)
     args = parser.parse_args()
 
     resume_path = Path(args.resume)

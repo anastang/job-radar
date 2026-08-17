@@ -118,12 +118,30 @@ async def collect(
 
 # ---------------------------------------------------------------- pipeline
 
+def load_startup_slugs(config_dir: Path) -> frozenset[str]:
+    """Slugs discovered from the YC directory, used to boost small companies.
+
+    Membership in companies_yc.yaml is the signal - everything in that file is an
+    actively-hiring YC company, which is a far better proxy for "small startup" than
+    anything guessable from a job posting.
+    """
+    path = config_dir / "companies_yc.yaml"
+    slugs: set[str] = set()
+    for tiers in (load_yaml(path) or {}).values():
+        if not isinstance(tiers, dict):
+            continue
+        for tier in ("tier1", "tier2"):
+            slugs.update(s.lower() for s in (tiers.get(tier) or []))
+    return frozenset(slugs)
+
+
 def process(
     jobs: Iterable[Job],
     state: State,
     profile: Profile,
     filter_cfg: dict[str, Any],
     notify_min: float,
+    startup_slugs: frozenset[str] | None = None,
 ) -> tuple[list[tuple[Job, Score]], dict[str, int]]:
     """Gate and score only postings we have never seen. Returns (matches, stats)."""
     matches: list[tuple[Job, Score]] = []
@@ -143,7 +161,7 @@ def process(
             continue
 
         stats["passed"] += 1
-        score = score_job(job, verdict, profile)
+        score = score_job(job, verdict, profile, startup_slugs=startup_slugs)
         if score.total >= notify_min:
             stats["notify"] += 1
             matches.append((job, score))
@@ -238,7 +256,10 @@ async def run(args: argparse.Namespace) -> int:
         )
         return 0
 
-    matches, stats = process(jobs, state, profile, filter_cfg, notify_min)
+    startup_slugs = load_startup_slugs(Path(args.companies).parent)
+    matches, stats = process(
+        jobs, state, profile, filter_cfg, notify_min, startup_slugs=startup_slugs
+    )
 
     log.info(
         "New=%d passed=%d notify=%d", stats["new"], stats["passed"], stats["notify"]

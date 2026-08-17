@@ -46,6 +46,20 @@ SEARCH_TERMS = (
 
 _DAYS = re.compile(r"(\d+)\+?\s*days?\s*ago", re.I)
 
+# Workday collapses multi-location postings to "2 Locations" / "5 Locations", which
+# tells the location filter nothing - roles in Lima, Bangalore and Madrid sailed
+# through as "unknown location". The real place is in externalPath, e.g.
+# "/job/Hyderabad-Telangana-India/Data-Engineer_R-123", so recover it from there.
+_PLACEHOLDER_LOC = re.compile(r"^\s*\d+\s*locations?\s*$", re.I)
+
+
+def location_from_path(path: str) -> str:
+    """"/job/Lima-Peru/Data-Engineering_R-65103" -> "Lima Peru"."""
+    parts = [p for p in (path or "").split("/") if p]
+    if len(parts) < 2 or parts[0].lower() != "job":
+        return ""
+    return parts[1].replace("-", " ").strip()
+
 
 def parse_posted_on(text: str | None) -> datetime | None:
     """Turn "Posted 13 Days Ago" into a timestamp.
@@ -90,6 +104,14 @@ def parse(slug: str, payload: dict[str, Any]) -> list[Job]:
         path = raw.get("externalPath")
         if not path:
             continue
+        location = (raw.get("locationsText") or "").strip()
+        from_path = location_from_path(path)
+        if not location or _PLACEHOLDER_LOC.match(location):
+            location = from_path or location
+        elif from_path and from_path.lower() not in location.lower():
+            # Keep both: one may name the city, the other the country.
+            location = f"{location}; {from_path}"
+
         jobs.append(
             Job(
                 ats=ATS,
@@ -97,7 +119,7 @@ def parse(slug: str, payload: dict[str, Any]) -> list[Job]:
                 external_id=path,
                 title=(raw.get("title") or "").strip(),
                 url=VIEW.format(host=host, site=site, path=path),
-                location_raw=raw.get("locationsText") or "",
+                location_raw=location,
                 posted_at=parse_posted_on(raw.get("postedOn")),
                 extra={"posted_on_raw": raw.get("postedOn")},
             )

@@ -207,3 +207,34 @@ def test_greenhouse_live_returns_jobs():
     jobs = asyncio.run(go())
     assert len(jobs) > 0
     assert any(j.posted_at for j in jobs), "first_published should populate posted_at"
+
+
+def test_workday_recovers_location_from_path():
+    """Regression: Workday collapses multi-location postings to "2 Locations".
+
+    Roles in Lima and Bangalore reached the alerts because that placeholder told the
+    location filter nothing. The real place is in externalPath.
+    """
+    payload = {"jobPostings": [{
+        "title": "Data Engineering",
+        "externalPath": "/job/Lima-Peru/Data-Engineering_R-65103",
+        "locationsText": "2 Locations",
+        "postedOn": "Posted 3 Days Ago",
+    }]}
+    job = workday.parse("kyndryl.wd5/kyndryl/Careers", payload)[0]
+    assert "Lima" in job.location_raw and "Peru" in job.location_raw
+
+    from jobradar.filters import classify_location
+    assert classify_location(job.location_raw) == "reject"
+
+
+def test_workday_keeps_real_location_text():
+    payload = {"jobPostings": [{
+        "title": "AI Engineer",
+        "externalPath": "/job/TORONTO-Ontario-Canada/AI-Engineer_R-123",
+        "locationsText": "TORONTO, Ontario, Canada",
+        "postedOn": "Posted Today",
+    }]}
+    job = workday.parse("rbc.wd3/rbc/rbcglobal1", payload)[0]
+    from jobradar.filters import classify_location
+    assert classify_location(job.location_raw) == "tier1"

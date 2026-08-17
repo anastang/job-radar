@@ -156,11 +156,56 @@ def test_internships_allowed_when_configured():
     ("0-2 years of experience preferred", 0),
     # Baseline wins over the higher "preferred" bar, or we reject roles he qualifies for.
     ("2+ years of experience required. 8+ years of experience preferred.", 2),
-    # Prose that mentions years but not experience must not register.
-    ("Founded 20 years ago, we serve millions", None),
     ("", None),
 ])
 def test_min_years_required(text, expected):
+    assert min_years_required(text) == expected
+
+
+@pytest.mark.parametrize("text,expected", [
+    # Regression: real postings that slipped past the gate entirely. None of these
+    # contain the word "experience", so requiring it returned None and a role
+    # wanting four to eight years scored 88.
+    ("4-8+ years in data or analytics engineering, you have built pipelines", 4),
+    ("2-5+ years working as a data engineer or applied data scientist", 2),
+    ("3+ years in an analytics role (Data Analyst, BI Analyst)", 3),
+    ("5+ years building production ML systems", 5),
+])
+def test_years_parsed_without_the_word_experience(text, expected):
+    assert min_years_required(text) == expected
+
+
+@pytest.mark.parametrize("text", [
+    "Founded 20 years ago, we serve millions",
+    "Celebrating 15 years in business",
+    "over the past 10 years we have grown",
+    "Our 30 year history of innovation",
+])
+def test_company_prose_is_not_a_requirement(text):
+    assert min_years_required(text) is None
+
+
+@pytest.mark.parametrize("text", [
+    # Regression: Linear's real posting. Counting tenure perks made a role wanting
+    # 5+ years look like a 2-year one, because the minimum wins.
+    "Paid month off after 4 years & every 2 years thereafter",
+    "Sabbatical after 5 years",
+    "Unlimited vacation and 3 years of vesting",
+    "401(k) matching after 1 year of service",
+])
+def test_benefits_and_tenure_are_not_requirements(text):
+    assert min_years_required(text) is None
+
+
+@pytest.mark.parametrize("text,expected", [
+    # Requirement language follows the number, benefits language precedes it - so a
+    # real requirement still counts even when perks sit right beside it.
+    ("5+ years of experience in analytics engineering. "
+     "Paid month off after 4 years & every 2 years thereafter", 5),
+    ("3+ years in an analytics role. Unlimited PTO after 1 year.", 3),
+    ("2+ years of experience. 401(k) matching after 1 year of service.", 2),
+])
+def test_requirements_win_over_nearby_benefits(text, expected):
     assert min_years_required(text) == expected
 
 
@@ -234,9 +279,14 @@ def test_blocked_company_rejected():
     ("SF, NYC, SEA, CHI", "tier1"),
     # A multi-location posting that includes a target city must not be rejected.
     ("New York City, NY; London", "tier1"),
+    # Major North American hubs rank equal to the preferred three - relocating for
+    # the right role is on the table.
+    ("Austin, TX, United States", "tier1"),
+    ("Seattle, WA", "tier1"),
+    ("Vancouver, BC", "tier1"),
     ("Remote US", "tier2"),
     ("North America", "tier2"),
-    ("Austin, TX, United States", "tier2"),
+    ("Wichita, KS", "unknown"),
     ("Hybrid", "unknown"),
     ("Dublin, Ireland", "reject"),
     ("Paris, France", "reject"),

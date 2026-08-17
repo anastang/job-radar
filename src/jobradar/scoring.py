@@ -21,13 +21,49 @@ from .models import Job
 # Point budget, summing to 100 so thresholds read like percentages. Location carries
 # real weight because SF / NYC / Toronto is a stated preference - without it a junior
 # analyst role in a city he'd never move to outranked a strong Bay Area match.
-W_FAMILY = 36.0
-W_SKILLS = 32.0
-W_LOCATION = 22.0
-W_EARLY = 6.0
+# Skill overlap is the dominant term by design. The job title only establishes that a
+# role is relevant at all; what makes him a strong *candidate* is how much of the
+# posting's stack he has actually shipped. Family weights sit close together so a
+# variety of adjacent roles stay in play and overlap does the ranking.
+W_FAMILY = 20.0
+W_SKILLS = 38.0
+W_LOCATION = 20.0
+# Experience fit carries real weight. At 6 points a role wanting three years scored
+# about the same as a new-grad one, so 4-8 year postings were reaching the top of the
+# list purely on stack overlap.
+W_EARLY = 12.0
+# Company character: IT consultancies and staffing firms post enormous volumes of
+# data-titled roles that are often placements rather than product work, while small
+# startups are where being early pays most.
+W_COMPANY = 6.0
 W_FRESH = 4.0
 
-LOCATION_POINTS = {"tier1": 1.0, "tier2": 0.45, "unknown": 0.25, "reject": 0.0}
+# tier2 is now remote and smaller cities only - the major hubs moved up to tier1 -
+# and sits high because a remote or second-city role is still well worth seeing.
+LOCATION_POINTS = {"tier1": 1.0, "tier2": 0.65, "unknown": 0.35, "reject": 0.0}
+
+COMPANY_POINTS = {"startup": 1.0, "neutral": 0.6, "consultancy": 0.0}
+
+# Matched as substrings against the company name, case-insensitively.
+CONSULTANCIES = (
+    "kyndryl", "guidehouse", "deloitte", "accenture", "infosys", "cognizant",
+    "wipro", "capgemini", "genpact", "ltimindtree", "tech mahindra", "hcl",
+    "dxc", "atos", "ntt data", "unisys", "epam", "globant", "slalom",
+    "west monroe", "huron", "protiviti", "wavestone", "exl", "mindtree",
+    "robert half", "insight global", "teksystems", "apex systems", "randstad",
+    "adecco", "kforce", "collabera", "artech", "diverse lynx", "mindlance",
+    "judge group", "akkodis", "cybercoders", "jobot", "motion recruitment",
+    "ernst & young", "kpmg", "pwc", "pricewaterhouse", "booz",
+)
+
+
+def classify_company(company: str, startup_slugs: frozenset[str] | None = None) -> str:
+    name = (company or "").lower()
+    if any(c in name for c in CONSULTANCIES):
+        return "consultancy"
+    if startup_slugs and name in startup_slugs:
+        return "startup"
+    return "neutral"
 
 
 @dataclass
@@ -46,6 +82,8 @@ class Score:
     early: float = 0.0
     freshness: float = 0.0
     matched_skills: list[str] = field(default_factory=list)
+    min_years: int | None = None
+    company_kind: str = "neutral"
 
     def breakdown(self) -> str:
         return (
@@ -112,7 +150,12 @@ class Profile:
         return raw, matched
 
 
-def score_job(job: Job, verdict: Verdict, profile: Profile) -> Score:
+def score_job(
+    job: Job,
+    verdict: Verdict,
+    profile: Profile,
+    startup_slugs: frozenset[str] | None = None,
+) -> Score:
     """Combine the gate's signals with resume overlap into a 0-100 score.
 
     Scores are normalized against the points *available* for a given posting rather
@@ -124,10 +167,23 @@ def score_job(job: Job, verdict: Verdict, profile: Profile) -> Score:
     family_frac = verdict.family_weight
     location_frac = LOCATION_POINTS.get(verdict.location_tier, 0.25)
 
-    early_frac = 1.0 if verdict.early_signals else 0.0
-    # An explicit low experience bar is as good a signal as the words "new grad".
-    if not early_frac and verdict.min_years is not None and verdict.min_years <= 1:
-        early_frac = 0.75
+    # Experience fit, best evidence first: an explicit "new grad" marker, then the
+    # stated years bar, then nothing known.
+    #
+    # New grad is emphasised but not required. With ~20 months of internships, 1-2
+    # year roles are a fair match and 3 years is a reasonable stretch worth applying
+    # to, so the curve tapers rather than falling off a cliff. Anything above 3 is
+    # rejected outright by the seniority gate, not scored down.
+    if verdict.early_signals:
+        early_frac = 1.0
+    elif verdict.min_years is None:
+        early_frac = 0.50
+    elif verdict.min_years <= 1:
+        early_frac = 0.82
+    elif verdict.min_years == 2:
+        early_frac = 0.55
+    else:
+        early_frac = 0.28
 
     age = job.age_hours
     if not job.date_trusted:
@@ -146,10 +202,14 @@ def score_job(job: Job, verdict: Verdict, profile: Profile) -> Score:
     else:
         fresh_frac = 0.0
 
+    company_kind = classify_company(job.company, startup_slugs)
+    company_frac = COMPANY_POINTS[company_kind]
+
     components: list[tuple[float, float]] = [
         (W_FAMILY, family_frac),
         (W_LOCATION, location_frac),
         (W_EARLY, early_frac),
+        (W_COMPANY, company_frac),
         (W_FRESH, fresh_frac),
     ]
 
@@ -181,4 +241,6 @@ def score_job(job: Job, verdict: Verdict, profile: Profile) -> Score:
         early=W_EARLY * early_frac * scale,
         freshness=W_FRESH * fresh_frac * scale,
         matched_skills=matched,
+        min_years=verdict.min_years,
+        company_kind=company_kind,
     )

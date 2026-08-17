@@ -24,24 +24,29 @@ from .models import Job
 # Role families
 # --------------------------------------------------------------------------------
 
+# Family weights are deliberately close together. The title is a relevance check, not
+# the ranking signal - the whole point is to surface a variety of adjacent roles and
+# let *skill and experience overlap* decide which ones he would be a strong candidate
+# for. A data analyst posting that wants his exact stack should outrank a data
+# engineer posting that shares almost nothing with his background.
 ROLE_FAMILIES: list[tuple[str, float, re.Pattern[str]]] = [
     ("data_engineer", 1.00, re.compile(
         r"\bdata engineer(ing)?\b|\bdata platform engineer\b|\bdata infrastructure\b"
         r"|\bbig data engineer\b|\bdata pipeline engineer\b|\betl developer\b", re.I)),
-    ("analytics_engineer", 0.95, re.compile(
+    ("analytics_engineer", 0.97, re.compile(
         r"\banalytics engineer(ing)?\b", re.I)),
-    ("ai_engineer", 0.90, re.compile(
+    ("ai_engineer", 0.93, re.compile(
         r"\b(ai|a\.i\.) engineer\b|\bapplied ai\b|\bgen(erative )?ai engineer\b"
         r"|\bllm engineer\b|\bapplied scientist\b|\bai/ml engineer\b", re.I)),
-    ("data_analyst", 0.80, re.compile(
+    ("data_analyst", 0.90, re.compile(
         r"\bdata analyst\b|\banalytics analyst\b|\bproduct analyst\b"
         r"|\bbusiness intelligence\b|\bbi (analyst|engineer|developer)\b", re.I)),
-    ("forward_deployed", 0.75, re.compile(
-        r"\bforward[- ]deployed\b", re.I)),
-    ("data_scientist", 0.72, re.compile(
+    ("data_scientist", 0.88, re.compile(
         r"\bdata scientist\b|\bdata science\b", re.I)),
-    ("ml_engineer", 0.70, re.compile(
+    ("ml_engineer", 0.87, re.compile(
         r"\b(machine learning|ml) engineer\b", re.I)),
+    ("forward_deployed", 0.85, re.compile(
+        r"\bforward[- ]deployed\b", re.I)),
 ]
 
 # Titles that contain a family keyword but are not the job he wants.
@@ -90,7 +95,40 @@ YEARS_RE = re.compile(
     r"(\d{1,2})\s*(?:\+|plus)?\s*(?:-|–|to)?\s*(?:\d{1,2})?\s*\+?\s*(?:years?|yrs?)\b",
     re.I,
 )
-EXPERIENCE_NEAR = re.compile(r"experien|background|industry", re.I)
+
+# Deciding whether "N years" is a requirement takes two passes, because neither test
+# works alone:
+#
+#   * Requiring the word "experience" nearby missed "4-8+ years in data or analytics
+#     engineering" and "2-5+ years working as a data engineer", so senior roles went
+#     unparsed and sailed through the gate.
+#   * Accepting every mention then picked up benefits text - Linear's "Paid month off
+#     after 4 years & every 2 years thereafter" made a 5-year role look like a
+#     2-year one, since the minimum wins.
+#
+# The distinguishing feature is direction: requirement language *follows* the number
+# ("5+ years of experience in..."), while benefits and company prose *precede* it
+# ("paid month off after 4 years"). So a positive match immediately after the number
+# wins outright, and only otherwise do we look around for disqualifying context.
+IS_A_REQUIREMENT = re.compile(
+    r"^\W{0,4}(of |in |as |with )?(experien|working|work\b|professional|hands[- ]on"
+    r"|relevant|industry|background|track record|building|built|developing|designing"
+    r"|in (data|analytics|software|engineering|ml|machine|a |an |the )"
+    r"|(as|in) an?\b|role\b|equivalent)",
+    re.I,
+)
+NOT_A_REQUIREMENT = re.compile(
+    # Company prose.
+    r"\bago\b|\bhistory\b|founded|\bin business\b|anniversary|since \d{4}"
+    r"|over the (past|last)|for (more than |over )?\d+ years we|celebrat"
+    # Benefits and tenure. Linear's posting reads "Paid month off after 4 years &
+    # every 2 years thereafter" - counting those made a role that genuinely wants
+    # 5+ years look like a 2-year one, because the minimum wins.
+    r"|parental leave|sabbatical|paid (month|time|leave)|month off|\bpto\b"
+    r"|vacation|vesting|thereafter|every \d+ years?|401\(?k\)?|tenure"
+    r"|\bperks?\b|\bbenefits?\b|holiday|equity refresh|stock option",
+    re.I,
+)
 
 # --------------------------------------------------------------------------------
 # Work authorization - see module docstring for why this list is short
@@ -123,9 +161,33 @@ TIER1_LOC = re.compile(
     r"|new york|\bnyc\b|manhattan|brooklyn"
     # Greater Toronto Area - suburb names are how postings usually spell it.
     r"|toronto|\bgta\b|mississauga|brampton|markham|vaughan|etobicoke|scarborough"
-    r"|north york|richmond hill|oakville|burlington, on|waterloo|kitchener",
+    r"|north york|richmond hill|oakville|burlington, on|waterloo|kitchener"
+    # Major North American tech hubs, weighted equally with the preferred three:
+    # relocating for the right role is on the table, so a Seattle posting should not
+    # sit twelve points behind an identical one in SF.
+    r"|seattle|bellevue|redmond|austin|boston|cambridge, ma|denver|boulder"
+    r"|vancouver|montreal|montr|ottawa|calgary|san jose|santa clara|sunnyvale"
+    r"|chicago|los angeles|san diego|portland|atlanta|dallas|washington, dc",
     re.I,
 )
+
+# Roles that borrow data vocabulary but are ordinary software engineering. Accepted
+# only when the posting itself is clearly data/AI-centric - see evaluate().
+SWE_TITLE = re.compile(
+    r"\bsoftware (engineer|developer)\b|\bswe\b|\bbackend engineer\b"
+    r"|\bplatform engineer\b|\bfull[- ]stack engineer\b",
+    re.I,
+)
+
+# Evidence that a generic SWE posting is really a data/AI job.
+DATA_CONTEXT = re.compile(
+    r"\bdata pipeline|\betl\b|\belt\b|\bdata warehouse|\bspark\b|\bkafka\b|\bairflow\b"
+    r"|\bdbt\b|\bsnowflake\b|\bredshift\b|\bbigquery\b|\bdatabricks\b|\bflink\b"
+    r"|machine learning|\bllm\b|\bml (platform|infra)|data infrastructure"
+    r"|data platform|streaming|analytics",
+    re.I,
+)
+DATA_CONTEXT_MIN_HITS = 3
 
 CANADA_HINT = re.compile(r"canada|ontario|,\s*on\b|,\s*bc\b|,\s*ab\b|,\s*qc\b", re.I)
 
@@ -148,7 +210,13 @@ NON_NA_LOC = re.compile(
     r"|copenhagen|norway|oslo|finland|helsinki|austria|vienna|belgium|brussels"
     r"|czech|prague|romania|bucharest|ukraine|turkey|istanbul|\buae\b|dubai"
     r"|south africa|new zealand|taiwan|vietnam|thailand|bangkok|indonesia|jakarta"
-    r"|malaysia|kuala lumpur|kenya|nigeria|egypt|mexico city|guadalajara|costa rica",
+    r"|malaysia|kuala lumpur|kenya|nigeria|egypt|mexico city|guadalajara|costa rica"
+    # Added after Workday postings in Lima and Bangalore reached the alerts.
+    r"|\bperu\b|\blima\b|ecuador|uruguay|paraguay|bolivia|venezuela|panama"
+    r"|hyderabad|telangana|karnataka|chennai|mumbai|delhi|noida|kolkata"
+    r"|greece|athens|hungary|budapest|bulgaria|sofia|serbia|belgrade|croatia"
+    r"|slovakia|slovenia|lithuania|latvia|estonia|morocco|tunisia|ghana|rwanda"
+    r"|pakistan|bangladesh|sri lanka|nepal|saudi|qatar|kuwait|bahrain|oman",
     re.I,
 )
 
@@ -186,9 +254,13 @@ def min_years_required(text: str, cap: int = 20) -> int | None:
         return None
     found: list[int] = []
     for match in YEARS_RE.finditer(text):
-        window = text[match.end(): match.end() + 60]
-        if not EXPERIENCE_NEAR.search(window):
-            continue
+        after = text[match.end(): match.end() + 70]
+        if not IS_A_REQUIREMENT.match(after):
+            # No requirement language follows, so look around for the tell-tale
+            # benefits or company-prose wording before discarding it.
+            context = text[max(0, match.start() - 70): match.end() + 70]
+            if NOT_A_REQUIREMENT.search(context):
+                continue
         try:
             value = int(match.group(1))
         except (TypeError, ValueError):
@@ -251,8 +323,22 @@ def evaluate(job: Job, cfg: dict | None = None) -> Verdict:
     # 1. Role family
     role = classify_role(title)
     if role is None:
-        return Verdict(False, "role_family")
-    family, weight = role
+        # Generic software engineering counts only when the posting is genuinely
+        # data/AI-centric. A Spring Boot / Docker / Kubernetes internship makes these
+        # a fair target, but accepting every "Software Engineer" title outright would
+        # bury the data roles under generic web-dev postings.
+        if (
+            cfg.get("allow_data_adjacent_swe")
+            and SWE_TITLE.search(title)
+            and not NEGATIVE_TITLE.search(title)
+            and len(set(m.group(0).lower() for m in DATA_CONTEXT.finditer(job.haystack)))
+            >= DATA_CONTEXT_MIN_HITS
+        ):
+            family, weight = "software_engineer", 0.85
+        else:
+            return Verdict(False, "role_family")
+    else:
+        family, weight = role
 
     # 1b. Stale postings. The point of this tool is being early, so a posting that
     #     has been live for weeks is not worth an alert even when newly *seen*.

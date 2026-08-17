@@ -75,8 +75,46 @@ def test_target_city_outranks_elsewhere(profile):
 
 def test_toronto_is_a_target_city(profile):
     toronto = score_for(make_job(location="Toronto, ON", description=DESCRIPTION), profile)
-    elsewhere = score_for(make_job(location="Austin, TX", description=DESCRIPTION), profile)
-    assert toronto.total > elsewhere.total
+    small_town = score_for(make_job(location="Wichita, KS", description=DESCRIPTION), profile)
+    assert toronto.total > small_town.total
+
+
+def test_major_hubs_rank_equally(profile):
+    """Relocating for the right role is on the table, so hubs are not penalised."""
+    scores = {
+        city: score_for(make_job(location=city, description=DESCRIPTION), profile).total
+        for city in ("Toronto, ON", "San Francisco, CA", "New York, NY",
+                     "Seattle, WA", "Austin, TX")
+    }
+    assert len(set(scores.values())) == 1, scores
+
+
+def test_consultancies_rank_below_product_companies(profile):
+    consult = Job(ats="greenhouse", company="Kyndryl", external_id="1",
+                  title="Data Engineer", url="", location_raw="Toronto, ON",
+                  description=DESCRIPTION,
+                  posted_at=datetime.now(timezone.utc) - timedelta(hours=2))
+    normal = Job(ats="greenhouse", company="Ramp", external_id="2",
+                 title="Data Engineer", url="", location_raw="Toronto, ON",
+                 description=DESCRIPTION,
+                 posted_at=datetime.now(timezone.utc) - timedelta(hours=2))
+    assert score_for(consult, profile).total < score_for(normal, profile).total
+
+
+def test_startups_get_a_boost(profile):
+    startup = Job(ats="ashby", company="minerva", external_id="1",
+                  title="Data Engineer", url="", location_raw="New York, NY",
+                  description=DESCRIPTION,
+                  posted_at=datetime.now(timezone.utc) - timedelta(hours=2))
+    other = Job(ats="ashby", company="bigcorp", external_id="2",
+                title="Data Engineer", url="", location_raw="New York, NY",
+                description=DESCRIPTION,
+                posted_at=datetime.now(timezone.utc) - timedelta(hours=2))
+    v = evaluate(startup)
+    boosted = score_job(startup, v, profile, startup_slugs=frozenset({"minerva"}))
+    plain = score_job(other, evaluate(other), profile, startup_slugs=frozenset({"minerva"}))
+    assert boosted.total > plain.total
+    assert boosted.company_kind == "startup"
 
 
 def test_fresher_posting_scores_higher(profile):

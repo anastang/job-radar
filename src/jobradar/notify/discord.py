@@ -26,6 +26,10 @@ COLOR_NORMAL = 0x3498DB    # blue - worth a look
 
 _ACRONYMS = {"ai", "ml", "bi", "hq", "gm", "io"}
 
+# Small companies are worth flagging - tiny applicant pools mean being early counts
+# for much more - and consultancies are worth flagging for the opposite reason.
+COMPANY_BADGE = {"startup": " 🌱", "consultancy": " (consultancy)", "neutral": ""}
+
 
 def pretty_company(slug: str) -> str:
     cleaned = slug.replace("-", " ").replace("_", " ").strip()
@@ -37,6 +41,20 @@ def pretty_company(slug: str) -> str:
         word.upper() if word.lower() in _ACRONYMS else word.capitalize()
         for word in cleaned.split()
     )
+
+
+def normalize_mention(raw: str) -> str:
+    """Accept a bare Discord user ID as well as the full "<@id>" form.
+
+    Discord's "Copy User ID" yields bare digits, which render as literal text and
+    ping nobody. Wrapping it here means the config can hold either form.
+    """
+    value = (raw or "").strip()
+    if not value:
+        return ""
+    if value.isdigit():
+        return f"<@{value}>"
+    return value
 
 
 def relative_time(dt: datetime | None) -> str:
@@ -67,8 +85,17 @@ def build_embed(job: Job, score: Score, priority: bool) -> dict:
         }
     date_field["inline"] = True
 
+    # The experience bar is the fastest way to triage a card, so it goes up front.
+    if score.min_years is None:
+        experience = "not stated"
+    elif score.min_years <= 1:
+        experience = f"{score.min_years}+ yrs"
+    else:
+        experience = f"**{score.min_years}+ yrs**"
+
     fields = [
         {"name": "Match", "value": f"**{score.total:.0f}**/100", "inline": True},
+        {"name": "Wants", "value": experience, "inline": True},
         date_field,
         {"name": "Source", "value": job.ats, "inline": True},
     ]
@@ -85,7 +112,10 @@ def build_embed(job: Job, score: Score, priority: bool) -> dict:
         "title": job.title[:256],
         "url": job.apply_link or None,
         "color": COLOR_PRIORITY if priority else COLOR_NORMAL,
-        "description": f"**{pretty_company(job.company)}** · {location}"[:4096],
+        "description": (
+            f"**{pretty_company(job.company)}**{COMPANY_BADGE.get(score.company_kind, '')}"
+            f" · {location}"
+        )[:4096],
         "fields": fields,
         "footer": {"text": score.breakdown()},
         "timestamp": job.best_date.isoformat() if job.best_date else None,
@@ -129,6 +159,7 @@ async def send_jobs(
         return 0
 
     ranked = sorted(items, key=lambda pair: pair[1].total, reverse=True)
+    mention = normalize_mention(mention)
     delivered = 0
 
     async with httpx.AsyncClient(timeout=20.0) as client:
