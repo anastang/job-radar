@@ -209,7 +209,7 @@
 "ashby:onerobot": "W/\"job-board:017a739c99e5319b48038db4baf5092afec4a9074a19dbe123b5cb4fcb7f792f\"",
 "ashby:oneschema": "W/\"job-board:27ade2b42cfe33f0a59519c2ac2e250794d8d8d082de98e98b235d993ae29a16\"",
 "ashby:onyx": "W/\"job-board:6147263b32c6e3df48e1b5e6058663b93ecc39cbaf7dd8d4bd761ef3088ad06a\"",
-"ashby:openai": "W/\"job-board:fad742400a223d0c7f3ec449fdc4c5eb7f0cc6df7bab255b1513d2e7b78c02be\"",
+"ashby:openai": "W/\"job-board:21f709e92ea2a7644c05660016d35224d4668a581156ff0ca7073412d8eff1a4\"",
 "ashby:outset": "W/\"job-board:37351e79aeb87b7203ea344c1f33abd09e0a6d3b5fe39c43ae0be0ab3c362bfc\"",
 "ashby:overview": "W/\"job-board:ad870c6f19e8ec3748a285ebdf50b28c7faf33ac401ae9832e460351a7ab2e97\"",
 "ashby:padlet": "W/\"job-board:e9a8496bd7883f974652210b236d6c61863959ab14d7795a78de836080ed7305\"",
@@ -336,7 +336,7 @@
 "greenhouse:alloy": "W/\"320cd6449155dec99caaeddf5dc8f20c\"",
 "greenhouse:alpaca": "W/\"daba44a46c7a5816578d4383ef908ea3\"",
 "greenhouse:amplitude": "W/\"717205dd7525d11ef326f2531b89ac8d\"",
-"greenhouse:anthropic": "W/\"8d9004a0d8ade266316232c8c751eda9\"",
+"greenhouse:anthropic": "W/\"d4a5d8d6521a92e6d69758a32f0ce633\"",
 "greenhouse:apolloio": "W/\"247e4a422a8c4d038af4b6c49831246a\"",
 "greenhouse:asana": "W/\"4fed7c8dbd829604ed8fc51e5157523f\"",
 "greenhouse:assemblyai": "W/\"6c898a8a0a4c59fde8ccc2cf19f0f47d\"",
@@ -356,7 +356,7 @@
 "greenhouse:checkr": "W/\"7ca79d2696d0535eaf991a2d2df1de0e\"",
 "greenhouse:chime": "W/\"11afc763d1f3c0e169aa9c490e11cffd\"",
 "greenhouse:clara": "W/\"b2f7971e407c427e0506273c9a5f7678\"",
-"greenhouse:clickhouse": "W/\"42368ec58c62c2a85feb7e313a4f6d18\"",
+"greenhouse:clickhouse": "W/\"80dca0cbda7aa87fcf50062aff518b5e\"",
 "greenhouse:cloudflare": "W/\"7b5d4d017aef0267ffa0139f48639b47\"",
 "greenhouse:coast": "W/\"b5dc271b105952ed288edcefb04a16b0\"",
 "greenhouse:cockroachlabs": "W/\"6d1a2d8713056315b10e61c171cf06c8\"",
@@ -456,7 +456,7 @@
 "greenhouse:sendbird": "W/\"bc8e17b7956bf1d6bb2e3fbf36fc2805\"",
 "greenhouse:sigmacomputing": "W/\"a69af95a13ba1429f36b8e58be1ea2c2\"",
 "greenhouse:starburst": "W/\"e5bde65bf637672a96acf32567e36fb9\"",
-"greenhouse:stripe": "W/\"6dbfccfc00e30e122beaf965dea31fde\"",
+"greenhouse:stripe": "W/\"33d8c7e091ebd6f3e8beedf34a23ba23\"",
 "greenhouse:superset": "W/\"a9ac030aa56cfd020d8d9330680eb5b4\"",
 "greenhouse:swayable": "W/\"939ed27b8ed91828ed6fd4e7d236327b\"",
 "greenhouse:tempo": "W/\"f2dd3d9c6be46246ef51b2dda54e4413\"",
@@ -1142,8 +1142,8 @@
 },
 "meta": {
 "bootstrapped_at": "2026-08-16T09:42:23.450845+00:00",
-"last_run": "2026-08-17T11:46:48.353856+00:00",
-"last_simplify": "2026-08-17T11:46:48.353856+00:00",
+"last_run": "2026-08-17T12:02:47.996518+00:00",
+"last_simplify": "2026-08-17T12:02:47.996518+00:00",
 "last_tier2": "2026-08-17T11:46:48.353856+00:00"
 },
 "seen": {
@@ -4934,6 +4934,7 @@
 "1d906baf245ff3c7": "2026-08-16",
 "1d91f662cb3ab640": "2026-08-16",
 "1d96f131f916fae7": "2026-08-17",
+"1d9789da90677954": "2026-08-17",
 "1d98507f6678dd2a": "2026-08-16",
 "1d993271cf7c0752": "2026-08-17",
 "1d9c46e8db9ba422": "2026-08-16",
@@ -23929,6 +23930,7 @@
 "b3030cc39c2557c8": "2026-08-16",
 "b3041c846546addc": "2026-08-16",
 "b3067c37482cc658": "2026-08-17",
+"b3070cace1e5bb1b": "2026-08-17",
 "b3079b0ff930ae3d": "2026-08-16",
 "b308aea855d104cd": "2026-08-17",
 "b312e9768e6cd2af": "2026-08-17",
@@ -33716,6 +33718,6 @@
 "fffacd86f61539e4": "2026-08-16",
 "fffdcff1b5729b75": "2026-08-17"
 },
-"updated_at": "2026-08-17T11:46:48.374190+00:00",
+"updated_at": "2026-08-17T12:02:48.026548+00:00",
 "version": 2
 }
