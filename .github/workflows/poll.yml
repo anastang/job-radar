@@ -43,7 +43,30 @@ jobs:
           ARGS=""
           if [ "${{ inputs.dry_run }}" = "true" ]; then ARGS="$ARGS --dry-run"; fi
           if [ "${{ inputs.all_tiers }}" = "true" ]; then ARGS="$ARGS --all-tiers"; fi
-          jobradar $ARGS
+
+          # Surface the two states that otherwise fail silently: a dry run sends
+          # nothing by design, and a missing secret means alerts cannot be delivered
+          # at all - both look identical to "no matching jobs" from the outside.
+          if [ -n "$ARGS" ]; then
+            echo "::notice::Running in mode: jobradar $ARGS"
+          fi
+          if [ -z "${DISCORD_WEBHOOK_URL}" ]; then
+            echo "::warning::DISCORD_WEBHOOK_URL is not set - no alert can be delivered"
+          fi
+          if [ ! -f state/seen.json ]; then
+            echo "::warning::No state/seen.json in the repo - this run will bootstrap instead of alerting"
+          fi
+
+          set -o pipefail
+          jobradar $ARGS 2>&1 | tee run.log
+
+          {
+            echo "### Job Radar"
+            echo ""
+            echo '```'
+            tail -n 6 run.log
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Commit state
         if: ${{ inputs.dry_run != true }}
