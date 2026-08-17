@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+*.egg-info/
+build/
+dist/
+
+# Never commit the resume - it carries phone number and email.
+# config/profile.yaml holds only technology terms and is safe to track.
+resume/
+*.pdf
+*.docx
+
+.env

@@ -1,0 +1,68 @@
+name: Job Radar
+
+on:
+  schedule:
+    # Every 5 minutes. GitHub delays scheduled runs under load - expect 5-15 min in
+    # practice, which is still well ahead of aggregator propagation.
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Print matches without notifying or writing state"
+        type: boolean
+        default: false
+      all_tiers:
+        description: "Poll tier2 and the community feed regardless of cadence"
+        type: boolean
+        default: false
+
+# Runs must not overlap: two workers committing state race each other.
+concurrency:
+  group: jobradar-poll
+  cancel-in-progress: false
+
+jobs:
+  poll:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -e .
+
+      - name: Poll job boards
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: |
+          ARGS=""
+          if [ "${{ inputs.dry_run }}" = "true" ]; then ARGS="$ARGS --dry-run"; fi
+          if [ "${{ inputs.all_tiers }}" = "true" ]; then ARGS="$ARGS --all-tiers"; fi
+          jobradar $ARGS
+
+      - name: Commit state
+        if: ${{ inputs.dry_run != true }}
+        run: |
+          git config user.name "job-radar[bot]"
+          git config user.email "job-radar[bot]@users.noreply.github.com"
+          git add state/seen.json
+          if git diff --staged --quiet; then
+            echo "No state change."
+            exit 0
+          fi
+          git commit -m "state: $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          # A concurrent run may have pushed first; rebase and retry rather than fail.
+          for attempt in 1 2 3; do
+            if git push; then
+              echo "Pushed on attempt $attempt."
+              exit 0
+            fi
+            git pull --rebase --autostash origin "${GITHUB_REF_NAME}" || true
+          done
+          echo "Could not push state after 3 attempts." >&2
+          exit 1

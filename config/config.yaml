@@ -1,0 +1,69 @@
+# Job Radar configuration.
+
+polling:
+  # Tier 1 companies are checked on every run; tier 2 and the community feed run
+  # on slower cadences tracked via state metadata, so a 5-minute workflow doesn't
+  # hammer 170 boards uniformly.
+  tier2_every_minutes: 30
+  simplify_every_minutes: 15
+
+fetch:
+  concurrency: 12
+  timeout_seconds: 25
+  retries: 3
+
+filters:
+  # Reject a posting whose stated minimum experience exceeds this.
+  max_years_experience: 3
+  # He graduated in April 2026, so internships and co-ops are noise.
+  allow_internships: false
+  # Postings with no parseable location ("Hybrid", "Remote") still alert - several
+  # real matches surfaced this way - they just score lower than SF/NYC/Toronto.
+  allow_unknown_location: true
+
+  # Cleared/defense employers. Their postings state the clearance requirement in the
+  # description, which the auth gate catches - but community-feed entries have no
+  # description, so they leak through on title alone. Matched as a substring against
+  # the company name, case-insensitively.
+  blocked_companies:
+    - johns hopkins
+    - mantech
+    - arcfield
+    - chenega
+    - bigbear
+    - leidos
+    - booz allen
+    - saic
+    - mitre
+    - raytheon
+    - lockheed
+    - northrop
+    - general dynamics
+    - peraton
+    - caci
+    - parsons
+    - l3harris
+    - battelle
+    - sandia
+    - lincoln laboratory
+    - aerospace corporation
+    - anduril
+    - draper
+    - noblis
+    - torch technologies
+    - kbr
+
+scoring:
+  # Out of ~100. Below notify_min the posting is recorded but not sent.
+  notify_min: 55
+  # At or above this, the alert is flagged and can @-mention. Calibrated against a
+  # live sample: Lyft/Ramp/Loblaw-grade matches land in the 73-79 band.
+  priority_min: 70
+
+notify:
+  # Set to "<@your_discord_user_id>" for a phone ping on priority hits.
+  mention: ""
+
+state:
+  path: state/seen.json
+  prune_days: 90
