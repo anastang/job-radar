@@ -58,6 +58,9 @@ filters:
     - noblis
     - torch technologies
     - kbr
+    # Workday tenants are sometimes opaque: "globalhr" is RTX/Raytheon, whose
+    # postings would otherwise slip past a name-based blocklist entirely.
+    - globalhr
 
 scoring:
   # Out of ~100. Below notify_min the posting is recorded but not sent.

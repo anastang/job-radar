@@ -23,8 +23,12 @@ scrape LinkedIn or Indeed**, by design.
 | Greenhouse | `first_published` — true publish time | yes (`?content=true`) |
 | Ashby | `publishedAt` | yes, plus compensation |
 | Lever | `createdAt` (epoch ms) | yes, plus salary range |
+| Workable | `published_on` (date-granular) | yes (`?details=true`) |
 | SmartRecruiters | `releasedDate` | no — but gives structured `experienceLevel` |
+| Workday | `postedOn` — prose, "Posted 13 Days Ago" | no |
 | SimplifyJobs new-grad feed | `date_posted` | no — breadth backstop |
+
+Roughly 600 boards across six providers, including ~350 YC startups.
 
 ## Setup
 
@@ -131,14 +135,44 @@ regression test covering this.
 | File | Purpose |
 |---|---|
 | `config/config.yaml` | thresholds, cadence, filters, blocked employers |
-| `config/companies.yaml` | generated — company slugs by ATS and tier |
+| `config/companies.yaml` | generated — hand-seeded companies by ATS and tier |
+| `config/companies_yc.yaml` | generated — YC startups that are actively hiring |
+| `config/companies_feed.yaml` | generated — Workday/Workable boards harvested from the feed |
 | `config/profile.yaml` | generated — resume-derived skill terms and weights |
 
-Regenerate the company list periodically; boards migrate between ATS vendors:
+Every `config/companies*.yaml` file is merged at runtime. They are kept separate so
+that re-running one generator cannot wipe out another's boards. A slug listed as
+tier1 anywhere wins over a tier2 listing elsewhere.
+
+Regenerate periodically — boards migrate between ATS vendors and startups come and go:
 
 ```bash
 python scripts/validate_companies.py
 ```
+
+```bash
+python scripts/discover_yc.py
+```
+
+```bash
+python scripts/discover_from_feed.py
+```
+
+### Why three generators
+
+`validate_companies.py` probes a hand-maintained list of established companies.
+`discover_yc.py` walks the public YC directory, keeps companies that are active,
+hiring, and in the target metros, and guesses their ATS slug from name and domain —
+about a third resolve. `discover_from_feed.py` harvests Workday and Workable boards
+from real posting URLs in the community feed, because Workday boards are addressed by
+host *and* tenant *and* site (`ngc.wd1` / `ngc` / `Northrop_Grumman_External_Site`)
+and cannot be guessed. Blocked employers are dropped at discovery time rather than at
+filter time — there is no point spending a poll on a board whose every posting would
+be rejected.
+
+Everything discovered lands in tier2. Hundreds of startup boards polled every five
+minutes would be inconsiderate to the ATS providers for little gain; a 30-minute
+cadence is still far ahead of anyone browsing a job board.
 
 Regenerate the skill profile whenever the resume changes:
 

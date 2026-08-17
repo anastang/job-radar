@@ -40,8 +40,36 @@ def load_yaml(path: Path) -> dict[str, Any]:
     return yaml.safe_load(path.read_text(encoding="utf-8")) or {}
 
 
+def load_companies(primary: Path) -> dict[str, Any]:
+    """Merge every ``companies*.yaml`` in the config directory.
+
+    validate_companies.py and discover_yc.py each regenerate their own file, so
+    they are kept separate and merged here - otherwise re-running either generator
+    would silently wipe out the other's boards.
+    """
+    merged: dict[str, dict[str, list[str]]] = {}
+    paths = sorted(primary.parent.glob("companies*.yaml")) if primary.parent.is_dir() else []
+    if primary.exists() and primary not in paths:
+        paths.append(primary)
+
+    for path in paths:
+        for ats, tiers in (load_yaml(path) or {}).items():
+            if not isinstance(tiers, dict):
+                continue
+            bucket = merged.setdefault(ats, {"tier1": [], "tier2": []})
+            for tier in ("tier1", "tier2"):
+                bucket[tier].extend(tiers.get(tier) or [])
+
+    # A slug promoted to tier1 in one file must not also be polled as tier2.
+    for tiers in merged.values():
+        tier1 = list(dict.fromkeys(tiers["tier1"]))
+        tier2 = [s for s in dict.fromkeys(tiers["tier2"]) if s not in set(tier1)]
+        tiers["tier1"], tiers["tier2"] = tier1, tier2
+    return merged
+
+
 def select_targets(companies: dict[str, Any], include_tier2: bool) -> list[tuple[str, str]]:
-    """Flatten companies.yaml into (ats, slug) pairs for this run."""
+    """Flatten the merged company config into (ats, slug) pairs for this run."""
     targets: list[tuple[str, str]] = []
     for ats, tiers in (companies or {}).items():
         if ats not in ATS_ADAPTERS or not isinstance(tiers, dict):
@@ -144,7 +172,7 @@ def render_table(matches: list[tuple[Job, Score]], limit: int = 40) -> str:
 
 async def run(args: argparse.Namespace) -> int:
     cfg = load_yaml(Path(args.config))
-    companies = load_yaml(Path(args.companies))
+    companies = load_companies(Path(args.companies))
     profile = Profile.load(args.profile)
 
     fetch_cfg = cfg.get("fetch") or {}

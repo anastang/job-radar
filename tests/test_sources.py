@@ -3,10 +3,18 @@
 from __future__ import annotations
 
 import asyncio
+from datetime import datetime, timezone
 
 import pytest
 
-from jobradar.sources import ashby, greenhouse, lever, simplify
+from jobradar.sources import (
+    ashby,
+    greenhouse,
+    lever,
+    simplify,
+    workable,
+    workday,
+)
 from jobradar.sources.base import DEFAULT_HEADERS, Fetcher
 
 
@@ -101,11 +109,81 @@ def test_simplify_parse_skips_inactive():
     assert jobs[1].extra["blocking_sponsorship"] is True
 
 
+def test_workable_parse():
+    payload = {"jobs": [{
+        "title": "AI & ML Engineer",
+        "shortcode": "960601AF0E",
+        "url": "https://apply.workable.com/j/960601AF0E",
+        "application_url": "https://apply.workable.com/j/960601AF0E/apply",
+        "published_on": "2026-07-08",
+        "city": "London", "state": "England", "country": "United Kingdom",
+        "telecommuting": True,
+        "department": "Engineering",
+        "description": "<p>Build <strong>dbt</strong> models</p>",
+    }]}
+    job = workable.parse("acme", payload)[0]
+    assert job.external_id == "960601AF0E"
+    assert job.description == "Build dbt models"
+    assert job.is_remote is True
+    assert "London" in job.location_raw and "Remote" in job.location_raw
+    assert job.posted_at is not None and job.posted_at.year == 2026
+
+
+@pytest.mark.parametrize("text,days", [
+    ("Posted Today", 0),
+    ("Just Posted", 0),
+    ("Posted Yesterday", 1),
+    ("Posted 13 Days Ago", 13),
+])
+def test_workday_posted_on_parsing(text, days):
+    parsed = workday.parse_posted_on(text)
+    assert parsed is not None
+    age = (datetime.now(timezone.utc) - parsed).total_seconds() / 86400
+    assert abs(age - days) < 0.1
+
+
+def test_workday_thirty_plus_days_counts_as_stale():
+    """"30+ Days Ago" means at least 30 - it must not sneak under a 30-day gate."""
+    parsed = workday.parse_posted_on("Posted 30+ Days Ago")
+    assert parsed is not None
+    age_days = (datetime.now(timezone.utc) - parsed).total_seconds() / 86400
+    assert age_days > 30
+
+
+@pytest.mark.parametrize("text", [None, "", "garbage", "Posted sometime"])
+def test_workday_unparseable_dates_return_none(text):
+    assert workday.parse_posted_on(text) is None
+
+
+def test_workday_slug_splitting():
+    assert workday.split_slug("nvidia.wd5/nvidia/NVIDIAExternalCareerSite") == (
+        "nvidia.wd5", "nvidia", "NVIDIAExternalCareerSite")
+    for bad in ("nvidia", "a/b", "a/b/c/d", ""):
+        assert workday.split_slug(bad) is None
+
+
+def test_workday_parse_builds_viewable_url():
+    payload = {"jobPostings": [{
+        "title": "Data Engineer",
+        "externalPath": "/job/US-CA-Santa-Clara/Data-Engineer_JR123",
+        "locationsText": "US, CA, Santa Clara",
+        "postedOn": "Posted 3 Days Ago",
+    }]}
+    job = workday.parse("nvidia.wd5/nvidia/NVIDIAExternalCareerSite", payload)[0]
+    assert job.company == "nvidia"
+    assert job.url == (
+        "https://nvidia.wd5.myworkdayjobs.com/en-US/NVIDIAExternalCareerSite"
+        "/job/US-CA-Santa-Clara/Data-Engineer_JR123")
+    assert job.posted_at is not None
+
+
 def test_adapters_tolerate_garbage_payloads():
     assert greenhouse.parse("x", {}) == []
     assert ashby.parse("x", {"jobs": None}) == []
     assert lever.parse("x", []) == []
     assert simplify.parse([]) == []
+    assert workable.parse("x", {}) == []
+    assert workday.parse("bad-slug", {"jobPostings": [{"externalPath": "/j"}]}) == []
 
 
 @pytest.mark.live
