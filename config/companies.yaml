@@ -16,13 +16,16 @@ ashby:
     - hightouch
     - linear
     - modal
+    - moderntreasury
     - notion
     - openai
+    - perplexity
     - plaid
     - posthog
     - ramp
     - sierra
     - snowflake
+    - vanta
     - wealthsimple
   tier2:
     - abridge
@@ -45,11 +48,9 @@ ashby:
     - materialize
     - middesk
     - miro
-    - moderntreasury
     - montecarlodata
     - neon
     - patreon
-    - perplexity
     - persona
     - pinecone
     - prefect
@@ -89,12 +90,14 @@ greenhouse:
     - databricks
     - datadog
     - discord
+    - doordashusa
     - elastic
     - faire
     - figma
     - fivetran
     - flexport
     - gitlab
+    - gleanwork
     - hightouch
     - instacart
     - lyft
@@ -182,3 +185,15 @@ lever:
     - wattpad
     - wealthfront
     - zoox
+
+smartrecruiters:
+  tier1:
+    - glean
+  tier2:
+    - canva
+    - hootsuite
+    - justworks
+    - palantir
+    - together
+    - uber
+    - wayfair

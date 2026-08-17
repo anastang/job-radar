@@ -13,6 +13,12 @@ fetch:
   retries: 3
 
 filters:
+  # Never alert on a posting older than this, even if we have only just seen it.
+  # Being early is the whole point, and this also contains two burst risks: adding
+  # a new company would otherwise dump its entire back catalogue into one run, and
+  # the 90-day state prune can make a long-lived posting look new again.
+  max_age_days: 30
+
   # Reject a posting whose stated minimum experience exceeds this.
   max_years_experience: 3
   # He graduated in April 2026, so internships and co-ops are noise.

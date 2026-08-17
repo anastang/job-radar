@@ -19,12 +19,15 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO / "src"))
 
-from jobradar.sources import ashby, greenhouse, lever  # noqa: E402
+from jobradar.sources import ashby, greenhouse, lever, smartrecruiters  # noqa: E402
 from jobradar.sources.base import Fetcher  # noqa: E402
 
 # Companies whose data/AI teams are the highest-value targets. Everything else
 # still gets polled, just less often.
 TIER1 = {
+    # Slugs recovered by variant probing - the obvious spelling does not resolve for
+    # these, so keep the working form here rather than the company's display name.
+    "doordashusa", "perplexity", "gleanwork", "vanta", "moderntreasury",
     "openai", "anthropic", "databricks", "snowflake", "stripe", "ramp", "brex",
     "plaid", "figma", "notion", "linear", "cursor", "anysphere", "scaleai",
     "cohere", "shopify", "wealthsimple", "datadog", "cloudflare", "mongodb",
@@ -38,6 +41,8 @@ TIER1 = {
 }
 
 CANDIDATES = sorted({
+    # --- Slugs confirmed by variant probing (the obvious spelling 404s) ---
+    "doordashusa", "perplexity", "gleanwork", "vanta", "moderntreasury",
     # --- AI labs & applied AI ---
     "openai", "anthropic", "scaleai", "scale", "cohere", "huggingface", "cursor",
     "anysphere", "perplexityai", "perplexity", "sierra", "harvey", "glean",
@@ -94,18 +99,33 @@ CANDIDATES = sorted({
 
 
 async def probe(fetcher: Fetcher, slug: str) -> list[tuple[str, str, int]]:
-    """Return (ats, slug, job_count) for every board this slug resolves on."""
+    """Return (ats, resolved_slug, job_count) for every board this slug resolves on.
+
+    SmartRecruiters identifiers are capitalized ("Visa", not "visa"), so it is probed
+    with a capitalized variant as well - a lowercase-only probe silently misses every
+    board on that provider.
+    """
+    attempts = [
+        (greenhouse.ATS, slug, greenhouse.fetch(fetcher, slug)),
+        (ashby.ATS, slug, ashby.fetch(fetcher, slug)),
+        (lever.ATS, slug, lever.fetch(fetcher, slug)),
+        (smartrecruiters.ATS, slug, smartrecruiters.fetch(fetcher, slug)),
+    ]
+    capitalized = slug.capitalize()
+    if capitalized != slug:
+        attempts.append(
+            (smartrecruiters.ATS, capitalized, smartrecruiters.fetch(fetcher, capitalized))
+        )
+
+    results = await asyncio.gather(*(a[2] for a in attempts), return_exceptions=True)
+
     found: list[tuple[str, str, int]] = []
-    results = await asyncio.gather(
-        greenhouse.fetch(fetcher, slug),
-        ashby.fetch(fetcher, slug),
-        lever.fetch(fetcher, slug),
-        return_exceptions=True,
-    )
-    for ats, jobs in zip((greenhouse.ATS, ashby.ATS, lever.ATS), results):
-        if isinstance(jobs, Exception) or not jobs:
+    seen_ats: set[str] = set()
+    for (ats, resolved, _), jobs in zip(attempts, results):
+        if isinstance(jobs, Exception) or not jobs or ats in seen_ats:
             continue
-        found.append((ats, slug, len(jobs)))
+        seen_ats.add(ats)
+        found.append((ats, resolved, len(jobs)))
     return found
 
 
@@ -116,7 +136,7 @@ async def main() -> None:
     parser.add_argument("--concurrency", type=int, default=24)
     args = parser.parse_args()
 
-    print(f"Probing {len(CANDIDATES)} candidate slugs across 3 ATS providers...")
+    print(f"Probing {len(CANDIDATES)} candidate slugs across 4 ATS providers...")
     async with Fetcher(concurrency=args.concurrency, timeout=30.0) as fetcher:
         batches = await asyncio.gather(*(probe(fetcher, s) for s in CANDIDATES))
 

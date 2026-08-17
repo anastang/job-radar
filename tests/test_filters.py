@@ -89,6 +89,29 @@ def test_junior_levels_allowed(title):
     assert evaluate(make_job(title)).passed
 
 
+def test_stale_postings_rejected_when_configured():
+    """Being early is the point; a month-old posting is not worth an alert."""
+    old = Job(ats="greenhouse", company="acme", external_id="1", title="Data Engineer",
+              url="https://example.com", location_raw="New York, NY",
+              posted_at=datetime.now(timezone.utc) - timedelta(days=45))
+    assert evaluate(old, {"max_age_days": 30}).reason == "stale"
+    # Without the setting configured, age is not a gate at all.
+    assert evaluate(old, {}).passed
+
+
+def test_recent_posting_survives_age_gate():
+    recent = make_job("Data Engineer")
+    assert evaluate(recent, {"max_age_days": 30}).passed
+
+
+def test_undated_posting_not_rejected_as_stale():
+    """Some sources omit dates; unknown age must not mean rejected."""
+    undated = Job(ats="simplify", company="acme", external_id="1",
+                  title="Data Engineer", url="https://example.com",
+                  location_raw="Toronto, ON", posted_at=None)
+    assert evaluate(undated, {"max_age_days": 30}).passed
+
+
 def test_internships_rejected_by_default():
     assert evaluate(make_job("Data Engineer Intern")).reason == "internship"
     assert evaluate(make_job("Data Analyst Co-op")).reason == "internship"

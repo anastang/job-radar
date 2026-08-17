@@ -254,6 +254,18 @@ def evaluate(job: Job, cfg: dict | None = None) -> Verdict:
         return Verdict(False, "role_family")
     family, weight = role
 
+    # 1b. Stale postings. The point of this tool is being early, so a posting that
+    #     has been live for weeks is not worth an alert even when newly *seen*.
+    #     This guards two real cases: adding a company dumps its whole back
+    #     catalogue into one run, and the 90-day state prune can make a long-lived
+    #     posting look new again. Postings with no date are allowed through -
+    #     unknown must not mean rejected.
+    max_age_days = cfg.get("max_age_days")
+    if max_age_days:
+        age = job.age_hours
+        if age is not None and age > float(max_age_days) * 24:
+            return Verdict(False, "stale")
+
     # 2. Internships / co-ops (he has already graduated)
     if not allow_internships and INTERNSHIP_TITLE.search(title):
         return Verdict(False, "internship", family=family, family_weight=weight)
