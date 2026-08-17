@@ -130,7 +130,12 @@ def score_job(job: Job, verdict: Verdict, profile: Profile) -> Score:
         early_frac = 0.75
 
     age = job.age_hours
-    if age is None:
+    if not job.date_trusted:
+        # The date is an index date, not a posting date, so it says nothing reliable
+        # about freshness in either direction. Score it neutrally rather than
+        # rewarding or punishing a number we know can be wrong by weeks.
+        fresh_frac = 0.5
+    elif age is None:
         fresh_frac = 0.25
     elif age <= 6:
         fresh_frac = 1.0

@@ -12,6 +12,19 @@ from typing import Any
 _WS = re.compile(r"\s+")
 _TAG = re.compile(r"<[^>]+>")
 
+# Sources whose dates are NOT the employer's posting date.
+#
+# The SimplifyJobs feed reports when *Simplify* first indexed a posting, and never
+# refreshes it when the employer re-posts. A real case: EXL's Data Engineer listing
+# carried date_posted 2026-07-08 while the employer's own page said 2026-08-16 - the
+# feed was 39 days stale. Trusting that would make a day-old job look like a
+# month-old one, and the staleness gate would then discard it.
+#
+# Every other source reads the employer's own system: Greenhouse first_published,
+# Ashby publishedAt, Lever createdAt, Workable published_on. Workday's "Posted 13
+# Days Ago" is coarse but genuine, so it stays trusted.
+UNTRUSTED_DATE_SOURCES = frozenset({"simplify"})
+
 
 def parse_dt(value: Any) -> datetime | None:
     """Parse the several timestamp shapes the ATS APIs return.
@@ -89,6 +102,11 @@ class Job:
     @property
     def best_date(self) -> datetime | None:
         return self.posted_at or self.updated_at
+
+    @property
+    def date_trusted(self) -> bool:
+        """Whether ``best_date`` is the employer's posting date or merely an index date."""
+        return self.ats not in UNTRUSTED_DATE_SOURCES
 
     @property
     def age_hours(self) -> float | None:

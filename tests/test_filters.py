@@ -104,6 +104,32 @@ def test_recent_posting_survives_age_gate():
     assert evaluate(recent, {"max_age_days": 30}).passed
 
 
+def test_feed_dates_are_not_used_to_reject_as_stale():
+    """Regression: the real EXL "Data Engineer" listing.
+
+    Simplify reported date_posted 2026-07-08 while the employer's own page said
+    2026-08-16 - the feed records when *it* indexed a job and never refreshes that
+    when the employer re-posts. Gating on it would discard a day-old role as stale,
+    which is the exact opposite of what this tool is for.
+    """
+    feed_job = Job(
+        ats="simplify", company="EXL", external_id="1", title="Data Engineer",
+        url="https://example.com", location_raw="United States",
+        posted_at=datetime.now(timezone.utc) - timedelta(days=40),
+    )
+    assert not feed_job.date_trusted
+    assert evaluate(feed_job, {"max_age_days": 30}).passed
+
+    # An employer-sourced date of the same age must still be rejected.
+    ats_job = Job(
+        ats="greenhouse", company="acme", external_id="1", title="Data Engineer",
+        url="https://example.com", location_raw="United States",
+        posted_at=datetime.now(timezone.utc) - timedelta(days=40),
+    )
+    assert ats_job.date_trusted
+    assert evaluate(ats_job, {"max_age_days": 30}).reason == "stale"
+
+
 def test_undated_posting_not_rejected_as_stale():
     """Some sources omit dates; unknown age must not mean rejected."""
     undated = Job(ats="simplify", company="acme", external_id="1",

@@ -18,17 +18,29 @@ Polling the ATS JSON APIs directly is both faster and legitimate — these are t
 public endpoints that render each company's own careers page. **This tool does not
 scrape LinkedIn or Indeed**, by design.
 
-| Source | Freshness field | Description text |
-|---|---|---|
-| Greenhouse | `first_published` — true publish time | yes (`?content=true`) |
-| Ashby | `publishedAt` | yes, plus compensation |
-| Lever | `createdAt` (epoch ms) | yes, plus salary range |
-| Workable | `published_on` (date-granular) | yes (`?details=true`) |
-| SmartRecruiters | `releasedDate` | no — but gives structured `experienceLevel` |
-| Workday | `postedOn` — prose, "Posted 13 Days Ago" | no |
-| SimplifyJobs new-grad feed | `date_posted` | no — breadth backstop |
+| Source | Freshness field | Date trusted? | Description text |
+|---|---|---|---|
+| Greenhouse | `first_published` — true publish time | yes | yes (`?content=true`) |
+| Ashby | `publishedAt` | yes | yes, plus compensation |
+| Lever | `createdAt` (epoch ms) | yes | yes, plus salary range |
+| Workable | `published_on` (date-granular) | yes | yes (`?details=true`) |
+| SmartRecruiters | `releasedDate` | yes | no — gives `experienceLevel` |
+| Workday | `postedOn` — prose, "Posted 13 Days Ago" | yes, coarse | no |
+| SimplifyJobs new-grad feed | `date_posted` | **no — index date** | no — breadth backstop |
 
 Roughly 600 boards across six providers, including ~350 YC startups.
+
+### The feed's dates are not posting dates
+
+The community feed records when *it* indexed a job and never refreshes that when the
+employer re-posts. A real case: EXL's "Data Engineer" carried `date_posted`
+2026-07-08 while the employer's own page said 2026-08-16 — off by 39 days.
+
+Every other source reads the employer's own system, so only the feed is affected.
+Because a wrong date here would make a day-old job look month-old, feed-sourced
+postings are exempt from the staleness gate, score neutrally on freshness rather than
+being penalized, and are labelled "Listed … (feed index — check listing)" in Discord
+instead of claiming a posting date. See `UNTRUSTED_DATE_SOURCES` in `models.py`.
 
 ## Setup
 

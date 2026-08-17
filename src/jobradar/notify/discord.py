@@ -54,9 +54,22 @@ def relative_time(dt: datetime | None) -> str:
 
 def build_embed(job: Job, score: Score, priority: bool) -> dict:
     location = job.location_raw or ("Remote" if job.is_remote else "Location not listed")
+
+    # Only claim a posting date when it came from the employer's own system. The
+    # community feed reports when it indexed the job, which can lag a re-post by
+    # weeks, so label it honestly rather than showing a number that may be wrong.
+    if job.date_trusted:
+        date_field = {"name": "Posted", "value": relative_time(job.best_date)}
+    else:
+        date_field = {
+            "name": "Listed",
+            "value": f"{relative_time(job.best_date)} (feed index - check listing)",
+        }
+    date_field["inline"] = True
+
     fields = [
         {"name": "Match", "value": f"**{score.total:.0f}**/100", "inline": True},
-        {"name": "Posted", "value": relative_time(job.best_date), "inline": True},
+        date_field,
         {"name": "Source", "value": job.ats, "inline": True},
     ]
     if score.matched_skills:

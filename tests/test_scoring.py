@@ -171,3 +171,26 @@ def test_corrupt_state_does_not_crash(tmp_path):
     path = tmp_path / "seen.json"
     path.write_text("{not valid json", encoding="utf-8")
     assert len(State(path).load()) == 0
+
+
+def test_untrusted_dates_score_neutrally(profile):
+    """A feed date can be weeks wrong, so it must not swing freshness either way."""
+    fresh = Job(ats="simplify", company="a", external_id="1", title="Data Engineer",
+                url="", location_raw="San Francisco, CA",
+                posted_at=datetime.now(timezone.utc) - timedelta(hours=1))
+    old = Job(ats="simplify", company="a", external_id="2", title="Data Engineer",
+              url="", location_raw="San Francisco, CA",
+              posted_at=datetime.now(timezone.utc) - timedelta(days=40))
+    a, b = score_for(fresh, profile), score_for(old, profile)
+    assert a.total == b.total, "feed dates must not affect score"
+    assert 0 < a.freshness < 100, "should be neutral, not zero or full marks"
+
+
+def test_trusted_dates_still_drive_freshness(profile):
+    new = Job(ats="greenhouse", company="a", external_id="1", title="Data Engineer",
+              url="", location_raw="San Francisco, CA", description=DESCRIPTION,
+              posted_at=datetime.now(timezone.utc) - timedelta(hours=1))
+    old = Job(ats="greenhouse", company="a", external_id="2", title="Data Engineer",
+              url="", location_raw="San Francisco, CA", description=DESCRIPTION,
+              posted_at=datetime.now(timezone.utc) - timedelta(days=10))
+    assert score_for(new, profile).total > score_for(old, profile).total

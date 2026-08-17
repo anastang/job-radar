@@ -260,8 +260,12 @@ def evaluate(job: Job, cfg: dict | None = None) -> Verdict:
     #     catalogue into one run, and the 90-day state prune can make a long-lived
     #     posting look new again. Postings with no date are allowed through -
     #     unknown must not mean rejected.
+    #     Only applied to sources that report the employer's real posting date. The
+    #     community feed reports its own indexing date and never refreshes it, so a
+    #     job posted yesterday can carry a 40-day-old timestamp - gating on that
+    #     would silently discard exactly the fresh roles this tool exists to catch.
     max_age_days = cfg.get("max_age_days")
-    if max_age_days:
+    if max_age_days and job.date_trusted:
         age = job.age_hours
         if age is not None and age > float(max_age_days) * 24:
             return Verdict(False, "stale")
