@@ -330,3 +330,42 @@ def test_job_key_is_stable_and_distinct():
     c = Job(ats="greenhouse", company="acme", external_id="2",
             title="Data Engineer", url="")
     assert a.key != c.key
+
+
+@pytest.mark.parametrize("title", [
+    "Data Engineer Intern",
+    "Data Analyst Co-op",
+    "Machine Learning Engineer Trainee",
+    "Data Science Summer 2027 Program",
+    "2027 Summer Data Analyst",
+    "Undergraduate Data Analyst",
+    "Data Engineering Student Worker",
+    "Analytics Industrial Placement",
+    "Data Analyst Placement Year",
+    "Data Science Practicum",
+])
+def test_internship_variants_rejected(title):
+    assert not evaluate(make_job(title)).passed, f"{title!r} should be excluded"
+
+
+def test_structured_employment_type_rejects_internship():
+    """An Ashby posting typed "Intern" is an internship whatever the title says."""
+    job = make_job("Data Engineer")
+    job.employment_type = "Intern"
+    assert evaluate(job).reason == "internship_type"
+
+
+def test_full_time_employment_type_passes():
+    job = make_job("Data Engineer")
+    job.employment_type = "FullTime"
+    assert evaluate(job).passed
+
+
+@pytest.mark.parametrize("title", [
+    # Must NOT be caught: these are real full-time roles.
+    "Data Analyst, Student Success",
+    "Data Engineer, Summer Products",
+    "Analytics Engineer, Placement Services",
+])
+def test_internship_filter_does_not_overreach(title):
+    assert evaluate(make_job(title)).passed, f"{title!r} should be kept"

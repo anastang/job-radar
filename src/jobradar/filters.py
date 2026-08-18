@@ -76,9 +76,21 @@ SENIOR_TITLE = re.compile(
 SENIOR_ROMAN = re.compile(r"\b(iii|iv|vi{0,3}|ix|x)\b", re.I)
 
 INTERNSHIP_TITLE = re.compile(
-    r"\bintern\b|\binternship\b|\bco[- ]?op\b|\bapprentice(ship)?\b"
-    r"|\bworking student\b|\bphd\b|\bsummer 20\d\d\b",
+    r"\bintern\b|\binterns\b|\binternship\b|\bco[- ]?op\b|\bcoop\b"
+    r"|\bapprentice(ship)?\b|\bworking student\b|\bphd\b"
+    r"|\bsummer 20\d\d\b|\b20\d\d summer\b|\bwinter 20\d\d\b"
+    # "Trainee" is a graduate-programme word in the UK and APAC but reads as
+    # intern-adjacent in North America, where he is actually looking.
+    r"|\btrainee\b|\bundergrad(uate)?\b|\bpracticum\b"
+    r"|\bstudent (worker|assistant|trainee|program(me)?)\b"
+    r"|\bindustrial placement\b|\bplacement (year|student|program(me)?)\b",
     re.I,
+)
+
+# Structured employment type, where a source publishes one. Far more reliable than
+# reading the title - though coverage is thin: only a handful of postings carry it.
+INTERNSHIP_EMPLOYMENT_TYPE = re.compile(
+    r"intern|apprentice|co[- ]?op|student|seasonal|temporary|trainee", re.I
 )
 
 EARLY_SIGNALS: list[tuple[str, re.Pattern[str]]] = [
@@ -356,9 +368,14 @@ def evaluate(job: Job, cfg: dict | None = None) -> Verdict:
         if age is not None and age > float(max_age_days) * 24:
             return Verdict(False, "stale")
 
-    # 2. Internships / co-ops (he has already graduated)
-    if not allow_internships and INTERNSHIP_TITLE.search(title):
-        return Verdict(False, "internship", family=family, family_weight=weight)
+    # 2. Internships / co-ops (he has already graduated). Checked against the title
+    #    and, where the source publishes one, the structured employment type - an
+    #    Ashby posting typed "Intern" is an internship whatever its title says.
+    if not allow_internships:
+        if INTERNSHIP_TITLE.search(title):
+            return Verdict(False, "internship", family=family, family_weight=weight)
+        if job.employment_type and INTERNSHIP_EMPLOYMENT_TYPE.search(job.employment_type):
+            return Verdict(False, "internship_type", family=family, family_weight=weight)
 
     # 3. Seniority by title
     if SENIOR_TITLE.search(title) or SENIOR_ROMAN.search(title):
