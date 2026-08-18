@@ -11,7 +11,7 @@ import asyncio
 import logging
 import os
 from datetime import datetime, timezone
-from typing import Iterable, Sequence
+from typing import Sequence
 
 import httpx
 

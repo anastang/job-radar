@@ -245,7 +245,7 @@ def test_export_control_boilerplate_does_not_block():
 
 
 def test_no_sponsorship_language_does_not_block():
-    """He is a Canadian citizen on TN status and answers yes to this question."""
+    """TN status is not sponsorship, so this question is answered yes."""
     job = make_job(
         "Data Engineer",
         description="Applicants must be authorized to work in the US without "

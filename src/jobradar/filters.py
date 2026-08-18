@@ -6,11 +6,12 @@ Design notes worth keeping in mind before editing:
   ("Analytics Engineer" at Linear, "Data Analyst" at Cloudflare) carry no seniority
   marker in the title, while the description says "5+ years". Seniority therefore
   comes from title patterns *and* years-of-experience parsed out of the body.
-* The work-authorization rule is deliberately inverted from the usual one. The user
-  is a Canadian citizen entering the US on TN status under USMCA, so "we do not offer
-  sponsorship" is NOT a blocker - he answers yes to that question. Only citizenship,
-  clearance, and ITAR requirements genuinely exclude him. Filtering on generic
-  no-sponsorship language would silently discard most viable US roles.
+* The work-authorization rule is deliberately inverted from the usual one. This
+  deployment is configured for TN status under USMCA, which is not sponsorship in the
+  H-1B sense - a TN-eligible candidate answers "yes" to "authorized to work in the US
+  without sponsorship". Generic no-sponsorship language is therefore NOT a blocker;
+  filtering on it would silently discard most viable US roles. Only citizenship,
+  clearance and ITAR requirements genuinely exclude.
 """
 
 from __future__ import annotations
@@ -26,9 +27,9 @@ from .models import Job
 
 # Family weights are deliberately close together. The title is a relevance check, not
 # the ranking signal - the whole point is to surface a variety of adjacent roles and
-# let *skill and experience overlap* decide which ones he would be a strong candidate
-# for. A data analyst posting that wants his exact stack should outrank a data
-# engineer posting that shares almost nothing with his background.
+# let *skill and experience overlap* decide which ones are a strong match. A data
+# analyst posting that wants the profile's exact stack should outrank a data engineer
+# posting that shares almost nothing with it.
 ROLE_FAMILIES: list[tuple[str, float, re.Pattern[str]]] = [
     ("data_engineer", 1.00, re.compile(
         r"\bdata engineer(ing)?\b|\bdata platform engineer\b|\bdata infrastructure\b"
@@ -80,7 +81,7 @@ INTERNSHIP_TITLE = re.compile(
     r"|\bapprentice(ship)?\b|\bworking student\b|\bphd\b"
     r"|\bsummer 20\d\d\b|\b20\d\d summer\b|\bwinter 20\d\d\b"
     # "Trainee" is a graduate-programme word in the UK and APAC but reads as
-    # intern-adjacent in North America, where he is actually looking.
+    # intern-adjacent in North America, the target market for this deployment.
     r"|\btrainee\b|\bundergrad(uate)?\b|\bpracticum\b"
     r"|\bstudent (worker|assistant|trainee|program(me)?)\b"
     r"|\bindustrial placement\b|\bplacement (year|student|program(me)?)\b",
@@ -323,8 +324,8 @@ def evaluate(job: Job, cfg: dict | None = None) -> Verdict:
     if not title:
         return Verdict(False, "no_title")
 
-    # 0. Employers whose roles are effectively closed to a Canadian citizen. Cleared
-    #    defense work states its clearance requirement in the description, which the
+    # 0. Employers whose roles are effectively closed without US citizenship or a
+    #    clearance. Cleared defense work states that in the description, which the
     #    auth gate below catches - but feed-sourced postings carry no description, so
     #    these leak through on title alone. Blocking by employer closes that hole.
     blocked = [b.lower() for b in (cfg.get("blocked_companies") or [])]
@@ -368,7 +369,7 @@ def evaluate(job: Job, cfg: dict | None = None) -> Verdict:
         if age is not None and age > float(max_age_days) * 24:
             return Verdict(False, "stale")
 
-    # 2. Internships / co-ops (he has already graduated). Checked against the title
+    # 2. Internships / co-ops (this profile targets post-graduation roles). Checked
     #    and, where the source publishes one, the structured employment type - an
     #    Ashby posting typed "Intern" is an internship whatever its title says.
     if not allow_internships:

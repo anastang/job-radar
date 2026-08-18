@@ -1,0 +1,30 @@
+name: Tests
+
+on:
+  push:
+    branches: [main]
+    # The poller commits state on nearly every run. Without this the test suite
+    # would re-run every few minutes for a file it does not touch.
+    paths-ignore:
+      - "state/**"
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -e ".[dev]"
+
+      # "live" tests hit real ATS endpoints. They are valuable locally - one of them
+      # guards the browser User-Agent that Ashby silently requires - but they make CI
+      # depend on third-party uptime, so they are excluded here.
+      - run: pytest -q -m "not live"

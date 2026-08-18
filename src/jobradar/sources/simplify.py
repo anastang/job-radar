@@ -22,8 +22,8 @@ URL = (
     "/dev/.github/scripts/listings.json"
 )
 
-# Feed-native sponsorship values that are genuine blockers for a Canadian citizen
-# on TN status. Plain "does not offer sponsorship" is NOT a blocker - see filters.py.
+# Feed-native sponsorship values that are genuine blockers under the TN work-
+# authorization rule. Plain "does not offer sponsorship" is NOT one - see filters.py.
 BLOCKING_SPONSORSHIP = {
     "u.s. citizenship is required",
     "us citizenship is required",

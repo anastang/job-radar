@@ -29,7 +29,7 @@ filters:
   # reasonable stretch, so the gate sits at 3 and scoring tapers gently below it
   # rather than burying anything that isn't explicitly new-grad.
   max_years_experience: 3
-  # He graduated in April 2026, so internships and co-ops are noise.
+  # This profile targets post-graduation roles, so internships and co-ops are noise.
   allow_internships: false
 
   # Count generic software engineering titles when the posting is clearly data/AI

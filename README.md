@@ -1,6 +1,8 @@
 # Job Radar
 
-Monitors ~170 company job boards for early-career **data engineering / analytics
+[![Tests](https://github.com/anastang/job_scraper/actions/workflows/tests.yml/badge.svg)](https://github.com/anastang/job_scraper/actions/workflows/tests.yml)
+
+Monitors ~570 company job boards for early-career **data engineering / analytics
 engineering / data analyst / AI engineering** roles and pushes a Discord alert within
 minutes of a posting going live.
 
@@ -77,13 +79,28 @@ $env:DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/..."
 
 Then run `jobradar` normally. The examples below work unchanged in both shells.
 
-**3. Run it continuously.** Push to a **private** GitHub repo and add
-`DISCORD_WEBHOOK_URL` under Settings → Secrets and variables → Actions. The workflow in
-`.github/workflows/poll.yml` then polls every 5 minutes and commits `state/seen.json`
-back so dedupe survives between runs.
+**3. Run it continuously.** Push to GitHub and add two repository secrets under
+Settings → Secrets and variables → Actions:
 
-> Keep the repo private: `config/profile.yaml` describes your background. The resume
-> itself is never committed — `.gitignore` excludes PDFs.
+| Secret | Value |
+|---|---|
+| `DISCORD_WEBHOOK_URL` | the webhook you tested above |
+| `DISCORD_MENTION` | your Discord user ID, so 75+ matches ping your phone |
+
+`.github/workflows/poll.yml` then polls every 5 minutes and commits `state/seen.json`
+back, so dedupe survives between runs.
+
+> **On a private repo, the 5-minute schedule will not fit the free tier.** Actions
+> bills each job rounded up to a full minute, so 2,000 free minutes is a ceiling of
+> 2,000 polls — `*/5` around the clock needs 8,640 and exhausts the month in about a
+> week. Public repos get unlimited minutes. To stay private, either reduce the cron
+> to roughly `*/10 12-23 * * 1-5` and set `tier2_every_minutes: 30` in
+> `config/config.yaml`, or run the poller somewhere else (an always-free cloud VM
+> needs no code changes — it runs exactly what CI runs).
+
+Nothing sensitive is committed: the resume is gitignored, `config/profile.yaml` holds
+only technology names, and `state/seen.json` stores opaque hashes rather than the
+roles it surfaced.
 
 ## Usage
 
@@ -117,8 +134,8 @@ A posting must clear every hard gate before it is scored:
    strongest matches often carry no seniority marker in the title at all. Anything
    above `max_years_experience` (default 3) is rejected.
 3. **Work authorization** — see below.
-4. **Location** — SF / NYC / Toronto score highest, other North America lower,
-   non-North-America is rejected unless the posting also lists a target city.
+4. **Location** — major North American tech hubs score equally, remote and smaller
+   cities lower, non-North-America rejected unless the posting also lists a hub.
 5. **Internships** are excluded by default.
 
 Survivors are scored out of 100:
@@ -133,11 +150,11 @@ Survivors are scored out of 100:
 | Freshness | 4 | under 6h full marks, decaying to zero at 3 days |
 
 **Skill overlap dominates on purpose.** The title only establishes that a role is
-relevant at all; what makes him a strong *candidate* is how much of the posting's
-stack he has actually shipped. Family weights sit deliberately close together
+relevant at all; what makes a strong *candidate* is how much of the posting's stack
+the profile has actually shipped. Family weights sit deliberately close together
 (1.00–0.85) so a variety of adjacent roles stay in play. In practice a data analyst
 posting asking for dbt, Airflow and Spark outranks a data engineer posting that
-shares almost nothing with his background — which is the intended behaviour.
+shares almost nothing with the profile — which is the intended behaviour.
 
 Postings without a description are normalized against the points actually available
 rather than being penalized for text they never had — otherwise a real "Data
@@ -165,8 +182,8 @@ gets tiring — that is the cleanest dial. The knobs that shape *what* gets surf
 
 ### Work authorization is deliberately non-standard
 
-Configured for a **Canadian citizen entering the US on TN status** under USMCA. TN is
-not sponsorship in the H-1B sense, so:
+Configured for **TN status under USMCA**, which is not sponsorship in the H-1B
+sense. That inverts the usual filter:
 
 - "We do not offer sponsorship" / "must be authorized to work in the US without
   sponsorship" — **not treated as a blocker**. Filtering on that language would discard

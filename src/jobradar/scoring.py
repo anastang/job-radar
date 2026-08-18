@@ -20,10 +20,10 @@ from .models import Job
 
 # Point budget, summing to 100 so thresholds read like percentages. Location carries
 # real weight because SF / NYC / Toronto is a stated preference - without it a junior
-# analyst role in a city he'd never move to outranked a strong Bay Area match.
+# analyst role in a non-target city outranked a strong Bay Area match.
 # Skill overlap is the dominant term by design. The job title only establishes that a
-# role is relevant at all; what makes him a strong *candidate* is how much of the
-# posting's stack he has actually shipped. Family weights sit close together so a
+# role is relevant at all; what makes a strong *candidate* is how much of the
+# posting's stack the profile has actually shipped. Family weights sit close so a
 # variety of adjacent roles stay in play and overlap does the ranking.
 W_FAMILY = 20.0
 W_SKILLS = 38.0
