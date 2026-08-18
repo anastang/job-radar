@@ -513,906 +513,466 @@
 },
 "matches": {
 "018558a45cf4cf0d": {
-"company": "compass",
 "first_seen": "2026-08-17T13:50:58.410495+00:00",
-"location": "New York, NY; New York NY",
 "notified": true,
 "notified_at": "2026-08-17T13:50:58.410526+00:00",
-"posted_at": "2026-08-17T13:49:56.570634+00:00",
-"score": 76.0,
-"title": "Data Scientist I, MIRS (Hybrid - at least 3 days in NYC office)",
-"url": "https://compass.wd501.myworkdayjobs.com/en-US/radian_external_career_site/job/New-York-NY/Data-Scientist-I--MIRS--Hybrid---at-least-3-days-in-NYC-office-_R20260095"
+"score": 76.0
 },
 "02faf8e090fcc2b7": {
-"company": "TikTok",
 "first_seen": "2026-08-17T13:50:58.410559+00:00",
-"location": "Seattle, WA",
 "notified": true,
 "notified_at": "2026-08-17T13:50:58.410571+00:00",
-"posted_at": "2026-08-17T13:21:55+00:00",
-"score": 72.7,
-"title": "Machine Learning Engineer Graduate - E-Commerce Governance",
-"url": "https://lifeattiktok.com/search/7674025781001062709"
+"score": 72.7
 },
 "046f7ad4db4e7451": {
-"company": "rbc",
 "first_seen": "2026-08-17T09:29:22.379045+00:00",
-"location": "TORONTO, Ontario, Canada",
 "notified": true,
 "notified_at": "2026-08-17T09:29:22.379057+00:00",
-"posted_at": "2026-08-07T09:28:35.019296+00:00",
-"score": 64.8,
-"title": "Data Scientist, AI Model Risk",
-"url": "https://rbc.wd3.myworkdayjobs.com/en-US/rbcglobal1/job/TORONTO-Ontario-Canada/Data-Scientist--AI-Model-Risk_R-0000178055-1"
+"score": 64.8
 },
 "05ea082928550e4b": {
-"company": "commodityai",
 "first_seen": "2026-08-17T09:29:22.378671+00:00",
-"location": "San Francisco, CA",
 "notified": true,
 "notified_at": "2026-08-17T09:29:22.378683+00:00",
-"posted_at": "2026-08-05T00:05:52.727000+00:00",
-"score": 58.8,
-"title": "AI Forward Deployed Strategist",
-"url": "https://jobs.ashbyhq.com/commodityai/0fce5358-a1ce-40c2-893a-ffe5fe95f3af/application"
+"score": 58.8
 },
 "06640394f71dd434": {
-"company": "kyndryl",
 "first_seen": "2026-08-17T09:29:22.379027+00:00",
-"location": "USDALFRI - Dallas Frisco AI HUB (FRI)",
 "notified": true,
 "notified_at": "2026-08-17T09:29:22.379039+00:00",
-"posted_at": "2026-08-13T09:28:17.040496+00:00",
-"score": 65.3,
-"title": "Early Career Consult Program - Associate AI Engineer",
-"url": "https://kyndryl.wd5.myworkdayjobs.com/en-US/KyndrylProfessionalCareers/job/USDALFRI---Dallas-Frisco-AI-HUB-FRI/Early-Career-Consult-Program---Associate-AI-Engineer_R-66739-2"
+"score": 65.3
 },
 "0b34d8b6733067de": {
-"company": "brainbaselabs",
 "first_seen": "2026-08-17T09:29:19.096375+00:00",
-"location": "San Francisco",
-"posted_at": "2026-08-14T00:17:14.742000+00:00",
-"score": 49.0,
-"title": "Forward Deployed Engineer, Brainbase Embed",
-"url": "https://jobs.ashbyhq.com/brainbaselabs/fb10369f-84a1-481a-872f-bbcfe9f075a0/application"
+"score": 49.0
 },
 "10feac60b561cb8b": {
-"company": "credal",
 "first_seen": "2026-08-17T09:29:19.148670+00:00",
-"location": "Credal HQ (Brooklyn, NY)",
-"posted_at": "2026-07-24T03:28:03.415000+00:00",
-"score": 49.0,
-"title": "Forward Deployed Software Engineer",
-"url": "https://jobs.ashbyhq.com/credal/ec8a560e-fe8b-4989-b24f-5946bbbb8ab4/application"
+"score": 49.0
 },
 "11a5525c27da0e59": {
-"company": "hubinternational",
 "first_seen": "2026-08-17T09:29:19.408793+00:00",
-"location": "13 Locations",
-"posted_at": "2026-08-05T09:28:21.751390+00:00",
-"score": 46.4,
-"title": "Cross-Sell Data Analyst, Dynamics 365",
-"url": "https://hubinternational.wd1.myworkdayjobs.com/en-US/HUBInternational/job/Chicago-IL/Cross-Sell-Data-Analyst_R0034370"
+"score": 46.4
 },
 "1510377af2ac4d3a": {
-"company": "TikTok",
 "first_seen": "2026-08-17T13:50:58.410578+00:00",
-"location": "San Jose, CA",
 "notified": true,
 "notified_at": "2026-08-17T13:50:58.410588+00:00",
-"posted_at": "2026-08-17T13:21:59+00:00",
-"score": 72.7,
-"title": "Machine Learning Engineer Graduate - E-Commerce Governance",
-"url": "https://lifeattiktok.com/search/7674023327725373701"
+"score": 72.7
 },
 "19a9bb6944c5e2c5": {
-"company": "kyndryl",
 "first_seen": "2026-08-17T09:29:22.378958+00:00",
-"location": "Lima, Peru",
 "notified": true,
 "notified_at": "2026-08-17T09:29:22.378969+00:00",
-"posted_at": "2026-08-01T09:28:17.040453+00:00",
-"score": 56.1,
-"title": "Data Engineering",
-"url": "https://kyndryl.wd5.myworkdayjobs.com/en-US/KyndrylProfessionalCareers/job/Lima-Peru/Data-Engineering_R-65103"
+"score": 56.1
 },
 "1ab58df95f55593e": {
-"company": "nxp",
 "first_seen": "2026-08-17T09:29:19.419637+00:00",
-"location": "Austin (Oakhill, Office)",
-"posted_at": "2026-08-13T09:28:16.907994+00:00",
-"score": 48.5,
-"title": "Data Scientist",
-"url": "https://nxp.wd3.myworkdayjobs.com/en-US/careers/job/Austin-Oakhill-Office/Data-Scientist_R-10066239"
+"score": 48.5
 },
 "1b87b8e3231b870e": {
-"company": "Generac",
 "first_seen": "2026-08-17T23:30:47.509505+00:00",
-"location": "Waukesha, WI",
 "notified": true,
 "notified_at": "2026-08-17T23:30:47.509539+00:00",
-"posted_at": "2026-07-08T22:12:29+00:00",
-"score": 53.7,
-"title": "Data Science Analyst",
-"url": "https://generac.wd5.myworkdayjobs.com/en-US/external/job/Waukesha-WI---USA/Data-Science-Analyst_JR15318"
+"score": 53.7
 },
 "1bfaae9a2fe8f627": {
-"company": "trm-labs",
 "first_seen": "2026-08-17T09:29:22.378814+00:00",
-"location": "North America; Washington DC",
 "notified": true,
 "notified_at": "2026-08-17T09:29:22.378826+00:00",
-"posted_at": "2026-08-13T21:02:17.320000+00:00",
-"score": 63.6,
-"title": "Forward Deployed Engineer - US National Security",
-"url": "https://jobs.ashbyhq.com/trm-labs/e4992057-b59e-4fb3-8f18-a919497d0ba5/application"
+"score": 63.6
 },
 "2660deeb869a44f2": {
-"company": "Bottom Line",
 "first_seen": "2026-08-17T05:45:24.377105+00:00",
-"location": "Portsmouth, NH",
-"posted_at": "2026-07-16T22:30:24+00:00",
-"score": 46.4,
-"title": "AI Data Analyst - Sales",
-"url": "https://job-boards.greenhouse.io/bottomlinetechnologies/jobs/8597355002"
+"score": 46.4
 },
 "2fd0f18cf24d2e05": {
-"company": "American Electric Power",
 "first_seen": "2026-08-18T02:04:06.700426+00:00",
-"location": "Roanoke, VA",
 "notified": true,
 "notified_at": "2026-08-18T02:04:06.700437+00:00",
-"posted_at": "2026-08-17T00:00:00+00:00",
-"score": 63.2,
-"title": "Transmission Field Services Data Analyst Associate - TFS Data Analyst",
-"url": "https://aep.wd1.myworkdayjobs.com/AEPCareerSite/job/Roanoke-VA/Trasmission-Field-Services-Data-Analyst-Associate---TFS-Data-Analyst_R18033"
+"score": 63.2
 },
 "2fef5aab98d4d804": {
-"company": "bunkerhillhealth",
 "first_seen": "2026-08-17T09:29:19.106465+00:00",
-"location": "SF Office",
-"posted_at": "2026-08-11T00:02:30.207000+00:00",
-"score": 49.0,
-"title": "Forward Deployed Engineer",
-"url": "https://jobs.ashbyhq.com/bunkerhillhealth/548ba6a6-b90f-462b-9f89-0f50de4557fe/application"
+"score": 49.0
 },
 "3210e9a651640052": {
-"company": "Vanguard",
 "first_seen": "2026-08-17T22:37:03.092533+00:00",
-"location": "Charlotte, NC",
 "notified": true,
 "notified_at": "2026-08-17T22:37:03.092540+00:00",
-"posted_at": "2026-08-17T00:00:00+00:00",
-"score": 54.3,
-"title": "Data Analyst - Data & Analytics - Technology Leadership Program",
-"url": "https://vanguard.wd5.myworkdayjobs.com/en-US/vanguard_external/job/Charlotte-NC/Technology-Leadership-Program---Data---Analytics--Analyst----NC_180091-1"
+"score": 54.3
 },
 "32b7fba4ab465535": {
-"company": "stripe",
 "first_seen": "2026-08-17T22:37:03.092442+00:00",
-"location": "South San Francisco, CA",
 "notified": true,
 "notified_at": "2026-08-17T22:37:03.092470+00:00",
-"posted_at": "2026-08-17T22:06:29+00:00",
-"score": 68.6,
-"title": "Machine Learning Engineer",
-"url": "https://stripe.com/jobs/search?gh_jid=8137997"
+"score": 68.6
 },
 "33f9e83f3426053d": {
-"company": "candidhealth",
 "first_seen": "2026-08-17T09:29:22.378634+00:00",
-"location": "San Francisco; Denver; New York City",
 "notified": true,
 "notified_at": "2026-08-17T09:29:22.378647+00:00",
-"posted_at": "2026-07-22T17:28:00.805000+00:00",
-"score": 75.7,
-"title": "Data Analyst",
-"url": "https://jobs.ashbyhq.com/candidhealth/88570d36-be12-4ab2-b25a-0e012dc669eb/application"
+"score": 75.7
 },
 "33fbe80c5bbd1126": {
-"company": "rbc",
 "first_seen": "2026-08-17T16:40:26.943769+00:00",
-"location": "RBC WATERPARK PLACE, 88 QUEENS QUAY W:TORONTO; RBC WATERPARK PLACE 88 QUEENS QUAY WTORONTO",
 "notified": true,
 "notified_at": "2026-08-17T16:40:26.943803+00:00",
-"posted_at": "2026-08-17T16:39:45.348839+00:00",
-"score": 76.6,
-"title": "2027 Winter Student Opportunities RBC Borealis - AI Data Analyst - 8 Months",
-"url": "https://rbc.wd3.myworkdayjobs.com/en-US/rbcglobal1/job/RBC-WATERPARK-PLACE-88-QUEENS-QUAY-WTORONTO/XMLNAME-2027-Winter-Student-Opportunities-RBC-Borealis---AI-Data-Analyst---8-Months_R-0000184505-2"
+"score": 76.6
 },
 "377cdad8adfb8cf7": {
-"company": "rbc",
 "first_seen": "2026-08-17T09:29:19.423767+00:00",
-"location": "2 Locations",
-"posted_at": "2026-07-22T09:28:28.883940+00:00",
-"score": 51.3,
-"title": "Data/AI Engineer",
-"url": "https://rbc.wd3.myworkdayjobs.com/en-US/rbcglobal1/job/401-GEORGIA-ST-WVANCOUVER/Data-AI-Engineer_R-0000179728-1"
+"score": 51.3
 },
 "4611695ac62b28dc": {
-"company": "generalmotors",
 "first_seen": "2026-08-17T17:40:10.284210+00:00",
-"location": "Mountain View California United States of America",
 "notified": true,
 "notified_at": "2026-08-17T17:40:10.284227+00:00",
-"posted_at": "2026-08-17T17:39:12.373905+00:00",
-"score": 76.6,
-"title": "People Analytics Analyst",
-"url": "https://generalmotors.wd5.myworkdayjobs.com/en-US/Careers_GM/job/Mountain-View-California-United-States-of-America/People-Analytics-Analyst_JR-202610946"
+"score": 76.6
 },
 "4a498971cda073f7": {
-"company": "minerva",
 "first_seen": "2026-08-17T09:29:22.378726+00:00",
-"location": "New York City",
 "notified": true,
 "notified_at": "2026-08-17T09:29:22.378737+00:00",
-"posted_at": "2026-08-06T22:59:28.464000+00:00",
-"score": 90.0,
-"title": "Data Engineer, Data Products",
-"url": "https://jobs.ashbyhq.com/minerva/dbfa0d14-3fdb-432d-bc03-c0364e313a39/application"
+"score": 90.0
 },
 "4b3e483cf38b8bd0": {
-"company": "rbc",
 "first_seen": "2026-08-17T09:29:22.379080+00:00",
-"location": "TORONTO, Ontario, Canada",
 "notified": true,
 "notified_at": "2026-08-17T09:29:22.379091+00:00",
-"posted_at": "2026-08-04T09:28:54.971885+00:00",
-"score": 73.6,
-"title": "AI Engineer",
-"url": "https://rbc.wd3.myworkdayjobs.com/en-US/rbcglobal1/job/TORONTO-Ontario-Canada/AI-Engineer_R-0000175871-1"
+"score": 73.6
 },
 "512d881f130d86e2": {
-"company": "generalmotors",
 "first_seen": "2026-08-17T09:29:19.405094+00:00",
-"location": "Warren, Michigan, United States of America",
-"posted_at": "2026-08-05T09:28:16.418368+00:00",
-"score": 48.5,
-"title": "AI/ML Data Scientist (GPSSC)",
-"url": "https://generalmotors.wd5.myworkdayjobs.com/en-US/Careers_GM/job/Warren-Michigan-United-States-of-America/AI-ML-Data-Scientist--GPSSC-_JR-202608411-1"
+"score": 48.5
 },
 "512ef862b9dcd8a7": {
-"company": "retell-ai",
 "first_seen": "2026-08-17T09:29:22.378763+00:00",
-"location": "San Francisco Bay Area; United States",
 "notified": true,
 "notified_at": "2026-08-17T09:29:22.378774+00:00",
-"posted_at": "2026-08-03T05:42:27.857000+00:00",
-"score": 71.1,
-"title": "Applied AI Engineer (Customer Facing)",
-"url": "https://jobs.ashbyhq.com/retell-ai/1fcd6e82-2a31-4e2f-abcf-be069ebb6e8c/application"
+"score": 71.1
 },
 "514f9829b67239f7": {
-"company": "litellm",
 "first_seen": "2026-08-17T09:29:19.186888+00:00",
-"location": "United States",
-"posted_at": "2026-08-07T04:18:57.855000+00:00",
-"score": 36.9,
-"title": "Forward Deployed Engineer",
-"url": "https://jobs.ashbyhq.com/litellm/f4b86291-3410-4e27-9c3e-8306609e3c59/application"
+"score": 36.9
 },
 "56791db48b97142e": {
-"company": "rbc",
 "first_seen": "2026-08-17T14:49:12.191085+00:00",
-"location": "PERSIARAN IRC 2, IOI RESORT CITY IOI CITY TOWER ONE:PUTRAJAYA; PERSIARAN IRC 2 IOI RESORT CITY IOI CITY TOWER ONEPUTRAJAYA",
 "notified": true,
 "notified_at": "2026-08-17T14:49:12.191118+00:00",
-"posted_at": "2026-08-17T14:48:33.521757+00:00",
-"score": 57.3,
-"title": "Data Analyst \u2013 Client Intelligence",
-"url": "https://rbc.wd3.myworkdayjobs.com/en-US/rbcglobal1/job/PERSIARAN-IRC-2-IOI-RESORT-CITY-IOI-CITY-TOWER-ONEPUTRAJAYA/Data-Analyst---Client-Intelligence_R-0000183804"
+"score": 57.3
 },
 "5dbc8951b864476d": {
-"company": "rbc",
 "first_seen": "2026-08-17T09:29:19.425395+00:00",
-"location": "2 Locations",
-"posted_at": "2026-08-11T09:28:54.971980+00:00",
-"score": 51.3,
-"title": "AI Engineer - Full Stack Agentic UX",
-"url": "https://rbc.wd3.myworkdayjobs.com/en-US/rbcglobal1/job/TORONTO-Ontario-Canada/AI-Engineer---Full-Stack-Agentic-UX_R-0000182515-1"
+"score": 51.3
 },
 "5f48388148c4a00e": {
-"company": "kyndryl",
 "first_seen": "2026-08-17T09:29:22.379010+00:00",
-"location": "2 Locations",
 "notified": true,
 "notified_at": "2026-08-17T09:29:22.379022+00:00",
-"posted_at": "2026-08-05T09:28:17.040473+00:00",
-"score": 56.1,
-"title": "Data Engineer - Cognos - MS SSIS Developer and Admin",
-"url": "https://kyndryl.wd5.myworkdayjobs.com/en-US/KyndrylProfessionalCareers/job/Hyderabad-Telangana-India/Data-Engineer---Cognos---MS-SSIS-Developer-and-Admin_R-64677-1"
+"score": 56.1
 },
 "629ecaeb9e31e1c8": {
-"company": "generalmotors",
 "first_seen": "2026-08-17T09:29:22.378850+00:00",
-"location": "Austin, Texas, United States of America",
 "notified": true,
 "notified_at": "2026-08-17T09:29:22.378862+00:00",
-"posted_at": "2026-08-12T09:28:16.418295+00:00",
-"score": 62.1,
-"title": "Agentic Data Engineer",
-"url": "https://generalmotors.wd5.myworkdayjobs.com/en-US/Careers_GM/job/Austin-Texas-United-States-of-America/Agentic-Data-Engineer_JR-202616159"
+"score": 62.1
 },
 "62e4d180364a1542": {
-"company": "cranston",
 "first_seen": "2026-08-17T09:29:19.142367+00:00",
-"location": "San Francisco",
-"posted_at": "2026-08-13T05:19:53.032000+00:00",
-"score": 49.0,
-"title": "Forward Deployed Accountant",
-"url": "https://jobs.ashbyhq.com/cranston/9fd109a0-e80a-4261-915b-8a03d1a14682/application"
+"score": 49.0
 },
 "67459bc08fcb4bf9": {
-"company": "clara",
 "first_seen": "2026-08-17T09:29:19.315222+00:00",
-"location": "Latin America ",
-"posted_at": "2026-08-05T22:51:34+00:00",
-"score": 45.9,
-"title": "Data Analyst (Analista de Datos) - Hybrid",
-"url": "https://job-boards.greenhouse.io/clara/jobs/5205085007"
+"score": 45.9
 },
 "692a0d0446cef274": {
-"company": "sift",
 "first_seen": "2026-08-17T09:29:22.378797+00:00",
-"location": "Remote - USA; Seattle, Washington; San Francisco, California",
 "notified": true,
 "notified_at": "2026-08-17T09:29:22.378809+00:00",
-"posted_at": "2026-08-01T00:25:11.209000+00:00",
-"score": 57.0,
-"title": "Forward Deployed Engineer, Trust and Safety",
-"url": "https://jobs.ashbyhq.com/sift/03d426f0-2e0f-408a-9433-55b7a10d1da3/application"
+"score": 57.0
 },
 "6a027d7bffb34e8f": {
-"company": "Mass General Brigham",
 "first_seen": "2026-08-17T23:30:47.509582+00:00",
-"location": "Somerville, MA",
 "notified": true,
 "notified_at": "2026-08-17T23:30:47.509591+00:00",
-"posted_at": "2026-08-17T00:00:00+00:00",
-"score": 54.3,
-"title": "Statistical Programmer/Data Analyst",
-"url": "https://massgeneralbrigham.wd1.myworkdayjobs.com/mgbexternal/job/Somerville-MA/Statistical-Programmer--Data-Analyst_RQ4076375"
+"score": 54.3
 },
 "6d1b0f245b78db98": {
-"company": "kyndryl",
 "first_seen": "2026-08-17T09:29:19.417691+00:00",
-"location": "CRAFZ Heredia (CRAFZ) Afz",
-"posted_at": "2026-08-14T09:28:32.221595+00:00",
-"score": 51.3,
-"title": "AI Engineer",
-"url": "https://kyndryl.wd5.myworkdayjobs.com/en-US/KyndrylProfessionalCareers/job/CRAFZ-Heredia-CRAFZ-Afz/AI-Engineer_R-61862"
+"score": 51.3
 },
 "6f089f8626a177f8": {
-"company": "iqvia",
 "first_seen": "2026-08-17T09:29:22.378940+00:00",
-"location": "Ottawa, Ontario, Canada",
 "notified": true,
 "notified_at": "2026-08-17T09:29:22.378952+00:00",
-"posted_at": "2026-07-24T09:28:34.787493+00:00",
-"score": 56.6,
-"title": "Associate Data Scientist, Privacy and De-identification / Scientifique des donn\u00e9es associ\u00e9, confidentialit\u00e9 et d\u00e9sidentification",
-"url": "https://iqvia.wd1.myworkdayjobs.com/en-US/IQVIA/job/Ottawa-Ontario-Canada/Associate-Data-Scientist--Privacy-and-De-identification---Scientifique-des-donnes-associ--confidentialit-et-dsidentification_R1553526"
+"score": 56.6
 },
 "72b847097281aab3": {
-"company": "citi",
 "first_seen": "2026-08-17T09:29:22.378833+00:00",
-"location": "Mississauga Ontario Canada",
 "notified": true,
 "notified_at": "2026-08-17T09:29:22.378844+00:00",
-"posted_at": "2026-08-14T09:28:34.198369+00:00",
-"score": 73.6,
-"title": "Python AI Engineer (Hands-On)",
-"url": "https://citi.wd5.myworkdayjobs.com/en-US/2/job/Mississauga-Ontario-Canada/GenAI-Platform-Engineer---Python_26960735"
+"score": 73.6
 },
 "746097e8d81ce165": {
-"company": "raindrop",
 "first_seen": "2026-08-17T09:29:19.214529+00:00",
-"location": "San Francisco",
-"posted_at": "2026-08-13T20:33:08.240000+00:00",
-"score": 49.0,
-"title": "Forward Deployed Engineer (FDE)",
-"url": "https://jobs.ashbyhq.com/raindrop/2ae60d74-621b-4bbd-b92b-2f64a2979cc9/application"
+"score": 49.0
 },
 "7a9f92cd98766be2": {
-"company": "Vanguard",
 "first_seen": "2026-08-17T22:37:03.092520+00:00",
-"location": "Malvern, PA",
 "notified": true,
 "notified_at": "2026-08-17T22:37:03.092528+00:00",
-"posted_at": "2026-08-17T00:00:00+00:00",
-"score": 54.3,
-"title": "Data Analyst - Data & Analytics",
-"url": "https://vanguard.wd5.myworkdayjobs.com/en-US/vanguard_external/job/Malvern-PA/Technology-Leadership-Program---Data---Analytics--Analyst----PA_180088-1"
+"score": 54.3
 },
 "7eb19a43913027bb": {
-"company": "agave",
 "first_seen": "2026-08-17T09:29:19.090203+00:00",
-"location": "San Francisco",
-"posted_at": "2026-08-01T02:28:48.371000+00:00",
-"score": 52.6,
-"title": "Product Analyst",
-"url": "https://jobs.ashbyhq.com/agave/929b3239-7f09-42bc-9603-14b4c347b998/application"
+"score": 52.6
 },
 "818b284551ab3db1": {
-"company": "commodityai",
 "first_seen": "2026-08-17T09:29:22.378653+00:00",
-"location": "San Francisco, CA",
 "notified": true,
 "notified_at": "2026-08-17T09:29:22.378666+00:00",
-"posted_at": "2026-07-24T22:07:32.155000+00:00",
-"score": 55.2,
-"title": "AI Forward Deployed Engineer",
-"url": "https://jobs.ashbyhq.com/commodityai/b6d8b529-6ab3-4587-86db-678f93bf30bd/application"
+"score": 55.2
 },
 "818b62dcb8b996a9": {
-"company": "Procter & Gamble",
 "first_seen": "2026-08-17T23:30:47.509565+00:00",
-"location": "Cincinnati, OH",
 "notified": true,
 "notified_at": "2026-08-17T23:30:47.509576+00:00",
-"posted_at": "2026-08-17T00:00:00+00:00",
-"score": 57.3,
-"title": "Data Engineer - North America Fabric Care",
-"url": "https://pg.wd5.myworkdayjobs.com/1000/job/CINCINNATI-GENERAL-OFFICES/Data-Engineer---North-America-Fabric-Care_R000157463"
+"score": 57.3
 },
 "8562c25dfb339b81": {
-"company": "rbc",
 "first_seen": "2026-08-17T09:29:19.423956+00:00",
-"location": "2 Locations",
-"posted_at": "2026-08-11T09:28:28.883966+00:00",
-"score": 51.3,
-"title": "AI Engineer - AI Platform Engineering",
-"url": "https://rbc.wd3.myworkdayjobs.com/en-US/rbcglobal1/job/745-THURLOW-STVANCOUVER/AI-Engineer---AI-Platform-Engineering_R-0000182512-1"
+"score": 51.3
 },
 "8ca88ee59983e28f": {
-"company": "q2ebanking",
 "first_seen": "2026-08-17T09:29:19.421973+00:00",
-"location": "Austin, TX",
-"posted_at": "2026-08-14T09:28:16.383188+00:00",
-"score": 47.5,
-"title": "Machine Learning Engineer",
-"url": "https://q2ebanking.wd5.myworkdayjobs.com/en-US/Q2/job/Austin-TX/Machine-Learning-Engineer_REQ-12438"
+"score": 47.5
 },
 "8f42483417a5c6ad": {
-"company": "generalmotors",
 "first_seen": "2026-08-17T09:29:22.378868+00:00",
-"location": "2 Locations",
 "notified": true,
 "notified_at": "2026-08-17T09:29:22.378880+00:00",
-"posted_at": "2026-08-10T09:28:16.418310+00:00",
-"score": 56.1,
-"title": "Vehicle Dynamics Simulation Data Engineer",
-"url": "https://generalmotors.wd5.myworkdayjobs.com/en-US/Careers_GM/job/Warren-Michigan-United-States-of-America/Vehicle-Dynamics-Simulation-Data-Engineer_JR-202615954"
+"score": 56.1
 },
 "90211a514d1b124a": {
-"company": "intel",
 "first_seen": "2026-08-17T09:29:19.409683+00:00",
-"location": "4 Locations",
-"posted_at": "2026-08-13T09:28:16.104808+00:00",
-"score": 46.4,
-"title": "Data Analyst, Enterprise Data Governance Team",
-"url": "https://intel.wd1.myworkdayjobs.com/en-US/external/job/US-Arizona-Phoenix/Data-Analyst--Enterprise-Data-Governance-Team_JR0286387"
+"score": 46.4
 },
 "90c4f2842dde0177": {
-"company": "hubinternational",
 "first_seen": "2026-08-17T09:29:19.408888+00:00",
-"location": "Winnipeg, MB",
-"posted_at": "2026-08-04T09:28:21.751394+00:00",
-"score": 46.4,
-"title": "Data Analyst",
-"url": "https://hubinternational.wd1.myworkdayjobs.com/en-US/HUBInternational/job/Winnipeg-MB/Data-Analyst_R0037923-1"
+"score": 46.4
 },
 "933dd41aad6a76e1": {
-"company": "kyndryl",
 "first_seen": "2026-08-17T09:29:19.416420+00:00",
-"location": "Research Triangle Park, NC, USA",
-"posted_at": "2026-08-12T09:28:20.578373+00:00",
-"score": 52.4,
-"title": "Data Analyst",
-"url": "https://kyndryl.wd5.myworkdayjobs.com/en-US/KyndrylProfessionalCareers/job/Research-Triangle-Park-NC-USA/Data-Analyst_R-57844-1"
+"score": 52.4
 },
 "a2b42e5838e1a044": {
-"company": "quadric-dot-i-o-inc",
 "first_seen": "2026-08-17T09:29:19.448413+00:00",
-"location": "Burlingame, California, United States",
-"posted_at": "2026-07-22T00:00:00+00:00",
-"score": 38.7,
-"title": "Forward Deployed Engineer",
-"url": "https://apply.workable.com/j/560395B68B/apply"
+"score": 38.7
 },
 "a45095969d607853": {
-"company": "kyndryl",
 "first_seen": "2026-08-17T09:29:22.378993+00:00",
-"location": "2 Locations",
 "notified": true,
 "notified_at": "2026-08-17T09:29:22.379004+00:00",
-"posted_at": "2026-08-14T09:28:17.040463+00:00",
-"score": 56.1,
-"title": "Test Data Engineer",
-"url": "https://kyndryl.wd5.myworkdayjobs.com/en-US/KyndrylProfessionalCareers/job/Bangalore-Karnataka-India/Test-Data-Engineer_R-63688"
+"score": 56.1
 },
 "a6546129280271da": {
-"company": "nxp",
 "first_seen": "2026-08-17T09:29:19.419500+00:00",
-"location": "Austin (Oakhill, Office)",
-"posted_at": "2026-08-13T09:28:16.907984+00:00",
-"score": 48.5,
-"title": "Data Scientist",
-"url": "https://nxp.wd3.myworkdayjobs.com/en-US/careers/job/Austin-Oakhill-Office/Data-Scientist_R-10066257"
+"score": 48.5
 },
 "a72fec7b4af83d58": {
-"company": "hubinternational",
 "first_seen": "2026-08-17T09:29:19.408338+00:00",
-"location": "11 Locations",
-"posted_at": "2026-08-10T09:28:15.633427+00:00",
-"score": 42.5,
-"title": "Data Scientist",
-"url": "https://hubinternational.wd1.myworkdayjobs.com/en-US/HUBInternational/job/Chilliwack-BC/Data-Scientist_R0038078"
+"score": 42.5
 },
 "a779a1b8c8b073c7": {
-"company": "r1rcm",
 "first_seen": "2026-08-17T09:29:19.422740+00:00",
-"location": "Remote, USA",
-"posted_at": "2026-07-23T09:28:16.901625+00:00",
-"score": 49.9,
-"title": "Forward Deployed Process Analyst",
-"url": "https://r1rcm.wd1.myworkdayjobs.com/en-US/R1RCM/job/Remote-USA/Forward-Deployed-Process-Analyst_R260000004204-1"
+"score": 49.9
 },
 "aac02eab3e3e6dd8": {
-"company": "Auto-Owners Insurance",
 "first_seen": "2026-08-17T22:37:03.092493+00:00",
-"location": "Lansing, MI",
 "notified": true,
 "notified_at": "2026-08-17T22:37:03.092503+00:00",
-"posted_at": "2026-08-17T00:00:00+00:00",
-"score": 54.3,
-"title": "Business Intelligence Developer",
-"url": "https://aoins.wd5.myworkdayjobs.com/AutoOwners/job/Lansing-MI/Business-Intelligence-Developer_R_13426-1"
+"score": 54.3
 },
 "ab80261bfc8fd189": {
-"company": "kyndryl",
 "first_seen": "2026-08-17T09:29:22.378976+00:00",
-"location": "5 Locations",
 "notified": true,
 "notified_at": "2026-08-17T09:29:22.378987+00:00",
-"posted_at": "2026-08-06T09:28:17.040458+00:00",
-"score": 56.1,
-"title": "Data Engineer (GCP)",
-"url": "https://kyndryl.wd5.myworkdayjobs.com/en-US/KyndrylProfessionalCareers/job/Madrid-Spain/Data-Engineer---Google-Cloud-Platform--GCP-_R-62706"
+"score": 56.1
 },
 "abf031837514515a": {
-"company": "revenuecat",
 "first_seen": "2026-08-17T09:29:22.378780+00:00",
-"location": "Americas; EMEA",
 "notified": true,
 "notified_at": "2026-08-17T09:29:22.378791+00:00",
-"posted_at": "2026-08-04T09:46:13.063000+00:00",
-"score": 55.6,
-"title": "Data Analyst",
-"url": "https://jobs.ashbyhq.com/revenuecat/ea45acc5-ee1f-4f05-b585-9339667d23ff/application"
+"score": 55.6
 },
 "af06537f325da5e8": {
-"company": "MSA Safety",
 "first_seen": "2026-08-17T23:30:47.509596+00:00",
-"location": "Cranberry Township, PA",
 "notified": true,
 "notified_at": "2026-08-17T23:30:47.509605+00:00",
-"posted_at": "2026-08-17T22:28:41+00:00",
-"score": 55.2,
-"title": "AI Engineer",
-"url": "https://careers.msasafety.com/jobs/9830?icims=1"
+"score": 55.2
 },
 "b10b5b13f248e2c0": {
-"company": "Smarter Agent",
 "first_seen": "2026-08-18T02:04:06.700386+00:00",
-"location": "Collingswood, NJ",
 "notified": true,
 "notified_at": "2026-08-18T02:04:06.700419+00:00",
-"posted_at": "2026-08-18T01:12:43+00:00",
-"score": 66.2,
-"title": "Junior Data Engineer - Multiple Teams",
-"url": "https://jobs.smartrecruiters.com/SmarterAgent/743999706496509"
+"score": 66.2
 },
 "b1e227ed607d0cc1": {
-"company": "EXL",
 "first_seen": "2026-08-17T05:45:24.595259+00:00",
-"location": "United States",
 "notified": true,
 "notified_at": "2026-08-17T05:45:24.595289+00:00",
-"posted_at": "2026-07-08T01:08:08+00:00",
-"score": 62.1,
-"title": "Data Engineer",
-"url": "https://fa-ewjt-saasfaprod1.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_2/job/16842"
+"score": 62.1
 },
 "b7467c0278d8ff93": {
-"company": "Voyager Technologies",
 "first_seen": "2026-08-17T23:50:42.043501+00:00",
-"location": "El Segundo, CA",
 "notified": true,
 "notified_at": "2026-08-17T23:50:42.043534+00:00",
-"posted_at": "2026-08-17T22:58:18+00:00",
-"score": 62.3,
-"title": "Machine Learning Engineer - Associate",
-"url": "https://job-boards.greenhouse.io/voyagertechnologiesinc/jobs/4356977009"
+"score": 62.3
 },
 "ba8cea37928fae89": {
-"company": "hubinternational",
 "first_seen": "2026-08-17T09:29:22.378923+00:00",
-"location": "Chicago, IL",
 "notified": true,
 "notified_at": "2026-08-17T09:29:22.378934+00:00",
-"posted_at": "2026-07-29T09:28:15.633448+00:00",
-"score": 62.1,
-"title": "Data Engineer",
-"url": "https://hubinternational.wd1.myworkdayjobs.com/en-US/HUBInternational/job/Chicago-IL/Data-Engineer_R0037805"
+"score": 62.1
 },
 "bec94a1e66591c13": {
-"company": "rbc",
 "first_seen": "2026-08-17T09:29:22.379097+00:00",
-"location": "Minneapolis, Minnesota, United States of America",
 "notified": true,
 "notified_at": "2026-08-17T09:29:22.379109+00:00",
-"posted_at": "2026-08-07T09:29:09.272882+00:00",
-"score": 57.2,
-"title": "Data Scientist (Applied AI)",
-"url": "https://rbc.wd3.myworkdayjobs.com/en-US/rbcglobal1/job/Minneapolis-Minnesota-United-States-of-America/Data-Scientist--Applied-AI-_R-0000182937-1"
+"score": 57.2
 },
 "c0979ebef38c9407": {
-"company": "Vanguard",
 "first_seen": "2026-08-17T23:30:47.509547+00:00",
-"location": "Malvern, PA",
 "notified": true,
 "notified_at": "2026-08-17T23:30:47.509559+00:00",
-"posted_at": "2026-08-17T00:00:00+00:00",
-"score": 53.7,
-"title": "Data Scientist - Data & Analytics",
-"url": "https://vanguard.wd5.myworkdayjobs.com/en-US/vanguard_external/job/Malvern-PA/Technology-Leadership-Program---Data---Analytics--Scientist----PA_180092-1"
+"score": 53.7
 },
 "c0a7401e13c43e1d": {
-"company": "litellm",
 "first_seen": "2026-08-17T09:29:22.378709+00:00",
-"location": "San Francisco",
 "notified": true,
 "notified_at": "2026-08-17T09:29:22.378720+00:00",
-"posted_at": "2026-07-30T22:00:49.352000+00:00",
-"score": 60.7,
-"title": "AI Engineer",
-"url": "https://jobs.ashbyhq.com/litellm/6e025e39-6f8a-46bd-91f7-8784d1f5076b/application"
+"score": 60.7
 },
 "c11761aac10fc0bc": {
-"company": "kyndryl",
 "first_seen": "2026-08-17T09:29:19.417776+00:00",
-"location": "Lima, Peru",
-"posted_at": "2026-07-20T09:28:32.221602+00:00",
-"score": 51.3,
-"title": "AI Engineer",
-"url": "https://kyndryl.wd5.myworkdayjobs.com/en-US/KyndrylProfessionalCareers/job/Lima-Peru/AI-Engineer_R-65163"
+"score": 51.3
 },
 "c8b30077299215ab": {
-"company": "broccoli",
 "first_seen": "2026-08-17T09:29:22.378604+00:00",
-"location": "San Francisco",
 "notified": true,
 "notified_at": "2026-08-17T09:29:22.378626+00:00",
-"posted_at": "2026-07-29T01:48:54.155000+00:00",
-"score": 88.2,
-"title": "Data Analytics Engineer",
-"url": "https://jobs.ashbyhq.com/broccoli/54ee4695-4c19-4794-bbfe-b9e1fe205993/application"
+"score": 88.2
 },
 "c9bf7566da222ee2": {
-"company": "Deloitte",
 "first_seen": "2026-08-18T07:01:42.641865+00:00",
-"location": "California; Chicago, IL",
 "notified": true,
 "notified_at": "2026-08-18T07:01:42.641895+00:00",
-"posted_at": "2026-07-31T22:26:23+00:00",
-"score": 68.3,
-"title": "Forensic Analytics Analyst - Consultative Offerings",
-"url": "https://apply.deloitte.com/en_US/careers/JobDetail/Consultative-Offerings-Analyst-Forensic-Analytics/361315"
+"score": 68.3
 },
 "ce8c3ea774129fb5": {
-"company": "hubinternational",
 "first_seen": "2026-08-17T09:29:19.408238+00:00",
-"location": "Chicago, IL",
-"posted_at": "2026-08-14T09:28:15.633414+00:00",
-"score": 52.4,
-"title": "Power BI Developer",
-"url": "https://hubinternational.wd1.myworkdayjobs.com/en-US/HUBInternational/job/Chicago-IL/Power-BI-Developer_R0038005-1"
+"score": 52.4
 },
 "d2bd8cda15553238": {
-"company": "ffive",
 "first_seen": "2026-08-17T09:29:19.402244+00:00",
-"location": "2 Locations",
-"posted_at": "2026-07-23T09:28:19.237748+00:00",
-"score": 51.3,
-"title": "AI Engineer",
-"url": "https://ffive.wd5.myworkdayjobs.com/en-US/f5jobs/job/Seattle/AI-Engineer_RP1037922"
+"score": 51.3
 },
 "d3d154f9283b1512": {
-"company": "TikTok",
 "first_seen": "2026-08-17T13:50:58.410536+00:00",
-"location": "Seattle, WA",
 "notified": true,
 "notified_at": "2026-08-17T13:50:58.410551+00:00",
-"posted_at": "2026-08-17T13:21:51+00:00",
-"score": 73.0,
-"title": "Data Scientist Graduate - E-Commerce Governance",
-"url": "https://lifeattiktok.com/search/7674027218993154357"
+"score": 73.0
 },
 "d708b388c898d400": {
-"company": "r1rcm",
 "first_seen": "2026-08-17T09:29:19.422630+00:00",
-"location": "Remote, USA",
-"posted_at": "2026-07-23T09:28:16.901621+00:00",
-"score": 49.9,
-"title": "Forward Deployed Process Specialist",
-"url": "https://r1rcm.wd1.myworkdayjobs.com/en-US/R1RCM/job/Remote-USA/Forward-Deployed-Process-Specialist_R260000004207"
+"score": 49.9
 },
 "d82fd4fe8deab5e4": {
-"company": "Mass General Brigham",
 "first_seen": "2026-08-17T14:49:12.191154+00:00",
-"location": "Boston, MA",
 "notified": true,
 "notified_at": "2026-08-17T14:49:12.191170+00:00",
-"posted_at": "2026-08-17T00:00:00+00:00",
-"score": 73.6,
-"title": "Data Analyst 1",
-"url": "https://massgeneralbrigham.wd1.myworkdayjobs.com/mgbexternal/job/Boston-MA/Data-Analyst-I_RQ4076086"
+"score": 73.6
 },
 "d8f840eac33c390d": {
-"company": "confido",
 "first_seen": "2026-08-17T09:29:22.378690+00:00",
-"location": "NYC Office",
 "notified": true,
 "notified_at": "2026-08-17T09:29:22.378702+00:00",
-"posted_at": "2026-08-14T19:52:55.867000+00:00",
-"score": 56.0,
-"title": "Applied AI/ML Engineer",
-"url": "https://jobs.ashbyhq.com/confido/3a95d866-2e8f-432a-927d-8679386cefe2/application"
+"score": 56.0
 },
 "dad1a165a1ee1f46": {
-"company": "permitflow",
 "first_seen": "2026-08-17T09:29:22.378743+00:00",
-"location": "New York City, NY",
 "notified": true,
 "notified_at": "2026-08-17T09:29:22.378757+00:00",
-"posted_at": "2026-08-11T16:44:23.976000+00:00",
-"score": 79.3,
-"title": "Analytics Engineer",
-"url": "https://jobs.ashbyhq.com/permitflow/08035d47-a610-4a5a-92bc-105ae3d18fc8/application"
+"score": 79.3
 },
 "db181074b9eade74": {
-"company": "Vanguard",
 "first_seen": "2026-08-17T22:37:03.092544+00:00",
-"location": "Charlotte, NC",
 "notified": true,
 "notified_at": "2026-08-17T22:37:03.092552+00:00",
-"posted_at": "2026-08-17T00:00:00+00:00",
-"score": 53.7,
-"title": "Data Scientist - Data & Analytics",
-"url": "https://vanguard.wd5.myworkdayjobs.com/en-US/vanguard_external/job/Charlotte-NC/Technology-Leadership-Program---Data---Analytics--Scientist----NC_180093-1"
+"score": 53.7
 },
 "dca825d238d9f993": {
-"company": "prodigal",
 "first_seen": "2026-08-17T09:29:19.331454+00:00",
-"location": "Mumbai",
-"posted_at": "2026-08-11T03:38:05+00:00",
-"score": 36.9,
-"title": "Machine Learning Engineer",
-"url": "https://job-boards.greenhouse.io/prodigal/jobs/5208862007"
+"score": 36.9
 },
 "e06d2cf2794bd26e": {
-"company": "X Development",
 "first_seen": "2026-08-17T22:37:03.092507+00:00",
-"location": "Mountain View, CA",
 "notified": true,
 "notified_at": "2026-08-17T22:37:03.092516+00:00",
-"posted_at": "2026-08-17T22:13:54+00:00",
-"score": 72.7,
-"title": "Machine Learning Engineer - Tapestry",
-"url": "https://x.company/careers/8722582002?gh_jid=8722582002"
+"score": 72.7
 },
 "e0a572838263e486": {
-"company": "gleanwork",
 "first_seen": "2026-08-17T07:12:59.090306+00:00",
-"location": "San Francisco, CA",
 "notified": true,
 "notified_at": "2026-08-17T07:12:59.090338+00:00",
-"posted_at": "2026-08-03T21:43:08+00:00",
-"score": 59.6,
-"title": "Machine Learning Engineer, Assistant Quality",
-"url": "https://job-boards.greenhouse.io/gleanwork/jobs/4711484005"
+"score": 59.6
 },
 "e520ba01de0910f6": {
-"company": "knowtex",
 "first_seen": "2026-08-17T17:40:10.284169+00:00",
-"location": "San Francisco",
 "notified": true,
 "notified_at": "2026-08-17T17:40:10.284201+00:00",
-"posted_at": "2026-08-17T16:49:22.771000+00:00",
-"score": 72.0,
-"title": "ML Engineer: Speech & LLMs",
-"url": "https://jobs.ashbyhq.com/knowtex/501ccbb9-72ec-40e6-8c6c-2b4e8b837eab/application"
+"score": 72.0
 },
 "f15dc692094564fb": {
-"company": "generalmotors",
 "first_seen": "2026-08-17T09:29:19.404854+00:00",
-"location": "Warren, Michigan, United States of America",
-"posted_at": "2026-08-12T09:28:16.418359+00:00",
-"score": 52.4,
-"title": "Safety Field Investigations - Data Analyst",
-"url": "https://generalmotors.wd5.myworkdayjobs.com/en-US/Careers_GM/job/Warren-Michigan-United-States-of-America/Safety-Field-Investigations---Data-Analyst_JR-202615306-1"
+"score": 52.4
 },
 "f2daf473d8902210": {
-"company": "raindrop",
 "first_seen": "2026-08-17T09:29:19.219264+00:00",
-"location": "San Francisco",
-"posted_at": "2026-08-13T20:32:56.583000+00:00",
-"score": 47.2,
-"title": "ML Engineer",
-"url": "https://jobs.ashbyhq.com/raindrop/bf24e511-5572-4a32-a2aa-fc83409207e8/application"
+"score": 47.2
 },
 "f34cd8339c5be9cb": {
-"company": "rbc",
 "first_seen": "2026-08-17T09:29:22.379063+00:00",
-"location": "TORONTO, Ontario, Canada",
 "notified": true,
 "notified_at": "2026-08-17T09:29:22.379074+00:00",
-"posted_at": "2026-08-10T09:28:45.346751+00:00",
-"score": 68.7,
-"title": "Data Analyst, Next Best Action",
-"url": "https://rbc.wd3.myworkdayjobs.com/en-US/rbcglobal1/job/TORONTO-Ontario-Canada/Data-Analyst--Next-Best-Action_R-0000183467"
+"score": 68.7
 },
 "f384449a92339b1c": {
-"company": "firecrawl",
 "first_seen": "2026-08-17T09:29:19.170663+00:00",
-"location": "San Francisco, CA (Hybrid)",
-"posted_at": "2026-08-03T23:10:12.598000+00:00",
-"score": 49.0,
-"title": "Forward Deployed Engineer - Revenue",
-"url": "https://jobs.ashbyhq.com/firecrawl/bda40f47-a69b-44d4-ac1a-3f86f20d802d/application"
+"score": 49.0
 },
 "f766c768b1392eb9": {
-"company": "generalmotors",
 "first_seen": "2026-08-17T09:29:22.378886+00:00",
-"location": "Sunnyvale, California, United States of America",
 "notified": true,
 "notified_at": "2026-08-17T09:29:22.378898+00:00",
-"posted_at": "2026-07-21T09:28:31.732115+00:00",
-"score": 57.2,
-"title": "AI/ML Engineer - Model Inference",
-"url": "https://generalmotors.wd5.myworkdayjobs.com/en-US/Careers_GM/job/Sunnyvale-California-United-States-of-America/AI-ML-Engineer---Model-Inference_JR-202613719-1"
+"score": 57.2
 },
 "fbc7a775b51b10ae": {
-"company": "generalmotors",
 "first_seen": "2026-08-17T09:29:22.378904+00:00",
-"location": "Sunnyvale, California, United States of America",
 "notified": true,
 "notified_at": "2026-08-17T09:29:22.378916+00:00",
-"posted_at": "2026-08-13T09:28:33.724412+00:00",
-"score": 55.6,
-"title": "Machine Learning Engineer, AI Inference Solutions (University Grad)",
-"url": "https://generalmotors.wd5.myworkdayjobs.com/en-US/Careers_GM/job/Sunnyvale-California-United-States-of-America/Machine-Learning-Engineer--AI-Inference-Solutions--University-Grad-_JR-202610103"
+"score": 55.6
 },
 "fbfc569fc846c4fb": {
-"company": "PNC Financial Services",
 "first_seen": "2026-08-17T22:37:03.092477+00:00",
-"location": "Pittsburgh, PA; Strongsville, OH",
 "notified": true,
 "notified_at": "2026-08-17T22:37:03.092488+00:00",
-"posted_at": "2026-08-17T00:00:00+00:00",
-"score": 72.1,
-"title": "Software Engineer Associate - Business Intelligence Enablement",
-"url": "https://pnc.wd5.myworkdayjobs.com/External/job/PA---Pittsburgh-15219/Software-Engineer-Associate---Business-Intelligence-Enablement_R232352-1"
+"score": 72.1
 },
 "fdca450c7f986226": {
-"company": "decodahealth",
 "first_seen": "2026-08-17T09:29:19.155342+00:00",
-"location": "Toronto Office",
-"posted_at": "2026-07-30T15:53:08.601000+00:00",
-"score": 54.3,
-"title": "Forward Deployed Engineer",
-"url": "https://jobs.ashbyhq.com/decodahealth/22de9ee6-b411-463e-87c0-b8c3ded62028/application"
+"score": 54.3
 }
 },
 "meta": {

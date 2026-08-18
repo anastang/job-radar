@@ -127,12 +127,3 @@ class Job:
     @property
     def apply_link(self) -> str:
         return self.apply_url or self.url
-
-    def to_state(self) -> dict[str, Any]:
-        return {
-            "company": self.company,
-            "title": self.title,
-            "url": self.apply_link,
-            "location": self.location_raw,
-            "posted_at": self.best_date.isoformat() if self.best_date else None,
-        }

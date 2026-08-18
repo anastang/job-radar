@@ -7,9 +7,13 @@ conflicts badly in git while Actions' cache can be evicted without warning.
 Size matters here. The workflow commits this file every five minutes, so storing a
 full record for all ~21k tracked postings (6.6 MB) would balloon the repository.
 Postings are therefore split in two: ``seen`` holds only ``key -> date`` for the vast
-majority that never matched, and ``matches`` keeps full detail for the handful that
-scored or alerted. Keys are written sorted, one per line, so each commit diffs as a
-few inserted lines rather than a rewritten blob.
+majority that never matched, and ``matches`` adds a score and notified flag for the
+handful that cleared the bar. Keys are written sorted, one per line, so each commit
+diffs as a few inserted lines rather than a rewritten blob.
+
+Neither half stores anything identifying - no company, title, URL or location. Keys
+are opaque hashes. The file is committed on every run, so readable detail here would
+amount to publishing a log of the job search itself.
 
 Bootstrap matters too. On a cold start every posting looks new, which would fire
 several hundred alerts at once; ``mark_all_seen`` records the existing world silently.
@@ -111,15 +115,18 @@ class State:
         return bool(self.matches.get(job.key, {}).get("notified"))
 
     def mark_seen(self, job: Job, score: float | None = None, notified: bool = False) -> None:
-        """Record a posting. Anything scored or alerted is kept in full detail."""
+        """Record a posting. Scored or alerted ones also keep a score and notified flag."""
         if score is None and not notified:
             self.seen.setdefault(job.key, _today())
             return
 
         record = self.matches.get(job.key)
         if record is None:
+            # Deliberately nothing identifying: no company, title, URL or location.
+            # This file is committed to the repo on every run, so a readable log of
+            # which roles were surfaced would be a running record of the job search.
+            # The key is already an opaque hash, and Discord holds the readable copy.
             record = {"first_seen": datetime.now(timezone.utc).isoformat()}
-            record.update(job.to_state())
             self.matches[job.key] = record
             self.seen.pop(job.key, None)
         if score is not None:

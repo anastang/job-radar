@@ -290,7 +290,10 @@ async def run(args: argparse.Namespace) -> int:
                 webhook,
                 matches,
                 priority_min=priority_min,
-                mention=str((cfg.get("notify") or {}).get("mention", "")),
+                # Prefer the environment so the Discord user ID lives in a secret
+                # rather than in a committed config file.
+                mention=os.environ.get("DISCORD_MENTION")
+                or str((cfg.get("notify") or {}).get("mention", "")),
             )
             log.info("Delivered %d alert(s)", sent)
 

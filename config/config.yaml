@@ -1,11 +1,16 @@
 # Job Radar configuration.
 
 polling:
-  # Tier 1 companies are checked on every run; tier 2 and the community feed run
-  # on slower cadences tracked via state metadata, so a 5-minute workflow doesn't
-  # hammer 170 boards uniformly.
-  tier2_every_minutes: 30
-  simplify_every_minutes: 15
+  # 0 = poll on every run. Tiering existed purely to save GitHub Actions minutes,
+  # which bill per run rather than per board - so polling all ~570 boards costs the
+  # same as polling 59. On a public repo, where Actions minutes are unlimited, there
+  # is nothing to save and every board gets the full 5-minute cadence. That matters
+  # most for the ~350 YC startups, which were previously on a 30-minute delay and are
+  # exactly where a tiny applicant pool makes being early count.
+  #
+  # Set these back to 30 and 15 if you ever move to a private repo on the free tier.
+  tier2_every_minutes: 0
+  simplify_every_minutes: 0
 
 fetch:
   concurrency: 12
@@ -86,10 +91,12 @@ scoring:
   priority_min: 75
 
 notify:
-  # Your Discord user ID, as "<@123456789012345678>", pinged on priority hits.
+  # Left empty on purpose: the Discord user ID is the only PII this repo would
+  # otherwise carry, so it lives in the DISCORD_MENTION secret instead and is read
+  # from the environment. A bare numeric ID works; the code wraps it in <@...>.
   # To find it: Discord Settings > Advanced > enable Developer Mode, then right-click
   # your own name and choose "Copy User ID".
-  mention: "158969094920470529"
+  mention: ""
 
 state:
   path: state/seen.json
