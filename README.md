@@ -2,122 +2,131 @@
 
 [![Tests](https://github.com/anastang/job_scraper/actions/workflows/tests.yml/badge.svg)](https://github.com/anastang/job_scraper/actions/workflows/tests.yml)
 
-Monitors ~570 company job boards for early-career **data engineering / analytics
-engineering / data analyst / AI engineering** roles and pushes a Discord alert within
-minutes of a posting going live.
+Job Radar watches about 570 company job boards for early-career **data engineering,
+analytics engineering, data analyst, and AI engineering** roles, and sends a Discord
+alert within minutes of a posting going live.
 
-The whole design is built around one constraint: **being early**. New-grad data roles
-collect hundreds of applicants within a day, so the goal is not a list of jobs — it is
-a notification while the posting is still fresh.
+Speed is the point. New-grad data roles collect hundreds of applicants within a day,
+so the tool is built to notify while a posting is still fresh rather than to produce a
+searchable list.
 
 ## Why it polls ATS APIs instead of scraping LinkedIn
 
-Company applicant-tracking boards (Greenhouse, Ashby, Lever, SmartRecruiters) are where
-a posting *originates*. LinkedIn and Indeed are downstream mirrors that lag by hours to
-days, and scraping them violates their terms and invites IP bans and CAPTCHAs.
+Company applicant-tracking boards are where a posting originates. LinkedIn and Indeed
+mirror those boards hours or days later, and scraping them breaks their terms of
+service and leads to IP bans and CAPTCHAs.
 
-Polling the ATS JSON APIs directly is both faster and legitimate — these are the same
-public endpoints that render each company's own careers page. **This tool does not
-scrape LinkedIn or Indeed**, by design.
+The ATS JSON APIs are faster, and they are public: they are the same endpoints that
+render each company's own careers page. **Job Radar does not scrape LinkedIn or
+Indeed.**
 
 | Source | Freshness field | Date trusted? | Description text |
 |---|---|---|---|
-| Greenhouse | `first_published` — true publish time | yes | yes (`?content=true`) |
+| Greenhouse | `first_published`, the true publish time | yes | yes (`?content=true`) |
 | Ashby | `publishedAt` | yes | yes, plus compensation |
 | Lever | `createdAt` (epoch ms) | yes | yes, plus salary range |
-| Workable | `published_on` (date-granular) | yes | yes (`?details=true`) |
-| SmartRecruiters | `releasedDate` | yes | no — gives `experienceLevel` |
-| Workday | `postedOn` — prose, "Posted 13 Days Ago" | yes, coarse | no |
-| SimplifyJobs new-grad feed | `date_posted` | **no — index date** | no — breadth backstop |
+| Workable | `published_on` (date granularity) | yes | yes (`?details=true`) |
+| SmartRecruiters | `releasedDate` | yes | no, but gives `experienceLevel` |
+| Workday | `postedOn`, prose like "Posted 13 Days Ago" | coarse | no |
+| SimplifyJobs new-grad feed | `date_posted` | **no, it is an index date** | no |
 
-Roughly 600 boards across six providers, including ~350 YC startups.
+That covers six ATS providers plus one community feed, including roughly 350 YC
+startups.
 
-### The feed's dates are not posting dates
+### The feed reports index dates, not posting dates
 
-The community feed records when *it* indexed a job and never refreshes that when the
-employer re-posts. A real case: EXL's "Data Engineer" carried `date_posted`
-2026-07-08 while the employer's own page said 2026-08-16 — off by 39 days.
+The SimplifyJobs feed records when it first indexed a job, and it does not refresh that
+value when an employer re-posts. One example: the EXL "Data Engineer" listing carried a
+`date_posted` of 2026-07-08 while the employer's own page said 2026-08-16, a gap of 39
+days.
 
-Every other source reads the employer's own system, so only the feed is affected.
-Because a wrong date here would make a day-old job look month-old, feed-sourced
-postings are exempt from the staleness gate, score neutrally on freshness rather than
-being penalized, and are labelled "Listed … (feed index — check listing)" in Discord
-instead of claiming a posting date. See `UNTRUSTED_DATE_SOURCES` in `models.py`.
+Every other source reads the employer's own system, so the problem is limited to the
+feed. A stale date there would make a day-old job look a month old, so feed postings
+are exempt from the staleness gate, score neutrally on freshness, and appear in Discord
+labelled "Listed ... (feed index, check listing)" rather than claiming a posting date.
+See `UNTRUSTED_DATE_SOURCES` in `models.py`.
 
 ## Setup
 
-Install the package itself (not just the requirements) so `jobradar` is on PATH and
-no `PYTHONPATH` juggling is needed:
+Install the package so that `jobradar` lands on your PATH:
 
 ```bash
 pip install -e .
 ```
 
-**1. Create a Discord webhook.** Server Settings → Integrations → Webhooks → New
-Webhook, copy the URL. Test it — `--webhook` avoids environment-variable syntax
-differences between shells:
+**1. Create a Discord webhook.** Server Settings, then Integrations, then Webhooks,
+then New Webhook. Copy the URL and test it. Passing `--webhook` avoids the
+environment-variable syntax differences between shells:
 
 ```bash
 python -m jobradar.notify.discord --test --webhook "https://discord.com/api/webhooks/..."
 ```
 
-**2. Bootstrap.** The first run records everything currently posted *without* alerting,
-so you don't get several hundred notifications at once:
+**2. Bootstrap.** The first run records every posting that already exists without
+alerting on any of it, so from that point on you hear only about new openings:
 
 ```bash
 jobradar
 ```
 
-### Shell note (Windows / PowerShell)
+**3. Run it continuously.** Push to GitHub and add two repository secrets under
+Settings, then Secrets and variables, then Actions:
 
-`VAR=value command` is bash syntax and fails in PowerShell with
-*"is not recognized as the name of a cmdlet"*. Set the variable first:
+| Secret | Value |
+|---|---|
+| `DISCORD_WEBHOOK_URL` | the webhook you tested above |
+| `DISCORD_MENTION` | your Discord user ID, so scores of 75 and above ping your phone |
+
+`.github/workflows/poll.yml` then polls every 5 minutes and commits `state/seen.json`
+back to the repo, so deduplication survives between runs.
+
+Nothing sensitive is committed. The resume is gitignored, `config/profile.yaml`
+contains only technology names, and `state/seen.json` stores opaque hashes instead of
+the roles it surfaced.
+
+### Shell note for Windows and PowerShell
+
+`VAR=value command` is bash syntax. In PowerShell it fails with "is not recognized as
+the name of a cmdlet". Set the variable first:
 
 ```bash
 $env:DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/..."
 ```
 
-Then run `jobradar` normally. The examples below work unchanged in both shells.
+Then run `jobradar` as normal. Every other example works in both shells.
 
-**3. Run it continuously.** Push to GitHub and add two repository secrets under
-Settings → Secrets and variables → Actions:
+### Running on a private repo
 
-| Secret | Value |
-|---|---|
-| `DISCORD_WEBHOOK_URL` | the webhook you tested above |
-| `DISCORD_MENTION` | your Discord user ID, so 75+ matches ping your phone |
+GitHub Actions bills each job rounded up to a full minute, so one poll costs one minute
+however fast it runs. The free allowance for private repos is 2,000 minutes per month,
+which caps you at 2,000 polls. A 5-minute schedule needs 8,640 and exhausts the month
+in about a week. Public repos have unlimited minutes.
 
-`.github/workflows/poll.yml` then polls every 5 minutes and commits `state/seen.json`
-back, so dedupe survives between runs.
+To stay private, pick one of these:
 
-> **On a private repo, the 5-minute schedule will not fit the free tier.** Actions
-> bills each job rounded up to a full minute, so 2,000 free minutes is a ceiling of
-> 2,000 polls — `*/5` around the clock needs 8,640 and exhausts the month in about a
-> week. Public repos get unlimited minutes. To stay private, either reduce the cron
-> to roughly `*/10 12-23 * * 1-5` and set `tier2_every_minutes: 30` in
-> `config/config.yaml`, or run the poller somewhere else (an always-free cloud VM
-> needs no code changes — it runs exactly what CI runs).
-
-Nothing sensitive is committed: the resume is gitignored, `config/profile.yaml` holds
-only technology names, and `state/seen.json` stores opaque hashes rather than the
-roles it surfaced.
+- Reduce the cron to roughly `*/10 12-23 * * 1-5` and set `tier2_every_minutes: 30` in
+  `config/config.yaml`. Measured against 2,962 real postings, 77.7% publish inside that
+  window and 2.3% land on a weekend.
+- Run the poller elsewhere. An always-free cloud VM works with no code changes, since
+  it runs the same command CI runs.
 
 ## Usage
 
 ```bash
-jobradar --dry-run --since 7 --all-tiers
+jobradar --dry-run --since 7
 ```
 
 | Flag | Effect |
 |---|---|
-| `--dry-run` | print matches; never notify or write state |
+| `--dry-run` | print matches, never notify or write state |
 | `--since N` | only consider postings from the last N days |
-| `--all-tiers` | poll tier-2 companies and the community feed regardless of cadence |
 | `--min-score N` | override the notify threshold (use `0` to see everything) |
+| `--limit N` | cap how many rows the dry-run table prints |
+| `--all-tiers` | poll every board regardless of cadence settings |
 | `--bootstrap` | record everything as seen without alerting |
-| `--notify-on-cold-start` | alert on the very first run instead of bootstrapping |
+| `--notify-on-cold-start` | alert on the first run instead of bootstrapping |
 
-Review the current backlog at any time:
+To review what the tool currently sees:
 
 ```bash
 jobradar --dry-run --since 14 --min-score 0
@@ -125,91 +134,96 @@ jobradar --dry-run --since 14 --min-score 0
 
 ## How filtering works
 
-A posting must clear every hard gate before it is scored:
+A posting must clear every gate before it is scored:
 
-1. **Role family** — data engineer / analytics engineer / data analyst / AI engineer,
-   plus data scientist, BI, ML engineer and forward-deployed roles.
-2. **Seniority** — senior/staff/principal/lead/manager titles and level III+ are out.
-   Then the *description* is parsed for a years-of-experience requirement, because the
-   strongest matches often carry no seniority marker in the title at all. Anything
-   above `max_years_experience` (default 3) is rejected.
-3. **Work authorization** — see below.
-4. **Location** — major North American tech hubs score equally, remote and smaller
-   cities lower, non-North-America rejected unless the posting also lists a hub.
-5. **Internships** are excluded by default.
+1. **Role family.** Data engineer, analytics engineer, data analyst, AI engineer, plus
+   data scientist, BI, ML engineer, and forward-deployed roles.
+2. **Seniority.** Senior, staff, principal, lead, and manager titles are rejected, as
+   is level III and above. The description is then parsed for a years-of-experience
+   requirement, because the strongest matches often carry no seniority marker in the
+   title. Anything above `max_years_experience` (default 3) is rejected.
+3. **Work authorization.** See below.
+4. **Location.** Major North American tech hubs score equally. Remote and smaller
+   cities score lower. Postings outside North America are rejected unless they also
+   list a hub.
+5. **Internships and co-ops** are excluded by default.
 
 Survivors are scored out of 100:
 
 | Component | Points | Notes |
 |---|---|---|
-| **Resume skill overlap** | **38** | weighted terms from `profile.yaml` — the dominant term |
-| Role family | 20 | 1.00 down to 0.85; a relevance check, not the ranking signal |
-| Location | 20 | major NA hubs 1.0, remote/elsewhere 0.65, unknown 0.35 |
-| Experience fit | 12 | new grad 1.0, 1 yr 0.82, 2 yrs 0.55, 3 yrs 0.28 |
+| **Resume skill overlap** | **38** | weighted terms from `profile.yaml`, the largest component |
+| Role family | 20 | 1.00 down to 0.85, a relevance check rather than a ranking signal |
+| Location | 20 | major NA hubs 1.0, remote and elsewhere 0.65, unknown 0.35 |
+| Experience fit | 12 | new grad 1.0, 1 year 0.82, 2 years 0.55, 3 years 0.28 |
 | Company character | 6 | startup 1.0, neutral 0.6, consultancy 0.0 |
-| Freshness | 4 | under 6h full marks, decaying to zero at 3 days |
+| Freshness | 4 | full marks under 6 hours, decaying to zero at 3 days |
 
-**Skill overlap dominates on purpose.** The title only establishes that a role is
-relevant at all; what makes a strong *candidate* is how much of the posting's stack
-the profile has actually shipped. Family weights sit deliberately close together
-(1.00–0.85) so a variety of adjacent roles stay in play. In practice a data analyst
-posting asking for dbt, Airflow and Spark outranks a data engineer posting that
-shares almost nothing with the profile — which is the intended behaviour.
+**Skill overlap carries the most weight.** A job title establishes only that a role is
+relevant. What makes someone a strong candidate is how much of the posting's stack they
+have shipped. Family weights sit close together, from 1.00 to 0.85, so that a range of
+adjacent roles stay in play. A data analyst posting asking for dbt, Airflow, and Spark
+will outrank a data engineer posting that shares little with the profile.
 
-Postings without a description are normalized against the points actually available
-rather than being penalized for text they never had — otherwise a real "Data
-Engineering New Grad" ranks below a generic role that merely had more text to
-keyword-match.
+Postings without a description are scored against the points available to them rather
+than charged for text they never had. Otherwise a genuine "Data Engineering New Grad"
+listing would rank below a generic role that happened to carry more keywords.
 
-### Tuning it to your preferences
+### Tuning
 
-The scoring is built to **rank rather than gate**: being slightly underqualified does
-not mean no chance, so `notify_min` sits low (48) and the score carries the signal
-about which roles are worth dropping everything for. Raise the threshold if volume
-gets tiring — that is the cleanest dial. The knobs that shape *what* gets surfaced:
+The scoring ranks rather than gates. Someone slightly underqualified still has a
+chance, so `notify_min` sits low at 48 and the score itself signals which roles deserve
+immediate attention. Raise the threshold if the volume becomes tiring, which is the
+simplest dial to turn.
 
-- **`max_years_experience`** (3) — the hard ceiling. 4+ year roles are rejected
-  outright; 1–3 year roles rank below new-grad ones but still alert.
-- **`allow_data_adjacent_swe`** (true) — counts generic "Software Engineer" titles
-  when the body carries at least three distinct data/AI signals. Widens the pool
-  without admitting every web-dev posting.
-- **`blocked_companies`** — never alert at all. Separate from consultancies, which
-  are scored down rather than excluded.
-- **`CONSULTANCIES`** in `scoring.py` — staffing and IT-services firms that post high
+The settings that shape what gets surfaced:
+
+- **`max_years_experience`** (3). The hard ceiling. Roles asking for 4 or more years
+  are rejected. Roles asking for 1 to 3 rank below new-grad postings but still alert.
+- **`allow_data_adjacent_swe`** (true). Counts generic "Software Engineer" titles when
+  the body carries at least three distinct data or AI signals. This widens the pool
+  while keeping out general web development postings.
+- **`blocked_companies`.** Never alert at all. Separate from consultancies, which are
+  scored down instead of excluded.
+- **`CONSULTANCIES`** in `scoring.py`. Staffing and IT services firms that post large
   volumes of data-titled placement roles. They still alert, six points lower.
-- **Startup boost** — anything in `companies_yc.yaml` counts as a startup, since that
-  file is by construction actively-hiring YC companies.
+- **Startup boost.** Anything in `companies_yc.yaml` counts as a startup, since that
+  file contains actively hiring YC companies by construction.
 
-### Work authorization is deliberately non-standard
+### Work authorization
 
-Configured for **TN status under USMCA**, which is not sponsorship in the H-1B
-sense. That inverts the usual filter:
+Configured for **TN status under USMCA**. TN differs from H-1B sponsorship, which
+inverts the usual filter:
 
-- "We do not offer sponsorship" / "must be authorized to work in the US without
-  sponsorship" — **not treated as a blocker**. Filtering on that language would discard
-  most viable US roles.
-- US citizenship requirements, security clearance, and ITAR restrictions **are**
-  blockers, along with a list of cleared defense employers in `config/config.yaml`.
+- "We do not offer sponsorship" and "must be authorized to work in the US without
+  sponsorship" **pass the filter**. Rejecting that language would discard most viable
+  US roles.
+- US citizenship requirements, security clearance, and ITAR restrictions **are
+  blockers**, as are the cleared defense employers listed in `config/config.yaml`.
 
-Note that generic Export Administration Regulations boilerplate appears on many
-ordinary US postings and is explicitly *not* treated as a restriction — there is a
-regression test covering this.
+Generic Export Administration Regulations boilerplate appears on many ordinary US
+postings and passes the filter. A regression test covers this.
 
 ## Configuration
 
 | File | Purpose |
 |---|---|
 | `config/config.yaml` | thresholds, cadence, filters, blocked employers |
-| `config/companies.yaml` | generated — hand-seeded companies by ATS and tier |
-| `config/companies_yc.yaml` | generated — YC startups that are actively hiring |
-| `config/companies_feed.yaml` | generated — Workday/Workable boards harvested from the feed |
-| `config/profile.yaml` | generated — resume-derived skill terms and weights |
+| `config/companies.yaml` | generated, hand-seeded companies by ATS and tier |
+| `config/companies_yc.yaml` | generated, YC startups that are actively hiring |
+| `config/companies_feed.yaml` | generated, Workday and Workable boards from the feed |
+| `config/profile.yaml` | generated, resume-derived skill terms and weights |
 
-Every `config/companies*.yaml` file is merged at runtime. They are kept separate so
-that re-running one generator cannot wipe out another's boards. A slug listed as
-tier1 anywhere wins over a tier2 listing elsewhere.
+Every `config/companies*.yaml` file is merged at runtime. They stay separate so that
+re-running one generator leaves the others alone. A slug listed as tier1 anywhere wins
+over a tier2 listing elsewhere.
 
-Regenerate periodically — boards migrate between ATS vendors and startups come and go:
+`tier2_every_minutes` and `simplify_every_minutes` default to 0, meaning every board is
+polled on every run. Tiering exists for private repos, where Actions minutes are capped
+and the cadence has to be spread out.
+
+Regenerate the company lists periodically, since boards migrate between ATS vendors and
+startups appear and disappear:
 
 ```bash
 python scripts/validate_companies.py
@@ -223,21 +237,19 @@ python scripts/discover_yc.py
 python scripts/discover_from_feed.py
 ```
 
-### Why three generators
+### Why there are three generators
 
 `validate_companies.py` probes a hand-maintained list of established companies.
-`discover_yc.py` walks the public YC directory, keeps companies that are active,
-hiring, and in the target metros, and guesses their ATS slug from name and domain —
-about a third resolve. `discover_from_feed.py` harvests Workday and Workable boards
-from real posting URLs in the community feed, because Workday boards are addressed by
-host *and* tenant *and* site (`ngc.wd1` / `ngc` / `Northrop_Grumman_External_Site`)
-and cannot be guessed. Blocked employers are dropped at discovery time rather than at
-filter time — there is no point spending a poll on a board whose every posting would
-be rejected.
 
-Everything discovered lands in tier2. Hundreds of startup boards polled every five
-minutes would be inconsiderate to the ATS providers for little gain; a 30-minute
-cadence is still far ahead of anyone browsing a job board.
+`discover_yc.py` walks the public YC directory, keeps companies that are active,
+hiring, and in the target metros, and guesses each ATS slug from the company name and
+website domain. About a third resolve.
+
+`discover_from_feed.py` harvests Workday and Workable boards from real posting URLs in
+the community feed. Workday boards are addressed by host, tenant, and site together
+(`ngc.wd1` / `ngc` / `Northrop_Grumman_External_Site`), which makes them impossible to
+guess. Blocked employers are dropped during discovery rather than at filter time, so no
+poll is spent on a board whose every posting would be rejected.
 
 Regenerate the skill profile whenever the resume changes:
 
@@ -251,12 +263,7 @@ python scripts/build_profile.py --resume "path/to/resume.pdf"
 python -m pytest
 ```
 
-`-m "not live"` skips the two tests that hit real endpoints. One of those is a
-regression guard worth keeping: **Ashby returns 404 for every request without a
-browser User-Agent** — silently, and for the entire source.
-
-## Tuning
-
-If you get too many alerts, raise `scoring.notify_min`. Too few, lower it — postings
-below the threshold are still recorded in `state/seen.json` with their score, so
-`--dry-run --min-score 0` shows what you're missing and where to set the bar.
+Add `-m "not live"` to skip the two tests that hit real endpoints, which is what CI
+does. Keep them for local runs. One guards a requirement that is easy to reintroduce:
+**Ashby returns 404 for every request that arrives without a browser User-Agent**,
+silently, and across the entire source.
