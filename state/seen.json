@@ -364,7 +364,7 @@
 "greenhouse:collibra": "W/\"e79effb91208f7cc299ef77ee8793b6c\"",
 "greenhouse:cresta": "W/\"95fa41d85cf81349a7449bef9854f59d\"",
 "greenhouse:d2l": "W/\"330f6ce273249e91f6d10da7a9d33492\"",
-"greenhouse:databricks": "W/\"cdef22e6684ad97283058b8ac847d9f4\"",
+"greenhouse:databricks": "W/\"38d0047af31f77a6ceba8c944bf97602\"",
 "greenhouse:datadog": "W/\"8b1257f38f38d05ec3132443e693955a\"",
 "greenhouse:discord": "W/\"d9be0b7a9f5c99ca3e6e1de27d09c13a\"",
 "greenhouse:dispatch": "W/\"f3f89b92590b892f9ffe0fa194c849a3\"",
@@ -418,7 +418,7 @@
 "greenhouse:mixpanel": "W/\"d6591981a31b5835981566f036c013c6\"",
 "greenhouse:modernhealth": "W/\"0e0b314eb69bc8c59f52c9abbca21501\"",
 "greenhouse:momentic": "W/\"03fa1c3887c1974e649138bd129616a2\"",
-"greenhouse:mongodb": "W/\"2148c7f108fc60872ffc988c62f65240\"",
+"greenhouse:mongodb": "W/\"0a18f223eccb6ce31c37ac9f8fcb07c5\"",
 "greenhouse:nabis": "W/\"47e9233bbab055b67d9adfffbbbd883d\"",
 "greenhouse:nanonets": "W/\"18560a18b70e285bd894cf1178fd7ce1\"",
 "greenhouse:navierai": "W/\"6f11ea74225fd00d43f2f9b4749f8f15\"",
@@ -1406,8 +1406,8 @@
 },
 "meta": {
 "bootstrapped_at": "2026-08-16T09:42:23.450845+00:00",
-"last_run": "2026-08-18T05:43:15.857818+00:00",
-"last_simplify": "2026-08-18T05:43:15.857818+00:00",
+"last_run": "2026-08-18T06:03:38.978721+00:00",
+"last_simplify": "2026-08-18T06:03:38.978721+00:00",
 "last_tier2": "2026-08-18T05:43:15.857818+00:00"
 },
 "seen": {
@@ -4672,6 +4672,7 @@
 "18fa9b500ec93e1e": "2026-08-16",
 "18faa0be980f6a29": "2026-08-17",
 "18fbbeec2f28adac": "2026-08-16",
+"18fc4357dfb079af": "2026-08-18",
 "1905b4bd30d7aead": "2026-08-16",
 "1909b087a56e972b": "2026-08-16",
 "190af544b4e11372": "2026-08-16",
@@ -34525,6 +34526,7 @@
 "fefce6ebeb2d2e9a": "2026-08-16",
 "fefdbe4b6925cf54": "2026-08-16",
 "fefdbe4faf80df93": "2026-08-17",
+"fefdd0f6a4700007": "2026-08-18",
 "fefe445856993751": "2026-08-16",
 "fefe807d508d69c3": "2026-08-16",
 "feffd21437b29b83": "2026-08-17",
@@ -34660,6 +34662,6 @@
 "fffdcff1b5729b75": "2026-08-17",
 "ffff2e932d6cd349": "2026-08-17"
 },
-"updated_at": "2026-08-18T05:43:15.889426+00:00",
+"updated_at": "2026-08-18T06:03:39.009251+00:00",
 "version": 2
 }
