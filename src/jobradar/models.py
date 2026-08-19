@@ -23,7 +23,9 @@ _TAG = re.compile(r"<[^>]+>")
 # Every other source reads the employer's own system: Greenhouse first_published,
 # Ashby publishedAt, Lever createdAt, Workable published_on. Workday's "Posted 13
 # Days Ago" is coarse but genuine, so it stays trusted.
-UNTRUSTED_DATE_SOURCES = frozenset({"simplify"})
+# jobright is in the same category: its links point at its own listing pages rather
+# than the employer's ATS, so the date is when the aggregator indexed the role.
+UNTRUSTED_DATE_SOURCES = frozenset({"simplify", "jobright"})
 
 
 def parse_dt(value: Any) -> datetime | None:

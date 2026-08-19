@@ -8,9 +8,12 @@ from datetime import datetime, timezone
 import pytest
 
 from jobradar.sources import (
+    amazon,
     ashby,
     greenhouse,
+    jobright,
     lever,
+    oraclehcm,
     simplify,
     workable,
     workday,
@@ -238,3 +241,91 @@ def test_workday_keeps_real_location_text():
     job = workday.parse("rbc.wd3/rbc/rbcglobal1", payload)[0]
     from jobradar.filters import classify_location
     assert classify_location(job.location_raw) == "tier1"
+
+
+def test_jobright_parses_table_and_continuation():
+    """A continuation row inherits the company named in the row above it."""
+    md = """
+| Company | Job Title | Location | Work Model | Date Posted |
+| ----- | --------- | --------- | ---- | ------- |
+| **[TikTok](https://www.tiktok.com)** | **[Data Analyst Graduate](https://jobright.ai/jobs/info/abc123?utm_campaign=x)** | Fontana, CA, United States | On Site | Aug 18 |
+| ↳ | **[Data Engineer, Ads](https://jobright.ai/jobs/info/def456?utm_campaign=x)** | San Jose, CA, United States | Hybrid | Aug 17 |
+| **[Ramp](https://ramp.com)** | **[Analytics Engineer](https://jobright.ai/jobs/info/ghi789)** | New York, NY | On Site | Aug 16 |
+"""
+    jobs = jobright.parse(md)
+    assert [j.company for j in jobs] == ["TikTok", "TikTok", "Ramp"]
+    assert jobs[1].title == "Data Engineer, Ads"
+    assert jobs[0].external_id == "abc123", "id should come from the listing path"
+    assert jobs[0].location_raw == "Fontana, CA, United States"
+
+
+def test_jobright_dates_roll_back_a_year_when_ahead():
+    """The feed omits the year, so a date in the future belongs to last year."""
+    now = datetime(2026, 1, 5, tzinfo=timezone.utc)
+    assert jobright.parse_posted("Jan 3", now).year == 2026
+    assert jobright.parse_posted("Dec 20", now).year == 2025
+    assert jobright.parse_posted("nonsense", now) is None
+
+
+def test_jobright_dates_are_untrusted():
+    md = ("| **[Acme](https://a.com)** | **[Data Engineer](https://jobright.ai/jobs/info/z1)** "
+          "| New York, NY | On Site | Aug 18 |")
+    assert jobright.parse(md)[0].date_trusted is False
+
+
+@pytest.mark.parametrize("text,expected", [
+    ("May 21, 2026", (2026, 5, 21)),
+    ("December 1, 2025", (2025, 12, 1)),
+])
+def test_amazon_posted_date_parsing(text, expected):
+    parsed = amazon.parse_posted(text)
+    assert parsed is not None
+    assert (parsed.year, parsed.month, parsed.day) == expected
+
+
+@pytest.mark.parametrize("text", [None, "", "not a date", "21 May"])
+def test_amazon_unparseable_dates(text):
+    assert amazon.parse_posted(text) is None
+
+
+def test_amazon_parse_folds_qualifications_into_description():
+    """The years requirement lives in the qualifications, not the description."""
+    payload = {"jobs": [{
+        "title": "Data Engineer I",
+        "job_path": "/en/jobs/123/data-engineer-i",
+        "location": "Seattle, WA",
+        "posted_date": "May 21, 2026",
+        "description": "Build pipelines.",
+        "basic_qualifications": "- 1+ years of data engineering experience<br/>- SQL",
+    }]}
+    job = amazon.parse(payload)[0]
+    assert job.url == "https://www.amazon.jobs/en/jobs/123/data-engineer-i"
+    assert "1+ years" in job.description and "Build pipelines." in job.description
+    from jobradar.filters import min_years_required
+    assert min_years_required(job.description) == 1
+
+
+def test_oraclehcm_slug_and_parse():
+    assert oraclehcm.split_slug("jpmc.fa.oraclecloud.com/CX_1001") == (
+        "jpmc.fa.oraclecloud.com", "CX_1001")
+    for bad in ("jpmc.fa.oraclecloud.com", "a/b/c", ""):
+        assert oraclehcm.split_slug(bad) is None
+
+    payload = {"items": [{"requisitionList": [{
+        "Id": 210766963,
+        "Title": "Data Engineer",
+        "PostedDate": "2026-08-04",
+        "PrimaryLocation": "New York, NY, United States",
+        "ShortDescriptionStr": "Own our pipelines.",
+    }]}]}
+    job = oraclehcm.parse("jpmc.fa.oraclecloud.com/CX_1001", payload)[0]
+    assert job.company == "jpmc"
+    assert job.url.endswith("/sites/CX_1001/job/210766963")
+    assert job.posted_at is not None and job.date_trusted
+
+
+def test_new_adapters_tolerate_garbage():
+    assert amazon.parse({}) == []
+    assert oraclehcm.parse("bad", {"items": [{"requisitionList": [{"Id": 1}]}]}) == []
+    assert jobright.parse("") == []
+    assert jobright.parse("| not | a | real | table |") == []

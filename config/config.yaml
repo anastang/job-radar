@@ -8,9 +8,16 @@ polling:
   # most for the ~350 YC startups, which were previously on a 30-minute delay and are
   # exactly where a tiny applicant pool makes being early count.
   #
-  # Set these back to 30 and 15 if you ever move to a private repo on the free tier.
-  tier2_every_minutes: 0
-  simplify_every_minutes: 0
+  # Restored to a staggered cadence after measuring the load. Polling all ~840
+  # boards on every run costs about 1,400 requests, roughly 68,000 a day, of which
+  # ~23,000 hit Ashby alone. These are public endpoints meant to render a careers
+  # page, and that is more traffic than one job search should place on them.
+  #
+  # tier1 is the hand-seeded top targets plus the watchlist, ~63 boards, still every
+  # run. The YC, VC, Oracle and Workday sweeps sit in tier2: a startup posting still
+  # reaches you inside half an hour, which is far ahead of anyone browsing a board.
+  tier2_every_minutes: 30
+  simplify_every_minutes: 15
 
 fetch:
   concurrency: 12

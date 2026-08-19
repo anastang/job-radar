@@ -25,7 +25,7 @@ from .filters import Verdict, evaluate
 from .models import Job
 from .notify import discord
 from .scoring import Profile, Score, score_job
-from .sources import ATS_ADAPTERS, Fetcher, simplify
+from .sources import ATS_ADAPTERS, GLOBAL_ADAPTERS, Fetcher
 from .store import State
 
 REPO = Path(__file__).resolve().parents[2]
@@ -105,7 +105,9 @@ async def collect(
 ) -> list[Job]:
     tasks = [ATS_ADAPTERS[ats](fetcher, slug) for ats, slug in targets]
     if include_simplify:
-        tasks.append(simplify.fetch(fetcher))
+        # Community feeds take no company argument and are polled as a group, on the
+        # cadence named by simplify_every_minutes.
+        tasks.extend(fetch_feed(fetcher) for fetch_feed in GLOBAL_ADAPTERS.values())
 
     jobs: list[Job] = []
     for result in await asyncio.gather(*tasks, return_exceptions=True):

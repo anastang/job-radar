@@ -74,6 +74,18 @@ class Fetcher:
         """GET and decode JSON. Returns None on 304, 404, or exhausted retries."""
         return await self._request("GET", url, etag_key=etag_key, headers=headers)
 
+    async def get_text(
+        self,
+        url: str,
+        *,
+        etag_key: str | None = None,
+        headers: dict[str, str] | None = None,
+    ) -> str | None:
+        """GET a plain-text body. Some feeds publish markdown rather than JSON."""
+        return await self._request(
+            "GET", url, etag_key=etag_key, headers=headers, as_text=True
+        )
+
     async def post_json(
         self,
         url: str,
@@ -91,6 +103,7 @@ class Fetcher:
         etag_key: str | None = None,
         headers: dict[str, str] | None = None,
         json: dict[str, Any] | None = None,
+        as_text: bool = False,
     ) -> Any | None:
         if self._client is None:
             raise RuntimeError("Fetcher must be used as an async context manager")
@@ -137,6 +150,10 @@ class Fetcher:
 
                 if etag_key and (tag := resp.headers.get("ETag")):
                     self.etags[etag_key] = tag
+
+                if as_text:
+                    self.stats["ok"] += 1
+                    return resp.text
 
                 try:
                     data = resp.json()

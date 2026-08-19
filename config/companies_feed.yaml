@@ -9,7 +9,6 @@ workday:
     - asml.wd3/asml/asmlext1
     - avav.wd1/avav/avav
     - baxter.wd1/baxter/baxter
-    - brandeis.wd5/brandeis/Jobs
     - cat.wd5/cat/solarturbines
     - citi.wd5/citi/2
     - compass.wd501/compass/radian_external_career_site
@@ -17,10 +16,8 @@ workday:
     - franklintempleton.wd5/franklintempleton/Primary-External-1
     - generalmotors.wd5/generalmotors/Careers_GM
     - hubinternational.wd1/hubinternational/HUBInternational
-    - intel.wd1/intel/external
     - iqvia.wd1/iqvia/IQVIA
     - kyndryl.wd5/kyndryl/KyndrylProfessionalCareers
-    - marvell.wd1/marvell/MarvellCareers2
     - nxp.wd3/nxp/careers
     - q2ebanking.wd5/q2ebanking/Q2
     - r1rcm.wd1/r1rcm/R1RCM
@@ -30,6 +27,8 @@ workday:
     - sunlife.wd3/sunlife/Experienced-Jobs
     - tamus.wd1/tamus/TTI_External
     - thyssenkruppmaterialsna.wd12/thyssenkruppmaterialsna/1
+    - trimble.wd1/trimble/TrimbleCareers
+    - vanguard.wd5/vanguard/vanguard_external
 
 workable:
   tier1: []
@@ -51,6 +50,7 @@ workable:
     - planetart
     - quadric-dot-i-o-inc
     - saalex
+    - seeq
     - sei
     - sigmadefense
     - slip-robotics
@@ -58,5 +58,48 @@ workable:
     - teserac-inc
     - texas-sports-academy-main
     - tp-link-usa-corp
+    - validus-risk-management
     - vectoratomic
     - wallstreetquants
+
+oraclehcm:
+  tier1: []
+  tier2:
+    - ecvz.fa.us2.oraclecloud.com/CX_1
+    - edbz.fa.us2.oraclecloud.com/CX
+    - edel.fa.us2.oraclecloud.com/CX_2001
+    - edyy.fa.us2.oraclecloud.com/CX_2002
+    - eedu.fa.em3.oraclecloud.com/CX_1003
+    - eeho.fa.us2.oraclecloud.com/CX_45001
+    - egay.fa.us6.oraclecloud.com/CX_4001
+    - egup.fa.us2.oraclecloud.com/CX
+    - ehac.fa.us6.oraclecloud.com/CX_1
+    - ejov.fa.ca2.oraclecloud.com/CX
+    - ejwl.fa.us2.oraclecloud.com/CX
+    - emdz.fa.us2.oraclecloud.com/CX_2001
+    - emit.fa.ca3.oraclecloud.com/CX_2001
+    - eofe.fa.us2.oraclecloud.com/CX_1001
+    - eoje.fa.us2.oraclecloud.com/CX_1001
+    - fa-erqb-saasfaprod1.fa.ocs.oraclecloud.com/CX_1
+    - fa-espx-saasfaprod1.fa.ocs.oraclecloud.com/CX_1
+    - fa-etqo-saasfaprod1.fa.ocs.oraclecloud.com/CX_1
+    - fa-etvc-saasfaprod1.fa.ocs.oraclecloud.com/CX_1001
+    - fa-evmr-saasfaprod1.fa.ocs.oraclecloud.com/CX_1
+    - fa-ewjt-saasfaprod1.fa.ocs.oraclecloud.com/CX_2
+    - fa-exhh-saasfaprod1.fa.ocs.oraclecloud.com/StaplesInc
+    - fa-exki-saasfaprod1.fa.ocs.oraclecloud.com/CX_1
+    - fa-exvu-saasfaprod1.fa.ocs.oraclecloud.com/CX_1
+    - hcgn.fa.us2.oraclecloud.com/CX_1
+    - hcjy.fa.us2.oraclecloud.com/CX_1
+    - hcog.fa.em2.oraclecloud.com/CX_1
+    - hctz.fa.us2.oraclecloud.com/CX_1001
+    - hcwp.fa.us2.oraclecloud.com/CX_1
+    - hdhl.fa.us6.oraclecloud.com/CX_1
+    - hdow.fa.us6.oraclecloud.com/CX_1001
+    - ibwujb.fa.ocs.oraclecloud.com/CX_1001
+    - jpmc.fa.oraclecloud.com/CX_1001
+
+amazon:
+  tier1: []
+  tier2:
+    - amazon

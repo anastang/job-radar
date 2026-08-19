@@ -3,9 +3,12 @@
 from __future__ import annotations
 
 from . import (
+    amazon,
     ashby,
     greenhouse,
+    jobright,
     lever,
+    oraclehcm,
     simplify,
     smartrecruiters,
     workable,
@@ -23,19 +26,26 @@ ATS_ADAPTERS = {
     smartrecruiters.ATS: smartrecruiters.fetch,
     workable.ATS: workable.fetch,
     workday.ATS: workday.fetch,
+    # oraclehcm slugs are "host/siteNumber"; amazon takes no meaningful slug and
+    # sweeps its own board by keyword.
+    oraclehcm.ATS: oraclehcm.fetch,
+    amazon.ATS: amazon.fetch,
 }
 
 # Global adapters take no company argument.
-GLOBAL_ADAPTERS = {simplify.ATS: simplify.fetch}
+GLOBAL_ADAPTERS = {simplify.ATS: simplify.fetch, jobright.ATS: jobright.fetch}
 
 __all__ = [
     "ATS_ADAPTERS",
     "GLOBAL_ADAPTERS",
     "BROWSER_UA",
     "Fetcher",
+    "amazon",
     "ashby",
     "greenhouse",
+    "jobright",
     "lever",
+    "oraclehcm",
     "simplify",
     "smartrecruiters",
     "workable",

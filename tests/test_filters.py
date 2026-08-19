@@ -369,3 +369,56 @@ def test_full_time_employment_type_passes():
 ])
 def test_internship_filter_does_not_overreach(title):
     assert evaluate(make_job(title)).passed, f"{title!r} should be kept"
+
+
+# ------------------------------------------- Member of Technical Staff regression
+
+DATA_BODY = (
+    "Build data pipelines with Spark and Kafka feeding our warehouse. Airflow and "
+    "dbt orchestration, streaming ingestion, analytics models. 2+ years of experience."
+)
+WEB_BODY = "Build React components and REST endpoints for the marketing site."
+
+
+@pytest.mark.parametrize("title", [
+    "Member of Technical Staff",
+    "Member of Technical Staff, Data",
+    "Member of Technical Staff (AI Inference Engineer)",
+])
+def test_member_of_technical_staff_is_not_senior(title):
+    """Regression: the word "Staff" inside MTS rejected the standard IC title at
+    every AI lab, silently removing that whole company tier from consideration."""
+    from jobradar.filters import SENIOR_TITLE
+    assert not SENIOR_TITLE.search(title), f"{title!r} should not read as staff-level"
+
+
+@pytest.mark.parametrize("title", [
+    "Staff Data Engineer",
+    "Staff Analytics Engineer",
+    "Senior Member of Technical Staff",
+])
+def test_genuinely_senior_titles_still_rejected(title):
+    from jobradar.filters import SENIOR_TITLE
+    assert SENIOR_TITLE.search(title), f"{title!r} should still be rejected"
+
+
+def test_mts_admitted_only_when_the_body_is_data_centric():
+    cfg = {"allow_data_adjacent_swe": True}
+    assert evaluate(make_job("Member of Technical Staff", description=DATA_BODY), cfg).passed
+    assert not evaluate(make_job("Member of Technical Staff", description=WEB_BODY), cfg).passed
+
+
+@pytest.mark.parametrize("title,family", [
+    ("Research Engineer", "research_engineer"),
+    ("Research Scientist", "research_engineer"),
+    ("Research Engineer, Frontier Evals", "research_engineer"),
+])
+def test_research_engineer_classifies(title, family):
+    result = classify_role(title)
+    assert result is not None and result[0] == family
+
+
+def test_research_engineer_ranks_below_the_data_families():
+    """A real but weaker fit: it should surface without crowding the top."""
+    assert classify_role("Research Engineer")[1] < classify_role("Data Engineer")[1]
+    assert classify_role("Research Engineer")[1] < classify_role("Data Analyst")[1]

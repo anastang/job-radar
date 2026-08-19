@@ -1,8 +1,8 @@
 # Job Radar
 
-[![Tests](https://github.com/anastang/job_scraper/actions/workflows/tests.yml/badge.svg)](https://github.com/anastang/job_scraper/actions/workflows/tests.yml)
+[![Tests](https://github.com/anastang/job-radar/actions/workflows/tests.yml/badge.svg)](https://github.com/anastang/job-radar/actions/workflows/tests.yml)
 
-Job Radar watches about 570 company job boards for early-career **data engineering,
+Job Radar watches about 600 company job boards for early-career **data engineering,
 analytics engineering, data analyst, and AI engineering** roles, and sends a Discord
 alert within minutes of a posting going live.
 
@@ -26,12 +26,21 @@ Indeed.**
 | Ashby | `publishedAt` | yes | yes, plus compensation |
 | Lever | `createdAt` (epoch ms) | yes | yes, plus salary range |
 | Workable | `published_on` (date granularity) | yes | yes (`?details=true`) |
+| Amazon | `posted_date` | yes | yes, including qualifications |
+| Oracle HCM | `PostedDate` | yes | short description only |
 | SmartRecruiters | `releasedDate` | yes | no, but gives `experienceLevel` |
 | Workday | `postedOn`, prose like "Posted 13 Days Ago" | coarse | no |
 | SimplifyJobs new-grad feed | `date_posted` | **no, it is an index date** | no |
+| jobright new-grad feed | table column | **no, it is an index date** | no |
 
-That covers six ATS providers plus one community feed, including roughly 350 YC
-startups.
+That covers eight ATS providers plus two community feeds, roughly 600 boards,
+including about 350 YC startups.
+
+Amazon and Oracle HCM are queried rather than enumerated. Both boards are far too
+large to walk, so each is swept with a handful of role-specific searches and the
+results deduplicated, the same approach Workday uses. Oracle boards are addressed by
+host and site number together, encoded as `host/siteNumber`, because one adapter
+serves every Oracle customer.
 
 ### The feed reports index dates, not posting dates
 
@@ -137,11 +146,20 @@ jobradar --dry-run --since 14 --min-score 0
 A posting must clear every gate before it is scored:
 
 1. **Role family.** Data engineer, analytics engineer, data analyst, AI engineer, plus
-   data scientist, BI, ML engineer, and forward-deployed roles.
+   data scientist, BI, ML engineer, forward-deployed, and research engineer roles.
+   Generic engineering titles, including "Member of Technical Staff", are admitted
+   only when the body carries at least three distinct data or AI signals.
 2. **Seniority.** Senior, staff, principal, lead, and manager titles are rejected, as
    is level III and above. The description is then parsed for a years-of-experience
    requirement, because the strongest matches often carry no seniority marker in the
    title. Anything above `max_years_experience` (default 3) is rejected.
+
+   One exception is worth knowing about. "Member of Technical Staff" is the standard
+   individual-contributor title at OpenAI, Anthropic, Mistral and most frontier labs,
+   and it spans every level including new grad. Matching the bare word "staff"
+   rejected all of them, which quietly removed that entire tier of companies. The
+   pattern now carries a negative lookbehind, while "Staff Data Engineer" and
+   "Senior Member of Technical Staff" are still rejected.
 3. **Work authorization.** See below.
 4. **Location.** Major North American tech hubs score equally. Remote and smaller
    cities score lower. Postings outside North America are rejected unless they also
@@ -211,7 +229,9 @@ postings and passes the filter. A regression test covers this.
 | `config/config.yaml` | thresholds, cadence, filters, blocked employers |
 | `config/companies.yaml` | generated, hand-seeded companies by ATS and tier |
 | `config/companies_yc.yaml` | generated, YC startups that are actively hiring |
-| `config/companies_feed.yaml` | generated, Workday and Workable boards from the feed |
+| `config/companies_vc.yaml` | generated, venture portfolio companies |
+| `config/companies_watchlist.yaml` | **hand-maintained**, never touched by a generator |
+| `config/companies_feed.yaml` | generated, Workday, Workable, Oracle HCM and Amazon |
 | `config/profile.yaml` | generated, resume-derived skill terms and weights |
 
 Every `config/companies*.yaml` file is merged at runtime. They stay separate so that
@@ -234,21 +254,52 @@ python scripts/discover_yc.py
 ```
 
 ```bash
+python scripts/discover_vc.py
+```
+
+```bash
 python scripts/discover_from_feed.py
 ```
 
-### Why there are three generators
+### Adding a company you heard about somewhere
+
+Broad sweeps will never cover a company you happen to hear about from a friend, a
+news story, or a post. That gap is real and it was measured: of eight companies found
+by hand and heard back from, four were reachable on boards this tool already polls and
+were missed anyway, purely because nothing had named them.
+
+```bash
+python scripts/add_company.py "Charta Health" "Distyl AI"
+```
+
+The name is turned into candidate slugs, probed against every provider, and whatever
+resolves is appended to `config/companies_watchlist.yaml`. That file is hand-owned, so
+no generator overwrites it, and its entries are tier1 because a company added
+deliberately deserves more attention than one that arrived from a sweep.
+
+Not every company resolves. Some run their own portal with no standard ATS behind it,
+in which case the script says so rather than guessing.
+
+### Why there are several generators
 
 `validate_companies.py` probes a hand-maintained list of established companies.
 
 `discover_yc.py` walks the public YC directory, keeps companies that are active,
-hiring, and in the target metros, and guesses each ATS slug from the company name and
-website domain. About a third resolve.
+hiring, and in a major North American hub, and guesses each ATS slug from the company
+name and website domain. About a third resolve, helped by the directory's `isHiring`
+flag and by YC names mapping to slugs predictably.
 
-`discover_from_feed.py` harvests Workday and Workable boards from real posting URLs in
-the community feed. Workday boards are addressed by host, tenant, and site together
-(`ngc.wd1` / `ngc` / `Northrop_Grumman_External_Site`), which makes them impossible to
-guess. Blocked employers are dropped during discovery rather than at filter time, so no
+`discover_vc.py` does the same for venture portfolio companies. Expect a lower yield,
+around 10%, because portfolio pages carry no hiring signal, so most probes land on
+companies that are not recruiting. Only a16z is wired up: several other firms return a
+large page to one HTTP client and a near-empty one to another, so each needs its own
+extraction rule verified first. Adding one blind would contribute nothing and still
+look like it worked.
+
+`discover_from_feed.py` harvests Workday, Workable, and Oracle HCM boards from real
+posting URLs in the community feed. Those boards are addressed by host, tenant, and
+site together (`ngc.wd1` / `ngc` / `Northrop_Grumman_External_Site` for Workday,
+`host/siteNumber` for Oracle), which makes them impossible to guess. Blocked employers are dropped during discovery rather than at filter time, so no
 poll is spent on a board whose every posting would be rejected.
 
 Regenerate the skill profile whenever the resume changes:

@@ -1,0 +1,18 @@
+# Hand-maintained. No generator writes to this file, so entries here survive
+# every refresh of the other companies*.yaml files.
+#
+# Add companies with: python scripts/add_company.py "Company Name"
+# Everything here is tier1: a company added deliberately is worth more
+# attention than one that arrived from a broad sweep.
+
+ashby:
+  tier1:
+    - chartahealth
+    - distyl
+    - lovable
+  tier2: []
+
+greenhouse:
+  tier1:
+    - coalition
+  tier2: []

@@ -48,6 +48,13 @@ ROLE_FAMILIES: list[tuple[str, float, re.Pattern[str]]] = [
         r"\b(machine learning|ml) engineer\b", re.I)),
     ("forward_deployed", 0.85, re.compile(
         r"\bforward[- ]deployed\b", re.I)),
+    # Weighted low on purpose, and lowered again after measurement. At 0.70 these
+    # scored 43 to 50, which put four Research Scientist roles at OpenAI and
+    # Anthropic above the alert threshold. Those are PhD-track and not a realistic
+    # target, so the weight now lands them just below it: still visible through
+    # --min-score 0, no longer worth a notification.
+    ("research_engineer", 0.55, re.compile(
+        r"\bresearch engineer\b|\bresearch scientist\b", re.I)),
 ]
 
 # Titles that contain a family keyword but are not the job he wants.
@@ -67,9 +74,16 @@ NEGATIVE_TITLE = re.compile(
 # Seniority
 # --------------------------------------------------------------------------------
 
+# "staff" carries a negative lookbehind because "Member of Technical Staff" is the
+# standard individual-contributor title at OpenAI, Anthropic, Mistral and most
+# frontier labs, and it spans every level including new grad. Matching the bare word
+# rejected all of them as staff-level, which quietly removed the entire AI-lab tier
+# from consideration. "Staff Data Engineer" still matches, and "Senior Member of
+# Technical Staff" is still caught by "senior".
 SENIOR_TITLE = re.compile(
-    r"\b(senior|sr\.?|staff|principal|lead|leader|manager|mgr|director|head of"
-    r"|vp|vice president|architect|chief|distinguished|fellow|expert)\b",
+    r"\b(senior|sr\.?|(?<!technical )staff|principal|lead|leader|manager|mgr"
+    r"|director|head of|vp|vice president|architect|chief|distinguished"
+    r"|fellow|expert)\b",
     re.I,
 )
 
@@ -188,7 +202,11 @@ TIER1_LOC = re.compile(
 # only when the posting itself is clearly data/AI-centric - see evaluate().
 SWE_TITLE = re.compile(
     r"\bsoftware (engineer|developer)\b|\bswe\b|\bbackend engineer\b"
-    r"|\bplatform engineer\b|\bfull[- ]stack engineer\b",
+    r"|\bplatform engineer\b|\bfull[- ]stack engineer\b"
+    # "Member of Technical Staff" says nothing about domain on its own, so it is
+    # admitted on the same terms as any other generic engineering title: only when
+    # the body is clearly data or AI centric.
+    r"|\bmember of technical staff\b",
     re.I,
 )
 
@@ -201,6 +219,14 @@ DATA_CONTEXT = re.compile(
     re.I,
 )
 DATA_CONTEXT_MIN_HITS = 3
+
+# "Member of Technical Staff" already implies a technical IC role, and it appears
+# almost exclusively at AI labs, so it clears a lower bar than a bare "Software
+# Engineer" would. Lab descriptions are written as prose rather than stack lists,
+# which is why 52 MTS postings still failed at the stricter threshold.
+DATA_CONTEXT_MIN_HITS_MTS = 2
+
+MTS_TITLE = re.compile(r"\bmember of technical staff\b", re.I)
 
 CANADA_HINT = re.compile(r"canada|ontario|,\s*on\b|,\s*bc\b|,\s*ab\b|,\s*qc\b", re.I)
 
@@ -340,12 +366,26 @@ def evaluate(job: Job, cfg: dict | None = None) -> Verdict:
         # data/AI-centric. A Spring Boot / Docker / Kubernetes internship makes these
         # a fair target, but accepting every "Software Engineer" title outright would
         # bury the data roles under generic web-dev postings.
-        if (
+        # "Member of Technical Staff" usually qualifies itself in a parenthetical:
+        # "(Machine Learning Engineer)", "(AI Infrastructure)". That qualifier is the
+        # real role, so strip the boilerplate and classify what is left. Fixing the
+        # seniority match alone was not enough - 52 MTS postings still failed, because
+        # lab descriptions are prose rather than stack lists and rarely clear the
+        # data-signal bar. The remaining bare ones get a lower bar for the same reason.
+        mts = MTS_TITLE.search(title)
+        inner_role = None
+        if mts:
+            inner = MTS_TITLE.sub(" ", title).strip(" ()-,:")
+            inner_role = classify_role(inner) if inner else None
+
+        if inner_role is not None:
+            family, weight = inner_role
+        elif (
             cfg.get("allow_data_adjacent_swe")
             and SWE_TITLE.search(title)
             and not NEGATIVE_TITLE.search(title)
             and len(set(m.group(0).lower() for m in DATA_CONTEXT.finditer(job.haystack)))
-            >= DATA_CONTEXT_MIN_HITS
+            >= (DATA_CONTEXT_MIN_HITS_MTS if mts else DATA_CONTEXT_MIN_HITS)
         ):
             family, weight = "software_engineer", 0.85
         else:
