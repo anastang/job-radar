@@ -593,7 +593,7 @@
 "greenhouse:legalist": "W/\"7fbf337c5b0a5c26f2dcd65f345355bb\"",
 "greenhouse:lithic": "W/\"75e7d5612eff6c223f29fc5c9c785865\"",
 "greenhouse:lob": "W/\"037937fb40ecac34407f3fe65206a53c\"",
-"greenhouse:lucidmotors": "W/\"66ced58738c22877e85347c6c51cb4e3\"",
+"greenhouse:lucidmotors": "W/\"8ac053991f5e0a91db1c0206711d0404\"",
 "greenhouse:lyft": "W/\"f4bc25191420c715af838d2eb389ef3e\"",
 "greenhouse:magicleap": "W/\"11cc03883588d89aa5610e3e879c0984\"",
 "greenhouse:make": "W/\"7cd447b4c8af775567f9f96b54852a1b\"",
@@ -689,7 +689,7 @@
 "greenhouse:yubico": "W/\"3f2518409b3a07db49f6f456af52f9d6\"",
 "greenhouse:zencoder": "W/\"fc11e392028b35ee7725c01902b37f4d\"",
 "jobright:https://raw.githubusercontent.com/jobright-ai/2025-Data-Analysis-New-Grad/master/README.md": "W/\"18234b27252bfcc1d7105f0f57d671569ac629c04a74ec8a7ac896ec88095571\"",
-"jobright:https://raw.githubusercontent.com/jobright-ai/2025-Software-Engineer-New-Grad/master/README.md": "W/\"c6588ee9606e1c1ed92b77e4d5b1b849a7af85d347da9e7bc84f00434fe924ff\"",
+"jobright:https://raw.githubusercontent.com/jobright-ai/2025-Software-Engineer-New-Grad/master/README.md": "W/\"1bc6fb3a1bebf239e2d79d1360d8863cfe30bd0dd7792b6d8826f36a28de00eb\"",
 "lever:alloy": "W/\"23f0c-vOmHZ+HEPK9XSw6oG5vLzQtA5cQ\"",
 "lever:alluxio": "W/\"15ec6-RojfMi1CTATl4f0vD5sGlrNyRIM\"",
 "lever:anchorage": "W/\"978a8-y3sgAuzOb9yvg+Rsrp93DqMEWDQ\"",
@@ -4536,9 +4536,9 @@
 },
 "meta": {
 "bootstrapped_at": "2026-08-16T09:42:23.450845+00:00",
-"last_run": "2026-08-22T07:03:23.211199+00:00",
-"last_simplify": "2026-08-22T07:03:23.211199+00:00",
-"last_tier2": "2026-08-22T07:03:23.211199+00:00"
+"last_run": "2026-08-22T07:40:54.403804+00:00",
+"last_simplify": "2026-08-22T07:40:54.403804+00:00",
+"last_tier2": "2026-08-22T07:40:54.403804+00:00"
 },
 "seen": {
 "000038b987bd67ff": "2026-08-16",
@@ -11181,6 +11181,7 @@
 "1e8f5e6b933eaf52": "2026-08-16",
 "1e8f8c5e72a60062": "2026-08-19",
 "1e916afb3f29435d": "2026-08-16",
+"1e91f06d9dfc676a": "2026-08-22",
 "1e92871338673dac": "2026-08-19",
 "1e933501664eaaa0": "2026-08-17",
 "1e94187aa79de3f8": "2026-08-19",
@@ -59483,6 +59484,6 @@
 "fffdda90117443ae": "2026-08-19",
 "ffff2e932d6cd349": "2026-08-17"
 },
-"updated_at": "2026-08-22T07:03:23.264046+00:00",
+"updated_at": "2026-08-22T07:40:54.455908+00:00",
 "version": 2
 }
