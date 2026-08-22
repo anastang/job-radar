@@ -48,7 +48,7 @@
 "ashby:automat": "W/\"job-board:aa03a279b3a4070006a4d4902084d7e0c79a8e040118c05ff1a2df90c8fcc4a3\"",
 "ashby:avallon": "W/\"job-board:786632d54fc81fd4124255a4dddd026b3d094b380f33d2a492be3c31e0fc9c01\"",
 "ashby:avoca": "W/\"job-board:c3fc2aa8b81821f313b9c76b0d2dfc7e7fd3566599f577b9fe7977d53751d962\"",
-"ashby:base-power": "W/\"job-board:456e072c8cc52065cdef9d4b38fd81e8d3cfa926b8d9babf0ade01e537206ccf\"",
+"ashby:base-power": "W/\"job-board:d31c58c67642a1bb4bce798e8437ad78e5b6dc69ea5cfe7e55eca3e3f760c626\"",
 "ashby:baseten": "W/\"job-board:2338bf93f1988535948262a3e4417e520308f3397e888520b591315b551dc4f0\"",
 "ashby:bastion": "W/\"job-board:3f1551a3222fdf12ddf18e0c1bd59f2695674e22366be5afebffade7fe2c141f\"",
 "ashby:bayesianhealth": "W/\"job-board:72682f5952f5c1ceaed0360b6683755092362ecd25260f69d64c840f2d34b4b0\"",
@@ -4842,9 +4842,9 @@
 },
 "meta": {
 "bootstrapped_at": "2026-08-16T09:42:23.450845+00:00",
-"last_run": "2026-08-22T22:53:02.235211+00:00",
-"last_simplify": "2026-08-22T22:53:02.235211+00:00",
-"last_tier2": "2026-08-22T22:31:38.234415+00:00"
+"last_run": "2026-08-22T23:16:18.888950+00:00",
+"last_simplify": "2026-08-22T23:16:18.888950+00:00",
+"last_tier2": "2026-08-22T23:16:18.888950+00:00"
 },
 "seen": {
 "000038b987bd67ff": "2026-08-16",
@@ -23120,6 +23120,7 @@
 "5429d52ec8d1175f": "2026-08-19",
 "542b7d9e307c6363": "2026-08-19",
 "542c288da126cc1b": "2026-08-16",
+"542d7d20ee50de4a": "2026-08-22",
 "542daa34e51c122b": "2026-08-16",
 "542e8bb4b853e695": "2026-08-19",
 "5430eb4642a89fac": "2026-08-16",
@@ -59927,6 +59928,6 @@
 "fffdda90117443ae": "2026-08-19",
 "ffff2e932d6cd349": "2026-08-17"
 },
-"updated_at": "2026-08-22T22:53:02.284895+00:00",
+"updated_at": "2026-08-22T23:16:18.938314+00:00",
 "version": 2
 }
