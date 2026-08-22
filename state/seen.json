@@ -529,7 +529,7 @@
 "greenhouse:crossriverbank": "W/\"c987a3d4d6b4787d46851c2eba3b763d\"",
 "greenhouse:current": "W/\"3aa2a789f594b53fc110783ed57163bd\"",
 "greenhouse:d2l": "W/\"76023dad578fa35355cbf566396debf4\"",
-"greenhouse:databricks": "W/\"7f12988a04236bc097550b73ce3ab837\"",
+"greenhouse:databricks": "W/\"449442f502cf3381a38303d3f6d48052\"",
 "greenhouse:datadog": "W/\"788d476a94ac430bf747721330eff739\"",
 "greenhouse:daylight": "W/\"8441eeb0ba1921b4573b44e188cd1778\"",
 "greenhouse:descript": "W/\"d796698337a65da8f750ad299bc37510\"",
@@ -650,7 +650,7 @@
 "greenhouse:ritual": "W/\"24aa4bd036603f5d3d0475382ef81c94\"",
 "greenhouse:robinhood": "W/\"4df42e160c5e955daf70fd0169a3d533\"",
 "greenhouse:roblox": "W/\"df91f0cbbfc8c53ebfcb791c441c49a8\"",
-"greenhouse:samsara": "W/\"cde471327d86138714bd8256e1f1772f\"",
+"greenhouse:samsara": "W/\"61bebeb41f475f0cb23e7fde11d2f09f\"",
 "greenhouse:scaleai": "W/\"6bbdf21cbb5c95faf5a0912022f290c0\"",
 "greenhouse:sendbird": "W/\"794103f537f5f2c32b50b51e868ca581\"",
 "greenhouse:senrasystems": "W/\"f908d91d3a36825a523a1b5d6ea0592b\"",
@@ -666,7 +666,7 @@
 "greenhouse:togetherai": "W/\"4d2a86efb7a8babbc26d51d9ee6acbf3\"",
 "greenhouse:treasuryprime": "W/\"09aefc0c2d96e9c065aab057f04eaa35\"",
 "greenhouse:truveta": "W/\"c9f192bf498efbe07e3405e2efa7b358\"",
-"greenhouse:twilio": "W/\"925e2524d2858c4747896f50f347a753\"",
+"greenhouse:twilio": "W/\"d2e0486887a0ffdc788c8e6882d68f4a\"",
 "greenhouse:typeface": "W/\"278571a29d2be228716a00a89f7af295\"",
 "greenhouse:udacity": "W/\"9bb2208a1f5fd7fee6ba77b612e3b0d5\"",
 "greenhouse:udio": "W/\"9fa107f24ce54b35f0d6c39466508df5\"",
@@ -688,7 +688,7 @@
 "greenhouse:xai": "W/\"cd96f57ff3b5ee3aa93ddecda70c5e6a\"",
 "greenhouse:yubico": "W/\"3f2518409b3a07db49f6f456af52f9d6\"",
 "greenhouse:zencoder": "W/\"fc11e392028b35ee7725c01902b37f4d\"",
-"jobright:https://raw.githubusercontent.com/jobright-ai/2025-Data-Analysis-New-Grad/master/README.md": "W/\"18234b27252bfcc1d7105f0f57d671569ac629c04a74ec8a7ac896ec88095571\"",
+"jobright:https://raw.githubusercontent.com/jobright-ai/2025-Data-Analysis-New-Grad/master/README.md": "W/\"3c8cfd2503dc3509452711ffe2bbf76b22db6732bcdc6f67d764e1eac2a8fbfb\"",
 "jobright:https://raw.githubusercontent.com/jobright-ai/2025-Software-Engineer-New-Grad/master/README.md": "W/\"1bc6fb3a1bebf239e2d79d1360d8863cfe30bd0dd7792b6d8826f36a28de00eb\"",
 "lever:alloy": "W/\"23f0c-vOmHZ+HEPK9XSw6oG5vLzQtA5cQ\"",
 "lever:alluxio": "W/\"15ec6-RojfMi1CTATl4f0vD5sGlrNyRIM\"",
@@ -4536,8 +4536,8 @@
 },
 "meta": {
 "bootstrapped_at": "2026-08-16T09:42:23.450845+00:00",
-"last_run": "2026-08-22T07:40:54.403804+00:00",
-"last_simplify": "2026-08-22T07:40:54.403804+00:00",
+"last_run": "2026-08-22T08:01:09.925863+00:00",
+"last_simplify": "2026-08-22T08:01:09.925863+00:00",
 "last_tier2": "2026-08-22T07:40:54.403804+00:00"
 },
 "seen": {
@@ -59484,6 +59484,6 @@
 "fffdda90117443ae": "2026-08-19",
 "ffff2e932d6cd349": "2026-08-17"
 },
-"updated_at": "2026-08-22T07:40:54.455908+00:00",
+"updated_at": "2026-08-22T08:01:09.956219+00:00",
 "version": 2
 }
