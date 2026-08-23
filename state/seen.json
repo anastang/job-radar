@@ -187,7 +187,7 @@
 "ashby:halliday": "W/\"job-board:84f70a7d79b4a6eda00ecdbeaa9286dc3723388d432f0fc2bae379422a018493\"",
 "ashby:halluminate": "W/\"job-board:247b69ea983e9b096fd2b87deb642119bb240752af8e01cf464e5e5f8c96b1c4\"",
 "ashby:harperinsure": "W/\"job-board:6007b480ba8a65ac31ba536a80122d6bad04d05aeb349578898566aafbca96a3\"",
-"ashby:harvey": "W/\"job-board:5d0669fdf50150bc91b6eeaa23e0836e668e6551b1c2d65afcda1914b51a6b8c\"",
+"ashby:harvey": "W/\"job-board:570ff1b40e64a0ab4da2cb868d97aa520877d463c7dfe9e3b2b169e4dcf4e9b0\"",
 "ashby:headway": "W/\"job-board:dd6b7d714a815cb9f3aa784a1ed355285013e0868ed7d71ff09c745ae4ca75c1\"",
 "ashby:hedra": "W/\"job-board:109b426d16f9823a9a6ebd78c8b0786425bca3511204e8399f4e745de979edc4\"",
 "ashby:heron-power": "W/\"job-board:a5aa17067eec4612eb81c09b787e192f3f6cff1891c6efd26c15a6ea4b849ac7\"",
@@ -550,7 +550,7 @@
 "greenhouse:eve": "W/\"3a32b742974f550b5c1759363da1d260\"",
 "greenhouse:everlaw": "W/\"e9913347f64e8bda1950e64304bba201\"",
 "greenhouse:faire": "W/\"8d55347a4fdcce93fb8601f2ca0be922\"",
-"greenhouse:figma": "W/\"6a0791588e0d41aa583c9e4f09930a2c\"",
+"greenhouse:figma": "W/\"382f1feb594a06818580a88bdc30d0ee\"",
 "greenhouse:fivetran": "W/\"0ff720ef30908dabaae5c28739910cbb\"",
 "greenhouse:flexport": "W/\"6844981a63119a6338cfaaead2479660\"",
 "greenhouse:flockhomes": "W/\"7572bb692fad1d8127e49db35934fe52\"",
@@ -650,7 +650,7 @@
 "greenhouse:ritual": "W/\"24aa4bd036603f5d3d0475382ef81c94\"",
 "greenhouse:robinhood": "W/\"8d615e1929c0fbd46b04d72aaf496173\"",
 "greenhouse:roblox": "W/\"87e5c1493f31ee5f20f5a20bef51a2a0\"",
-"greenhouse:samsara": "W/\"dfc7d298c0fb2f78f50a513830bea7dc\"",
+"greenhouse:samsara": "W/\"206851ae6191e491634c3a82ac3a33bd\"",
 "greenhouse:scaleai": "W/\"b908913a91b3150479886caab265c142\"",
 "greenhouse:sendbird": "W/\"794103f537f5f2c32b50b51e868ca581\"",
 "greenhouse:senrasystems": "W/\"f908d91d3a36825a523a1b5d6ea0592b\"",
@@ -688,8 +688,8 @@
 "greenhouse:xai": "W/\"edf286118eec59cc77374708e1b4f77a\"",
 "greenhouse:yubico": "W/\"3f2518409b3a07db49f6f456af52f9d6\"",
 "greenhouse:zencoder": "W/\"fc11e392028b35ee7725c01902b37f4d\"",
-"jobright:https://raw.githubusercontent.com/jobright-ai/2025-Data-Analysis-New-Grad/master/README.md": "W/\"38a1a03898b976909e4f2be6bb368c6a18c14ebb96df617ab79b399b69bb5110\"",
-"jobright:https://raw.githubusercontent.com/jobright-ai/2025-Software-Engineer-New-Grad/master/README.md": "W/\"41e72fd675e2a806b4fbe55b302fc4ab54270ba42fa03f1dd120d4e204e895f1\"",
+"jobright:https://raw.githubusercontent.com/jobright-ai/2025-Data-Analysis-New-Grad/master/README.md": "W/\"5aaf7f92e3c07fa42056e146ce46a12ace66100848ebb67dbc2ed055e22ad9aa\"",
+"jobright:https://raw.githubusercontent.com/jobright-ai/2025-Software-Engineer-New-Grad/master/README.md": "W/\"533bf319a9dc38801b0ba7c6cec5e751ed59bcba752a1e0026fd7e063e4ecfb9\"",
 "lever:alloy": "W/\"23f0c-vOmHZ+HEPK9XSw6oG5vLzQtA5cQ\"",
 "lever:alluxio": "W/\"15ec6-RojfMi1CTATl4f0vD5sGlrNyRIM\"",
 "lever:anchorage": "W/\"978a8-y3sgAuzOb9yvg+Rsrp93DqMEWDQ\"",
@@ -746,7 +746,7 @@
 "lever:yuno": "W/\"cf158-tmNr1Obj3MvfxU+kryVrJ1dg+/E\"",
 "lever:zoox": "W/\"249e72-W0+J13f5yFJVACrviYGgrWHlR2M\"",
 "lever:zushealth": "W/\"138ba-bvBX35xopj+nMMI3XrvyjDo5Sw0\"",
-"simplify:listings": "W/\"f2aaf85b4ef93fb31bb423382a8b0dbab40b26c58c42f18a9fd0024c5d11cb48\""
+"simplify:listings": "W/\"058bc28ef642dd12e93cf5197a56aae31b1f45d58144b152f4bd1bd86a7087ce\""
 },
 "matches": {
 "00cb55851aef7616": {
@@ -5250,8 +5250,8 @@
 },
 "meta": {
 "bootstrapped_at": "2026-08-16T09:42:23.450845+00:00",
-"last_run": "2026-08-23T23:26:14.995991+00:00",
-"last_simplify": "2026-08-23T23:26:14.995991+00:00",
+"last_run": "2026-08-23T23:45:55.610322+00:00",
+"last_simplify": "2026-08-23T23:45:55.610322+00:00",
 "last_tier2": "2026-08-23T23:26:14.995991+00:00"
 },
 "seen": {
@@ -23947,6 +23947,7 @@
 "560be918369615e8": "2026-08-21",
 "56116e21ddf601ae": "2026-08-19",
 "56119986736762e9": "2026-08-19",
+"5614d44f2907eabc": "2026-08-23",
 "56170286236d8d5a": "2026-08-17",
 "561786514638c41c": "2026-08-16",
 "56187fdc56f81dcd": "2026-08-19",
@@ -28540,6 +28541,7 @@
 "6bb8f32de3a97ce6": "2026-08-19",
 "6bb989e1ec1998d8": "2026-08-16",
 "6bbd1fb5cf18030e": "2026-08-21",
+"6bbef2bdd1c10f21": "2026-08-23",
 "6bbfef6fed22b4a7": "2026-08-16",
 "6bc070880e369015": "2026-08-16",
 "6bc62f94306e6747": "2026-08-17",
@@ -51571,6 +51573,7 @@
 "d5ffb106fb47f954": "2026-08-17",
 "d60113e29304a753": "2026-08-16",
 "d602d27c4b26aff0": "2026-08-19",
+"d602d963a376d200": "2026-08-23",
 "d6031ef146700b13": "2026-08-16",
 "d603b86dc4e69dd6": "2026-08-16",
 "d603de3e5d0a29e6": "2026-08-19",
@@ -60513,6 +60516,6 @@
 "fffdda90117443ae": "2026-08-19",
 "ffff2e932d6cd349": "2026-08-17"
 },
-"updated_at": "2026-08-23T23:26:15.034997+00:00",
+"updated_at": "2026-08-23T23:45:55.663591+00:00",
 "version": 2
 }
