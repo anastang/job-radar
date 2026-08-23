@@ -288,7 +288,7 @@
 "ashby:nango": "W/\"job-board:31c601d6e946005afa128ebcddcf35d5b7bb30a5d18121af05205eb7f9117cff\"",
 "ashby:nash": "W/\"job-board:afb41eb64a3ef392363114b6f4c7d444e52b93e649f9abc100d2737e85a9fe9b\"",
 "ashby:neon": "W/\"job-board:f55dc9593b20786a1fcdcd00896e39288763c5fe12fbe6ac43199bacf6b7335f\"",
-"ashby:northwoodspace": "W/\"job-board:5df6951666c3fb6e49c93ffaa0ed44e0ee0d06faad10887d9f124adf3037f942\"",
+"ashby:northwoodspace": "W/\"job-board:f3d2054945e6ccf49f8ec6a539458307af67aaf2c4e165a96026af8bf8cd2b37\"",
 "ashby:notabene": "W/\"job-board:fc83d1f9c333ce9e8198fb08dd2b463bf4b6678490183669b20b16d4adbe5194\"",
 "ashby:notion": "W/\"job-board:b30201c97515818fe08f010c6603340bec94177b37b400b2e7a885d3e9df2a11\"",
 "ashby:novig": "W/\"job-board:1a8d85fee53dcdb5cf21fa12801d640d9359af9e17d1a4d2af8a7d56bb084d12\"",
@@ -688,8 +688,8 @@
 "greenhouse:xai": "W/\"cd96f57ff3b5ee3aa93ddecda70c5e6a\"",
 "greenhouse:yubico": "W/\"3f2518409b3a07db49f6f456af52f9d6\"",
 "greenhouse:zencoder": "W/\"fc11e392028b35ee7725c01902b37f4d\"",
-"jobright:https://raw.githubusercontent.com/jobright-ai/2025-Data-Analysis-New-Grad/master/README.md": "W/\"005d1e0d33c29e331dd2c9d968cc4c9ba497345693ae15c1b0d6b329131bcdbb\"",
-"jobright:https://raw.githubusercontent.com/jobright-ai/2025-Software-Engineer-New-Grad/master/README.md": "W/\"09a3901c48161db1a32b11553fc94f9593f139550eb396732d3dc337f7616e08\"",
+"jobright:https://raw.githubusercontent.com/jobright-ai/2025-Data-Analysis-New-Grad/master/README.md": "W/\"37e0a24597173817603ea1606cb4ed0fe9dcbd6837f4efba6a8f5781f1607706\"",
+"jobright:https://raw.githubusercontent.com/jobright-ai/2025-Software-Engineer-New-Grad/master/README.md": "W/\"6ed8595128e227853ab92c5a67e48d41b622a7c15beca820462100d4816f1b2f\"",
 "lever:alloy": "W/\"23f0c-vOmHZ+HEPK9XSw6oG5vLzQtA5cQ\"",
 "lever:alluxio": "W/\"15ec6-RojfMi1CTATl4f0vD5sGlrNyRIM\"",
 "lever:anchorage": "W/\"978a8-y3sgAuzOb9yvg+Rsrp93DqMEWDQ\"",
@@ -4860,9 +4860,9 @@
 },
 "meta": {
 "bootstrapped_at": "2026-08-16T09:42:23.450845+00:00",
-"last_run": "2026-08-23T01:50:22.163709+00:00",
-"last_simplify": "2026-08-23T01:50:22.163709+00:00",
-"last_tier2": "2026-08-23T01:50:22.163709+00:00"
+"last_run": "2026-08-23T02:52:44.283230+00:00",
+"last_simplify": "2026-08-23T02:52:44.283230+00:00",
+"last_tier2": "2026-08-23T02:52:44.283230+00:00"
 },
 "seen": {
 "000038b987bd67ff": "2026-08-16",
@@ -13820,6 +13820,7 @@
 "29031c220cf06816": "2026-08-17",
 "290332729c6b6f4e": "2026-08-16",
 "2903a0dcf7453995": "2026-08-17",
+"2903c8468faae2aa": "2026-08-23",
 "29043397f9027c73": "2026-08-19",
 "29059e2a68e4da50": "2026-08-16",
 "29065fea60a0c9e3": "2026-08-16",
@@ -29616,6 +29617,7 @@
 "72b68e8a6fb20295": "2026-08-16",
 "72b71e18694cadb3": "2026-08-16",
 "72b73841efc9ed6c": "2026-08-16",
+"72b804ab20e6934c": "2026-08-23",
 "72b949b29a22bd57": "2026-08-16",
 "72ba81dc38b6f05a": "2026-08-17",
 "72bad32b247640cb": "2026-08-22",
@@ -44303,6 +44305,7 @@
 "b703451f0c60d136": "2026-08-19",
 "b70366b837750a85": "2026-08-16",
 "b706110f58cc600b": "2026-08-19",
+"b707b22efd469499": "2026-08-23",
 "b707fec560e62627": "2026-08-16",
 "b708d76b3469e0e3": "2026-08-19",
 "b70a8ad6f5714635": "2026-08-16",
@@ -51347,6 +51350,7 @@
 "d76ccbb0c9db510b": "2026-08-21",
 "d76e7661207b3047": "2026-08-17",
 "d770c79ea1489118": "2026-08-19",
+"d77261dab6f4faa3": "2026-08-23",
 "d7741b2c4c7c2026": "2026-08-17",
 "d774246534e36b41": "2026-08-17",
 "d77652eb1ab005c1": "2026-08-19",
@@ -55418,6 +55422,7 @@
 "eaafa4af492c8a2b": "2026-08-17",
 "eab4c666981f3e84": "2026-08-17",
 "eab548f4ec04cc39": "2026-08-17",
+"eab5efbdbafc58ff": "2026-08-23",
 "eab6bb1002d854b0": "2026-08-16",
 "eab6fb0a7f18862f": "2026-08-19",
 "eab73346d72cc8fc": "2026-08-17",
@@ -59966,6 +59971,6 @@
 "fffdda90117443ae": "2026-08-19",
 "ffff2e932d6cd349": "2026-08-17"
 },
-"updated_at": "2026-08-23T01:50:22.217715+00:00",
+"updated_at": "2026-08-23T02:52:44.338881+00:00",
 "version": 2
 }
