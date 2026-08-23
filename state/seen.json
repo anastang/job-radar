@@ -633,7 +633,7 @@
 "greenhouse:patch": "W/\"91d17b441565daa5f55e391fa2e8f0d6\"",
 "greenhouse:pelago": "W/\"d00ce72efcd83b330e55d215a10fbeb0\"",
 "greenhouse:peloton": "W/\"3bc4aeec2e89eccd6fa8e411e1d5926b\"",
-"greenhouse:pinterest": "W/\"5da0a1527927a7cced651e428f7af3ea\"",
+"greenhouse:pinterest": "W/\"f19011fe81a68b4a815be923fc43f55c\"",
 "greenhouse:planetscale": "W/\"6123194ff5131090f9cc52e382ea3c97\"",
 "greenhouse:point72": "W/\"503c0ff9feb54776f2e6d70aa467c2ad\"",
 "greenhouse:pomelocare": "W/\"5a55eb39f126d73289696617c3e0d5f3\"",
@@ -650,7 +650,7 @@
 "greenhouse:ritual": "W/\"24aa4bd036603f5d3d0475382ef81c94\"",
 "greenhouse:robinhood": "W/\"81df899b21bd333fb7294bcb89b0581d\"",
 "greenhouse:roblox": "W/\"cc4dc0eb44116c5f3f72116d1ae7ad6d\"",
-"greenhouse:samsara": "W/\"9084a951112f370fd6051fbdd44d107b\"",
+"greenhouse:samsara": "W/\"4498d6aaae70178affa15eaa9b679736\"",
 "greenhouse:scaleai": "W/\"6bbdf21cbb5c95faf5a0912022f290c0\"",
 "greenhouse:sendbird": "W/\"794103f537f5f2c32b50b51e868ca581\"",
 "greenhouse:senrasystems": "W/\"f908d91d3a36825a523a1b5d6ea0592b\"",
@@ -5004,8 +5004,8 @@
 },
 "meta": {
 "bootstrapped_at": "2026-08-16T09:42:23.450845+00:00",
-"last_run": "2026-08-23T08:42:28.125359+00:00",
-"last_simplify": "2026-08-23T08:42:28.125359+00:00",
+"last_run": "2026-08-23T09:04:45.886188+00:00",
+"last_simplify": "2026-08-23T09:04:45.886188+00:00",
 "last_tier2": "2026-08-23T08:42:28.125359+00:00"
 },
 "seen": {
@@ -60150,6 +60150,6 @@
 "fffdda90117443ae": "2026-08-19",
 "ffff2e932d6cd349": "2026-08-17"
 },
-"updated_at": "2026-08-23T08:42:28.175862+00:00",
+"updated_at": "2026-08-23T09:04:45.926454+00:00",
 "version": 2
 }
