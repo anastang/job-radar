@@ -95,7 +95,7 @@
 "ashby:clarion": "W/\"job-board:4c1321efe3181bce7111680fc5b89cbe8534771a690f1ddade0aab1cbfc09f45\"",
 "ashby:classdojo": "W/\"job-board:690d76647b0141800bea7cb178633e4dc26679b42276d24b03565b3e3c16e242\"",
 "ashby:clearco": "W/\"job-board:8699757bfaebd13df188147b3006914e85e1b96ed007b2d4c5ddbc26d528dd27\"",
-"ashby:clickhouse": "W/\"job-board:7634923093c1703f365fbe8cd63ee919d84125365c8840fc9c1e766e6da07140\"",
+"ashby:clickhouse": "W/\"job-board:64aaa41ea172830f4ce049c7f047f67d0e2a0170627e5878d8829ec540925fcf\"",
 "ashby:clickup": "W/\"job-board:c9554f888ff029892ed1a823a52f3778eed358227ad48ed48237e8dcacd9d267\"",
 "ashby:clipboard": "W/\"job-board:6f509c7208ad8448d73f23908d2996a6f141abc9317d0fdc0c43099a5fcbb38b\"",
 "ashby:clubhouse": "W/\"job-board:802c012e284ea3f1134091fad00a85eb80fd45052c539442a785861b55b56369\"",
@@ -395,7 +395,7 @@
 "ashby:slingshotai": "W/\"job-board:e0472d2dd362e2ed6adbaefeccccfb69ef753d58dd3d354f145195116e7e0677\"",
 "ashby:snackpass": "W/\"job-board:8866c41213150a01397062d6255dd56030bc748b0cb1c373b7822842cf3a87db\"",
 "ashby:snapmagic": "W/\"job-board:577a6e87824e5c21cf970638b23a0731fd847cb6152a050312beb9644725a098\"",
-"ashby:snowflake": "W/\"job-board:eaaef9dd1c0f1d36826cf4521795f2ea78323ce4ea629b4d263a81b7c8762309\"",
+"ashby:snowflake": "W/\"job-board:a8dd4ee58b601d6e51330875403a99d1dff631819f0addc96a2e92442206a540\"",
 "ashby:socket": "W/\"job-board:c308bedfb59e1e587c1f9a5f902822826aebb4a6aa2a6e28f741712a65f0bbd4\"",
 "ashby:sola": "W/\"job-board:c97a8a0e2216ce62bbe6e6637941d86ca66db9bcd7c11e53ff80ae57ba185c02\"",
 "ashby:solidroad": "W/\"job-board:c8bc278e833b67904fb4fdf11da0668270fef5621c26195bfda41a41e59a864a\"",
@@ -478,9 +478,9 @@
 "ashby:zensors": "W/\"job-board:d8e4c55fc2851197180d7d597df06e2fce317c3ad786572032d8a3b7369880b3\"",
 "ashby:zeromark": "W/\"job-board:3cf627e82ada2a775fd95b1ca4435364b2083c640d420e5beb3416e9e370eac9\"",
 "ashby:zip": "W/\"job-board:f27b1893b222d6feace3911a55b0995a863c3feb82d988d3c042525dc5261ed6\"",
-"greenhouse:affirm": "W/\"35a245d1a0290a68e6acd658f7133b89\"",
+"greenhouse:affirm": "W/\"c8400adfd0b3a6a20ea52fd3acfac5d0\"",
 "greenhouse:agency": "W/\"1fdcd3cabab587d6f8e80e7854f76384\"",
-"greenhouse:airbnb": "W/\"70de03de219eb0e67b000c73b51157ba\"",
+"greenhouse:airbnb": "W/\"c782291c804e36ec87da010010e8116d\"",
 "greenhouse:airtable": "W/\"b3e5402e2818aa2a1d51411c9f4ea004\"",
 "greenhouse:algolia": "W/\"5bdf9ffde92692592567db1945ac1994\"",
 "greenhouse:alloy": "W/\"80f4f99d3aed1747db977a8ce65c4015\"",
@@ -516,7 +516,7 @@
 "greenhouse:checkr": "W/\"380f52b4657833f040168b53f02818a7\"",
 "greenhouse:chime": "W/\"3f3b7ac64dc398256f06c4bf2a04e10e\"",
 "greenhouse:clara": "W/\"7f4108a0874cad4f8376baa95fca5e87\"",
-"greenhouse:clickhouse": "W/\"c65d0a73a4113fe474026fbdec6457df\"",
+"greenhouse:clickhouse": "W/\"af45c04e17d3baa908f9e06645742dee\"",
 "greenhouse:cloudflare": "W/\"f3a34808ba7a98bfb3657d7d99f933fe\"",
 "greenhouse:clutch": "W/\"7f8c18184f93dd92d7e59c6cc1b52744\"",
 "greenhouse:coactive": "W/\"45ee2d11dde38f885c14e7ca71412a0c\"",
@@ -608,7 +608,7 @@
 "greenhouse:mixpanel": "W/\"d2f0b5a84042ce6c4919df80391f33cd\"",
 "greenhouse:modernhealth": "W/\"c7bc42652f6aeb2d0f7e5e1e7a8c7cf1\"",
 "greenhouse:momentic": "W/\"1ade030c0ffd505a84a5fdbbde42e5c5\"",
-"greenhouse:mongodb": "W/\"ad14ecea8b469c8d110bd7d8018c8049\"",
+"greenhouse:mongodb": "W/\"c3f7c01fd179d8cf64378a94175ad1b8\"",
 "greenhouse:nabis": "W/\"7acf5eebc30841253aabc137796e147d\"",
 "greenhouse:nanonets": "W/\"18560a18b70e285bd894cf1178fd7ce1\"",
 "greenhouse:nansen": "W/\"07a758f9fcdc8d71e22a185a4dd59b94\"",
@@ -650,7 +650,7 @@
 "greenhouse:ritual": "W/\"24aa4bd036603f5d3d0475382ef81c94\"",
 "greenhouse:robinhood": "W/\"03d0841f41c1a8b69b87d4b03ade675e\"",
 "greenhouse:roblox": "W/\"63a6ca62d836bedb2296407d9ca04cb3\"",
-"greenhouse:samsara": "W/\"07c34ecb5e8d0fd15c13bcdba8df9ca9\"",
+"greenhouse:samsara": "W/\"db9f90d157a16c706eb0583ec165f1e7\"",
 "greenhouse:scaleai": "W/\"0ff4856cfd14a1061467a396d7cb9cdf\"",
 "greenhouse:sendbird": "W/\"794103f537f5f2c32b50b51e868ca581\"",
 "greenhouse:senrasystems": "W/\"4e80a0d64fe8696bb32df07ffcbc3a53\"",
@@ -688,8 +688,8 @@
 "greenhouse:xai": "W/\"f75f0ca7ff5ce75711e27c450e3810a0\"",
 "greenhouse:yubico": "W/\"3adafcb969ee3feb1eab1cec687ce93b\"",
 "greenhouse:zencoder": "W/\"fc11e392028b35ee7725c01902b37f4d\"",
-"jobright:https://raw.githubusercontent.com/jobright-ai/2025-Data-Analysis-New-Grad/master/README.md": "W/\"9cfe8719997d10b8fff6d0adec11ea84b3a605f5ff2b17f7e52e90f366de9317\"",
-"jobright:https://raw.githubusercontent.com/jobright-ai/2025-Software-Engineer-New-Grad/master/README.md": "W/\"598e7514660a78d54e99c2b08cbc0f55c839d31f3b9d6d78e6b19c23bf09b660\"",
+"jobright:https://raw.githubusercontent.com/jobright-ai/2025-Data-Analysis-New-Grad/master/README.md": "W/\"637d7295cd8f9f0124b894a9534c55ae8d0b90b0821c1b02fbb366c87f79e749\"",
+"jobright:https://raw.githubusercontent.com/jobright-ai/2025-Software-Engineer-New-Grad/master/README.md": "W/\"61e1aa6382e6efd99c543aa52c5d30f4e19d2321af001dc6da63bdd618f7c9fa\"",
 "lever:alloy": "W/\"1e068-2ob8CR905qHaX4wlNy5JsYSsv6s\"",
 "lever:alluxio": "W/\"15ec6-RojfMi1CTATl4f0vD5sGlrNyRIM\"",
 "lever:anchorage": "W/\"948b5-lX8b5DcXYnB3yM9knWe5CgvwnfU\"",
@@ -1020,6 +1020,12 @@
 "notified": true,
 "notified_at": "2026-08-24T21:13:28.073906+00:00",
 "score": 82.5
+},
+"0e990f3b58ff0507": {
+"first_seen": "2026-08-25T12:02:12.760230+00:00",
+"notified": true,
+"notified_at": "2026-08-25T12:02:12.760238+00:00",
+"score": 63.2
 },
 "0e9f369f6c5f7439": {
 "first_seen": "2026-08-20T15:17:56.671579+00:00",
@@ -1908,6 +1914,12 @@
 "3fadb4a5fadcc532": {
 "first_seen": "2026-08-19T09:43:50.412484+00:00",
 "score": 46.6
+},
+"3fc6d528675cee77": {
+"first_seen": "2026-08-25T12:02:12.760214+00:00",
+"notified": true,
+"notified_at": "2026-08-25T12:02:12.760221+00:00",
+"score": 63.2
 },
 "410319e36e4f57fc": {
 "first_seen": "2026-08-24T17:05:38.904628+00:00",
@@ -4823,6 +4835,12 @@
 "notified_at": "2026-08-23T14:53:07.529165+00:00",
 "score": 72.1
 },
+"d0775a20aabdd05a": {
+"first_seen": "2026-08-25T12:02:12.760165+00:00",
+"notified": true,
+"notified_at": "2026-08-25T12:02:12.760186+00:00",
+"score": 73.0
+},
 "d0d56754db8f012c": {
 "first_seen": "2026-08-19T09:44:16.864949+00:00",
 "notified": true,
@@ -5164,6 +5182,12 @@
 "notified": true,
 "notified_at": "2026-08-21T21:53:19.805602+00:00",
 "score": 72.1
+},
+"e1f5f9c21033b18d": {
+"first_seen": "2026-08-25T12:02:12.760195+00:00",
+"notified": true,
+"notified_at": "2026-08-25T12:02:12.760206+00:00",
+"score": 63.2
 },
 "e208bc297be426cf": {
 "first_seen": "2026-08-23T20:41:18.505124+00:00",
@@ -5678,8 +5702,8 @@
 },
 "meta": {
 "bootstrapped_at": "2026-08-16T09:42:23.450845+00:00",
-"last_run": "2026-08-25T11:39:12.628214+00:00",
-"last_simplify": "2026-08-25T11:39:12.628214+00:00",
+"last_run": "2026-08-25T12:02:12.760241+00:00",
+"last_simplify": "2026-08-25T12:02:12.760241+00:00",
 "last_tier2": "2026-08-25T11:39:12.628214+00:00"
 },
 "seen": {
@@ -8099,6 +8123,7 @@
 "0a7b0a23f6b85f97": "2026-08-17",
 "0a7d4d3b578ae87d": "2026-08-19",
 "0a7d9da77d64f395": "2026-08-17",
+"0a7f4e74ce519e28": "2026-08-25",
 "0a7f737781a446f8": "2026-08-17",
 "0a81912b9d5daf78": "2026-08-17",
 "0a81b62d45915bdb": "2026-08-16",
@@ -12565,6 +12590,7 @@
 "1e91f06d9dfc676a": "2026-08-22",
 "1e92871338673dac": "2026-08-19",
 "1e933501664eaaa0": "2026-08-17",
+"1e9385699d98f281": "2026-08-25",
 "1e94187aa79de3f8": "2026-08-19",
 "1e943923c6bfd2f8": "2026-08-16",
 "1e95f66869d07f38": "2026-08-16",
@@ -13593,6 +13619,7 @@
 "233b52c651f01945": "2026-08-17",
 "233c64e3bc516751": "2026-08-16",
 "233e89ca6bf9e853": "2026-08-19",
+"2340c399ed161e83": "2026-08-25",
 "2340cd2b578f832c": "2026-08-19",
 "2342510793d25ec2": "2026-08-19",
 "234467ae2064ecc7": "2026-08-19",
@@ -15367,6 +15394,7 @@
 "2ae94003c592fa48": "2026-08-20",
 "2aeac782ce7be3ca": "2026-08-17",
 "2aeb17214bb72924": "2026-08-24",
+"2aeb7d789115fbb2": "2026-08-25",
 "2aeba49a2297618a": "2026-08-19",
 "2aecc10574561e8d": "2026-08-21",
 "2aeeb25f3065410d": "2026-08-17",
@@ -30586,6 +30614,7 @@
 "6fc1bdb2847f96fb": "2026-08-17",
 "6fc356cff77979dd": "2026-08-17",
 "6fc360e687497cd5": "2026-08-17",
+"6fc3883424f3d898": "2026-08-25",
 "6fc4969d37fcbb1f": "2026-08-17",
 "6fc4a7e5f316951e": "2026-08-19",
 "6fc4d1401c70096a": "2026-08-19",
@@ -47206,6 +47235,7 @@
 "ba8346b7971420e4": "2026-08-19",
 "ba83f4e26f1f74f0": "2026-08-19",
 "ba85351ade5af52b": "2026-08-19",
+"ba859fdc44da43b0": "2026-08-25",
 "ba85bcf2d2981699": "2026-08-19",
 "ba871d68d44e9c4a": "2026-08-16",
 "ba89188470f8f14b": "2026-08-19",
@@ -49714,6 +49744,7 @@
 "c5cbe0e0471993e0": "2026-08-17",
 "c5cd40a4773047a8": "2026-08-17",
 "c5cd7aa494cbe8bd": "2026-08-16",
+"c5cd7fc90495cbc2": "2026-08-25",
 "c5cdad05f227f6f6": "2026-08-16",
 "c5d00d7d5575778c": "2026-08-19",
 "c5d1552704beadf7": "2026-08-17",
@@ -53251,6 +53282,7 @@
 "d54fc0b5211b2213": "2026-08-16",
 "d550201d48fe17db": "2026-08-19",
 "d5507470f7609081": "2026-08-19",
+"d55075e6ca7b37c6": "2026-08-25",
 "d550e3f42ae3559c": "2026-08-16",
 "d55202467924562d": "2026-08-21",
 "d552ea2932cb6786": "2026-08-19",
@@ -56281,6 +56313,7 @@
 "e32b10da2d711272": "2026-08-17",
 "e32cee9757079883": "2026-08-17",
 "e32e5657480e3d14": "2026-08-19",
+"e32feda19f86d345": "2026-08-25",
 "e3301646176df6b3": "2026-08-16",
 "e3328f2c31d5233a": "2026-08-16",
 "e333e556bdc58a42": "2026-08-19",
@@ -59289,6 +59322,7 @@
 "f107c5d8b7baa9bb": "2026-08-21",
 "f10913053df6eb90": "2026-08-19",
 "f10ab19c15f29225": "2026-08-17",
+"f10b5356184be04f": "2026-08-25",
 "f111f3a4eb6e4891": "2026-08-16",
 "f11390dc69eab31e": "2026-08-19",
 "f113c9d6e9fa2851": "2026-08-16",
@@ -62600,6 +62634,6 @@
 "fffdda90117443ae": "2026-08-19",
 "ffff2e932d6cd349": "2026-08-17"
 },
-"updated_at": "2026-08-25T11:39:12.683142+00:00",
+"updated_at": "2026-08-25T12:02:12.811288+00:00",
 "version": 2
 }
