@@ -61,7 +61,7 @@
 "ashby:authzed": "W/\"job-board:0f70a3b5230c7e99d681b6d1a53634cbab0d8fcba1c8df5e96517cfb1de2d34e\"",
 "ashby:automat": "W/\"job-board:aa03a279b3a4070006a4d4902084d7e0c79a8e040118c05ff1a2df90c8fcc4a3\"",
 "ashby:autoscience": "W/\"job-board:72044372b813b0e9390d77497ee0610dbd69c30aa95daad06d969f80c0dd3c37\"",
-"ashby:avallon": "W/\"job-board:3ec380297a375ebb29d79c6bef1bac7b7121c9e316f4d56409842f5e2cd06ca1\"",
+"ashby:avallon": "W/\"job-board:ba91e398b45155484a9755c4c2e100a9456c34e3b7c774c26cafc7e1b5754fcd\"",
 "ashby:aven": "W/\"job-board:80492cf99d6cbc4cf8dd01ec8038f16b23b100d991b9fed2570134ada7af9a44\"",
 "ashby:avoca": "W/\"job-board:a3f81f1397cd32636468cd31a5f3f63cea059e6e30861eb3f9df20b24ea8103e\"",
 "ashby:baba": "W/\"job-board:811bd875f432e9e1a0478db767c781263549444a7ed07d71a8d48d5be3d13bc2\"",
@@ -167,7 +167,7 @@
 "ashby:decagon": "W/\"job-board:481228624cb832662b1f21543f68f4c0889d49bb1e5ba475582b8107d327c757\"",
 "ashby:decodahealth": "W/\"job-board:2dca0801619d482b16337000f93f25adda94db9f8ebf681f42a86b3653e5ea1c\"",
 "ashby:dedalus-labs": "W/\"job-board:d9b6b25f284973eec018e663ef044297d0651e6dc75d289d97c2050b07db5439\"",
-"ashby:deepgram": "W/\"job-board:bd6d98d54b33ed3d6c650fbcdf889f88807f6d412bd99ee476151168e40207ae\"",
+"ashby:deepgram": "W/\"job-board:cf22013bfd02ca59108b0f74e815e36df55a72c89751a02c9042f6acac3fc841\"",
 "ashby:deepl": "W/\"job-board:dd81ba23e3548d54e255f0539063190e0f8b40c4e98c2af287fd6b551675d764\"",
 "ashby:deepnote": "W/\"job-board:0b0f15bec048813d59e37077dad9a33fdb6f97f55ebb0ff8f09bf7ca3cfcc622\"",
 "ashby:deeptune": "W/\"job-board:28d4c79c139de4ae3b4274f0ea60300ae0e3565041cdb0b37d354aac0d5cf1a6\"",
@@ -245,7 +245,7 @@
 "ashby:halluminate": "W/\"job-board:9d1f76ba5d54e34852a16e2bca6c51203b95578f82cd1e69382155597d73b183\"",
 "ashby:harmonic": "W/\"job-board:8d0074532094e7c898836de44d33460caa2dda008eb63968ed75bc1ad51cc7e8\"",
 "ashby:harperinsure": "W/\"job-board:ce9d936c7869d1b968f6561160a8d5fef78388dd883fa81702cc993104b63ae3\"",
-"ashby:harvey": "W/\"job-board:637bc4242b7e3763931e018361a0a7aac28e0e0b7471a8eae8f2a85cdfa516e8\"",
+"ashby:harvey": "W/\"job-board:1d1fea4224b883ce67d4d70babcd50d66cccf5ab6a23bf049a0ca45f60a7539b\"",
 "ashby:headway": "W/\"job-board:6c984eb31d0fb9c60053848bb0e48b874d6a0b8c9d0f2cd77f0a8977d044800d\"",
 "ashby:hedra": "W/\"job-board:ea9672d8ced209b34354445cbdcf2e22c040217e25c3abca3504664497e0e001\"",
 "ashby:heron-power": "W/\"job-board:b36b9f1470e4deaa69d29187a1d0ba6a3c82531442437958270d0a2d9f2996a5\"",
@@ -321,7 +321,7 @@
 "ashby:mach9": "W/\"job-board:bb4404c0c24782bdd3dd02e3d20af1452e7bbed5592321a3a03f2beeef12f5a5\"",
 "ashby:magicpatterns": "W/\"job-board:3c68e6906da9e1564bfbc0dfc87603b43d0cf6b43447f80508ea465d7d88d2e9\"",
 "ashby:mangodesk": "W/\"job-board:13ab2e9bd2523f164bc37162f8b5fd6a08f60be03c7e224c3f97b6af2b55a98f\"",
-"ashby:marianaminerals": "W/\"job-board:8cc82205b7da79556f87dd2e61ee5774c08017d306be2fbb90ff43588e7102e8\"",
+"ashby:marianaminerals": "W/\"job-board:de67d6557cf567b4a20dbdf580dbc94566a00c070628f6b76693626fed166e07\"",
 "ashby:materialize": "W/\"job-board:e03ceb0d667b8a868f7c0a90480f6aee15cb4399a9c7c66cfe14148a371399bb\"",
 "ashby:materialsecurity": "W/\"job-board:7907df7e907497cd891fdce06a3aa7a9868dfbe11ad40a10738b073201603d98\"",
 "ashby:matter-labs": "W/\"job-board:2204f5bc53b46e44556536a534f8373e44774b88a615c8f971998c2fda25f1ea\"",
@@ -347,7 +347,7 @@
 "ashby:montecarlodata": "W/\"job-board:6f6ff17fd432146e0902c80d1dd94e0488ebe08a73ad695b6b4849ff0eaa36a3\"",
 "ashby:morpho": "W/\"job-board:5e409b47e28fde2d818322fac043922e28fa600e77a1d6edc160824670393a20\"",
 "ashby:mosaic": "W/\"job-board:994de377c875dd197f504f749d09e23716e26d366f0af63dc7018f20002b8296\"",
-"ashby:moss": "W/\"job-board:2fed1f5a166942a42e6fd8fe05f06d2795dfd8e59dc3450c46d499934737ce37\"",
+"ashby:moss": "W/\"job-board:b3652b2fdb4183ec1080aa57b584e1dfadf0aeaed49fb08feb445356f0618494\"",
 "ashby:motherduck": "W/\"job-board:ee4e0c73c5781b90a555ebdeb5a9f830a742959db9e8f66d7b99503b975dae6c\"",
 "ashby:motorway": "W/\"job-board:da368c36ccde4b2be86e198ede5939810d4751c191efe7048ba4ed7c39e85317\"",
 "ashby:multiverse": "W/\"job-board:e078163675d0b355273b0e230c5f5ed62deed824682381aba4340d04681b4aca\"",
@@ -371,7 +371,7 @@
 "ashby:onerobot": "W/\"job-board:017a739c99e5319b48038db4baf5092afec4a9074a19dbe123b5cb4fcb7f792f\"",
 "ashby:oneschema": "W/\"job-board:27ade2b42cfe33f0a59519c2ac2e250794d8d8d082de98e98b235d993ae29a16\"",
 "ashby:onyx": "W/\"job-board:6147263b32c6e3df48e1b5e6058663b93ecc39cbaf7dd8d4bd761ef3088ad06a\"",
-"ashby:openai": "W/\"job-board:e33fff486cfa907c3c52cf2c0377ebaa0012d963ae027c3e4f09dedc8a944780\"",
+"ashby:openai": "W/\"job-board:431d8184250a438f93eb9b195778f7aabf26dad932fad15c157c9904f93d661b\"",
 "ashby:openevidence": "W/\"job-board:54bed2fdbeefef1a7579bb65e5b3efeb3b12b76fba1ec5e55570a054d66c97c4\"",
 "ashby:opengov": "W/\"job-board:cfae4fb5562765f6a5b9121cf8a182f23ec42cfa6784b9d3529eda17e1f1ad0f\"",
 "ashby:openrouter": "W/\"job-board:a00b2aa13be0cb7dabfdae18f89bcd94c07b524c32dfddb942fbcffd78960cc2\"",
@@ -545,7 +545,7 @@
 "ashby:uniswap": "W/\"job-board:1cc86ec319ef1c1feb45f8a6a8913975e416ead74abab44ca8461a1538abf63b\"",
 "ashby:unit": "W/\"job-board:29ad445ef3391bed26a464c91f6e8921ae42a2321f386d069296116ada303b10\"",
 "ashby:unlimitedindustries": "W/\"job-board:c8fd7475aa826c2ff3dd7e69ccd6e91edfb5792a0cc9e0224ae09243510237f5\"",
-"ashby:uplane": "W/\"job-board:dde2829f2815e5cf74cce9c736cfc60fdabc631fb2ff858ecacd695abd38c4a6\"",
+"ashby:uplane": "W/\"job-board:e8c5fc6cffc78f44c2bc9a3ddb4b3fce91e34161c5b5e10a996149e5a599eef2\"",
 "ashby:usul": "W/\"job-board:16f2614e229d1097107b7caabdf33d3390787eff7fe9e75ee518125d0508c0ff\"",
 "ashby:valon": "W/\"job-board:479f0deae4684a8f5b8411fb6aaee027c7520c2859fcce5ed08c696879125144\"",
 "ashby:vals-ai": "W/\"job-board:e905630bc002de9752bdbc90eece35ed4e316879566f49de1225495bb68019a9\"",
@@ -639,9 +639,9 @@
 "greenhouse:chariotdefense": "W/\"6ef662d8799b2d585cd85969291a0333\"",
 "greenhouse:checkr": "W/\"37371381baa10050086dcefe2b9a5274\"",
 "greenhouse:chime": "W/\"0920329b4be77edb1854759f79777c91\"",
-"greenhouse:clara": "W/\"7a95925566a8107ced1d905f58e649c5\"",
+"greenhouse:clara": "W/\"8dd312b315836f480b7f5d886ab8de0a\"",
 "greenhouse:clickhouse": "W/\"8d18588ddec09ece13f543af992f6deb\"",
-"greenhouse:cloudflare": "W/\"adcb44bacce812c67f1287c7b6bda1e6\"",
+"greenhouse:cloudflare": "W/\"4cd747caa75da4105ec953e3902a6132\"",
 "greenhouse:clutch": "W/\"a8afb4c85d6cb68ad863d0cf40429ed6\"",
 "greenhouse:coactive": "W/\"45ee2d11dde38f885c14e7ca71412a0c\"",
 "greenhouse:coalition": "W/\"7c7fe8777e28fe1d4e62f195cd5f3c59\"",
@@ -733,7 +733,7 @@
 "greenhouse:lithic": "W/\"b5af22cf2cd5bb88488a244a6a411815\"",
 "greenhouse:lob": "W/\"5f361c43b1afad5946e0addae85bcd0c\"",
 "greenhouse:lookout": "W/\"2d5e865b1d3a42d38d8052f7d23bef8e\"",
-"greenhouse:lucidmotors": "W/\"ce3ccbe27d13dcb8762f71f0d33bb4f2\"",
+"greenhouse:lucidmotors": "W/\"ce2754aa22a05bb579c69d3cb534a72a\"",
 "greenhouse:lyft": "W/\"77fbe44a6e8ba52d300f05399b92cc24\"",
 "greenhouse:magicleap": "W/\"99b07c5ed4c882e59b5af85877163d76\"",
 "greenhouse:make": "W/\"475f3a8e9abbbd45d4ae28cb1ee1b035\"",
@@ -764,7 +764,7 @@
 "greenhouse:octantbio": "W/\"b18bb2e84590b6b3f20a2527d5bcfc5b\"",
 "greenhouse:odeko": "W/\"5c1d7830ca06387ea5eb50b984e2a56a\"",
 "greenhouse:offerup": "W/\"e5ff83fda1c60b0662a9d6c0be070c2e\"",
-"greenhouse:okta": "W/\"f3df16a39a5f72f35526eb14b69b708e\"",
+"greenhouse:okta": "W/\"de161d24ad569215822b7cd24ed69262\"",
 "greenhouse:omadahealth": "W/\"00971644938fccd138af0d5ca1bd2961\"",
 "greenhouse:openwork": "W/\"d507a3c8de7286cac447261842490abb\"",
 "greenhouse:ophelia": "W/\"0c23198ff0b75f11d5df1b268dbe795a\"",
@@ -816,14 +816,14 @@
 "greenhouse:tanium": "W/\"f7e85fb2cf255cb5e8971cebe991fb1e\"",
 "greenhouse:tempo": "W/\"69775ef91c5c31ff93192cb2cb780ea3\"",
 "greenhouse:thatch": "W/\"083e9dd308924ef9dc33456dd0960c81\"",
-"greenhouse:toast": "W/\"6c22fc133d23a58684fc4d6654a0a689\"",
+"greenhouse:toast": "W/\"fe9d21bb815d1483ad7cbb1de848492c\"",
 "greenhouse:togetherai": "W/\"543e737d4a4424f476f8d6d74b1e085b\"",
 "greenhouse:traderepublic": "W/\"db13814d2c7b4dcac8e404df0f53117e\"",
 "greenhouse:treasuryprime": "W/\"09aefc0c2d96e9c065aab057f04eaa35\"",
 "greenhouse:trufflesecurity": "W/\"1c183bb5b0d4277118f27a8c929f06e0\"",
 "greenhouse:trustpilot": "W/\"45da02130ec7e281b58e2a221ae0e5cb\"",
 "greenhouse:truveta": "W/\"3b40859cf9c4ed5a2f03909460ccd1c8\"",
-"greenhouse:twilio": "W/\"a841faaeaf18a5912df2ddce7d51cf47\"",
+"greenhouse:twilio": "W/\"84e211e6c9f1ef0469f47b3c4160c875\"",
 "greenhouse:typeface": "W/\"6b3387b8943596b851e8ec1b203c76bc\"",
 "greenhouse:typeform": "W/\"315b0bb82da0a5272ffa134a19f60d6f\"",
 "greenhouse:udacity": "W/\"9bb2208a1f5fd7fee6ba77b612e3b0d5\"",
@@ -835,7 +835,7 @@
 "greenhouse:vercel": "W/\"1a25487437f01ee71f9b642a8acd426f\"",
 "greenhouse:verkada": "W/\"3cd8a57441cc924358c9217379acb245\"",
 "greenhouse:waymark": "W/\"8f8b08461a846ffdd42f3afccb1e4829\"",
-"greenhouse:waymo": "W/\"2aa9689846ab96d45f90592917103505\"",
+"greenhouse:waymo": "W/\"d4c0d0acb72ee1e860affc127d05aeea\"",
 "greenhouse:weave": "W/\"12794da4a670e34fe68acc906d847cb7\"",
 "greenhouse:webflow": "W/\"74c79eb2f609a7fcbb4f6ce50728c0d2\"",
 "greenhouse:wingspan": "W/\"084e5b73e8c63711e3e11f2b39e51d0e\"",
@@ -847,8 +847,8 @@
 "greenhouse:yubico": "W/\"b38902abf5b9c87981b47c7402326728\"",
 "greenhouse:zencoder": "W/\"e9ae55d2e6dbd625e26492263e0a33cb\"",
 "greenhouse:zocdoc": "W/\"5244365aca0ed392b91531a442d528df\"",
-"jobright:https://raw.githubusercontent.com/jobright-ai/2025-Data-Analysis-New-Grad/master/README.md": "W/\"ac849db4fe70b3d1576cdb3f4c9bc0cc77d94c6c432c396131395babd569dc38\"",
-"jobright:https://raw.githubusercontent.com/jobright-ai/2025-Software-Engineer-New-Grad/master/README.md": "W/\"f0cb04f01ad077187fda57a4d3eb3037a837b169b9b851913d80a849554de17a\"",
+"jobright:https://raw.githubusercontent.com/jobright-ai/2025-Data-Analysis-New-Grad/master/README.md": "W/\"481ab7db8553f3ecbafe565f81f7e857ffe291adedb0575801fd08689d3af00e\"",
+"jobright:https://raw.githubusercontent.com/jobright-ai/2025-Software-Engineer-New-Grad/master/README.md": "W/\"76a4024b8b5b8c876226db761ade75647e977a800b96dccdd5c1c054d257c4d2\"",
 "lever:airslate": "W/\"39dfe-7bFq9i0E9BysFEwWagjW0SDKOL8\"",
 "lever:alloy": "W/\"34d2e-5kN6lQ7/lm791K9yzsa20qlcc+8\"",
 "lever:alluxio": "W/\"15ec6-RojfMi1CTATl4f0vD5sGlrNyRIM\"",
@@ -893,7 +893,7 @@
 "lever:quartzy": "W/\"5a54-SFwYkz1kwfQ8MM4LHRXb9/vRa3E\"",
 "lever:ro": "W/\"aa77e-1oD0lx8iK8bMt9H2u8qkZQu8d5U\"",
 "lever:sandboxvr": "W/\"32cfb-uy6TO+JKrIaJXc5hvi7hu/rPukU\"",
-"lever:shieldai": "W/\"6df30a-XegctKq/QH2Mv+JWW4melWKkBf4\"",
+"lever:shieldai": "W/\"6dbd23-wWgB2eemLKJwahYMS/N9Q50ce6k\"",
 "lever:smartcuts": "W/\"26c8-VIvQKXRhrnKNp3SDjlIiVHxaAws\"",
 "lever:snaplogic": "W/\"25a41-85UWIzScb6/69YtqtnpmzuDhAcY\"",
 "lever:snappr": "W/\"34245-BIb5V6e9/SH6ehn6w8x3awihsfE\"",
@@ -918,7 +918,7 @@
 "lever:yuno": "W/\"b4f13-cspq9sM4RRGluP2u1JHK90/r82c\"",
 "lever:zoox": "W/\"250b64-ZOBxlJEcQLlme0um/JQgAaXlVcw\"",
 "lever:zushealth": "W/\"138ba-bvBX35xopj+nMMI3XrvyjDo5Sw0\"",
-"simplify:listings": "W/\"25885e3071165e6ebee5858407976cc0f02332e4f5da4be83d775fcb985764bd\""
+"simplify:listings": "W/\"847221f4dadfb12817194caf012b8c11e87901ff6aa064f9ba95cfd6dbab0643\""
 },
 "matches": {
 "00cb55851aef7616": {
@@ -2299,6 +2299,12 @@
 "notified_at": "2026-08-19T09:44:16.863369+00:00",
 "score": 55.1
 },
+"299c0a283168f57c": {
+"first_seen": "2026-09-05T15:54:56.971763+00:00",
+"notified": true,
+"notified_at": "2026-09-05T15:54:56.971767+00:00",
+"score": 63.2
+},
 "29c240f711175532": {
 "first_seen": "2026-08-19T23:47:15.050346+00:00",
 "notified": true,
@@ -2435,6 +2441,12 @@
 "first_seen": "2026-08-19T09:44:16.865222+00:00",
 "notified": true,
 "notified_at": "2026-08-19T09:44:16.865226+00:00",
+"score": 63.2
+},
+"2f057f0c2c3327b1": {
+"first_seen": "2026-09-05T15:54:56.971742+00:00",
+"notified": true,
+"notified_at": "2026-09-05T15:54:56.971746+00:00",
 "score": 63.2
 },
 "2f38f1e6c2feccd5": {
@@ -2611,11 +2623,23 @@
 "notified_at": "2026-08-19T09:44:16.865496+00:00",
 "score": 82.5
 },
+"34c9c0869086db74": {
+"first_seen": "2026-09-05T15:54:56.971653+00:00",
+"notified": true,
+"notified_at": "2026-09-05T15:54:56.971656+00:00",
+"score": 63.2
+},
 "3525001302ff9f41": {
 "first_seen": "2026-08-19T09:44:16.864154+00:00",
 "notified": true,
 "notified_at": "2026-08-19T09:44:16.864161+00:00",
 "score": 73.9
+},
+"3533107c4188b61e": {
+"first_seen": "2026-09-05T15:54:56.971659+00:00",
+"notified": true,
+"notified_at": "2026-09-05T15:54:56.971662+00:00",
+"score": 63.2
 },
 "3555724d9536df87": {
 "first_seen": "2026-08-22T15:52:27.730599+00:00",
@@ -3751,6 +3775,12 @@
 "notified_at": "2026-09-05T09:28:24.196524+00:00",
 "score": 63.2
 },
+"56174cc60edc9ece": {
+"first_seen": "2026-09-05T15:54:56.971735+00:00",
+"notified": true,
+"notified_at": "2026-09-05T15:54:56.971739+00:00",
+"score": 63.2
+},
 "5642d18aaedabb4a": {
 "first_seen": "2026-08-25T21:02:02.768282+00:00",
 "notified": true,
@@ -4248,6 +4278,12 @@
 "notified": true,
 "notified_at": "2026-09-01T17:00:36.778507+00:00",
 "score": 96.2
+},
+"63cf1199b875938d": {
+"first_seen": "2026-09-05T15:54:56.971749+00:00",
+"notified": true,
+"notified_at": "2026-09-05T15:54:56.971753+00:00",
+"score": 63.2
 },
 "63eeb84db7d1b0ba": {
 "first_seen": "2026-08-24T09:14:39.961868+00:00",
@@ -5111,6 +5147,12 @@
 "first_seen": "2026-08-17T09:29:19.090203+00:00",
 "score": 52.6
 },
+"7ecb2f69dcb4ab90": {
+"first_seen": "2026-09-05T15:54:56.971691+00:00",
+"notified": true,
+"notified_at": "2026-09-05T15:54:56.971696+00:00",
+"score": 63.2
+},
 "7ef9e6851e00df80": {
 "first_seen": "2026-08-26T07:24:30.233669+00:00",
 "notified": true,
@@ -5265,6 +5307,12 @@
 "notified_at": "2026-09-02T13:36:50.200016+00:00",
 "score": 63.2
 },
+"83db4fd6e8304180": {
+"first_seen": "2026-09-05T15:54:56.971778+00:00",
+"notified": true,
+"notified_at": "2026-09-05T15:54:56.971782+00:00",
+"score": 63.2
+},
 "83ff173b2445411b": {
 "first_seen": "2026-08-20T10:36:49.466160+00:00",
 "notified": true,
@@ -5276,6 +5324,12 @@
 "notified": true,
 "notified_at": "2026-08-19T16:04:27.234698+00:00",
 "score": 72.1
+},
+"845801b3351a6757": {
+"first_seen": "2026-09-05T15:54:56.971699+00:00",
+"notified": true,
+"notified_at": "2026-09-05T15:54:56.971703+00:00",
+"score": 63.2
 },
 "8488d21b686825af": {
 "first_seen": "2026-08-19T09:44:16.865412+00:00",
@@ -5477,6 +5531,12 @@
 "notified_at": "2026-08-22T12:55:06.195856+00:00",
 "score": 73.0
 },
+"8af4ca41b3e4d8c2": {
+"first_seen": "2026-09-05T15:54:56.971793+00:00",
+"notified": true,
+"notified_at": "2026-09-05T15:54:56.971797+00:00",
+"score": 63.2
+},
 "8b2a7ff3c16ee00c": {
 "first_seen": "2026-08-25T18:55:46.858958+00:00",
 "notified": true,
@@ -5551,6 +5611,12 @@
 "first_seen": "2026-09-02T09:06:09.192673+00:00",
 "notified": true,
 "notified_at": "2026-09-02T09:06:09.192681+00:00",
+"score": 63.2
+},
+"8d18c14e7c21623c": {
+"first_seen": "2026-09-05T15:54:56.971721+00:00",
+"notified": true,
+"notified_at": "2026-09-05T15:54:56.971725+00:00",
 "score": 63.2
 },
 "8d6429f02b6e0f81": {
@@ -5795,6 +5861,12 @@
 "notified_at": "2026-08-25T03:25:13.738945+00:00",
 "score": 72.1
 },
+"946d5cf7f25aeb20": {
+"first_seen": "2026-09-05T15:54:56.971666+00:00",
+"notified": true,
+"notified_at": "2026-09-05T15:54:56.971672+00:00",
+"score": 63.2
+},
 "949d56d85a326096": {
 "first_seen": "2026-08-28T01:03:09.200504+00:00",
 "notified": true,
@@ -5840,6 +5912,12 @@
 "notified": true,
 "notified_at": "2026-09-04T21:39:05.028409+00:00",
 "score": 71.5
+},
+"95443dc440e22f90": {
+"first_seen": "2026-09-05T15:54:56.971714+00:00",
+"notified": true,
+"notified_at": "2026-09-05T15:54:56.971718+00:00",
+"score": 63.2
 },
 "9585d0fa5a63e4cc": {
 "first_seen": "2026-09-05T09:28:15.386788+00:00",
@@ -6226,6 +6304,12 @@
 "9f39bb5a7dfeaa5c": {
 "first_seen": "2026-09-05T09:28:16.678297+00:00",
 "score": 40.6
+},
+"9f761f33a0741b9b": {
+"first_seen": "2026-09-05T15:54:56.971785+00:00",
+"notified": true,
+"notified_at": "2026-09-05T15:54:56.971789+00:00",
+"score": 63.2
 },
 "9f8b6326374f72a4": {
 "first_seen": "2026-08-27T05:01:45.350727+00:00",
@@ -6643,6 +6727,12 @@
 "notified_at": "2026-08-19T09:44:16.865503+00:00",
 "score": 63.2
 },
+"a9de3918d4049862": {
+"first_seen": "2026-09-05T15:54:56.971771+00:00",
+"notified": true,
+"notified_at": "2026-09-05T15:54:56.971775+00:00",
+"score": 63.2
+},
 "a9f970f244a57289": {
 "first_seen": "2026-08-22T15:52:27.730360+00:00",
 "notified": true,
@@ -6767,6 +6857,12 @@
 "notified_at": "2026-08-25T00:59:45.607438+00:00",
 "score": 73.0
 },
+"ac5b6d0dccdeb08f": {
+"first_seen": "2026-09-05T15:54:56.971629+00:00",
+"notified": true,
+"notified_at": "2026-09-05T15:54:56.971640+00:00",
+"score": 54.3
+},
 "ac9397dc03a9e7dd": {
 "first_seen": "2026-08-19T09:44:16.864067+00:00",
 "notified": true,
@@ -6795,6 +6891,12 @@
 "first_seen": "2026-08-20T17:03:34.186851+00:00",
 "notified": true,
 "notified_at": "2026-08-20T17:03:34.186858+00:00",
+"score": 63.2
+},
+"ae07e3a868fed21f": {
+"first_seen": "2026-09-05T15:54:56.971684+00:00",
+"notified": true,
+"notified_at": "2026-09-05T15:54:56.971687+00:00",
 "score": 63.2
 },
 "ae21769b55112478": {
@@ -7491,6 +7593,12 @@
 "notified_at": "2026-08-17T09:29:22.378720+00:00",
 "score": 60.7
 },
+"c0c938e26981d370": {
+"first_seen": "2026-09-05T15:54:56.971706+00:00",
+"notified": true,
+"notified_at": "2026-09-05T15:54:56.971710+00:00",
+"score": 63.2
+},
 "c10ff5de6391474b": {
 "first_seen": "2026-08-24T09:14:39.961929+00:00",
 "notified": true,
@@ -7656,6 +7764,12 @@
 "notified": true,
 "notified_at": "2026-08-24T09:14:39.961952+00:00",
 "score": 72.1
+},
+"c713559a3f269af4": {
+"first_seen": "2026-09-05T15:54:56.971756+00:00",
+"notified": true,
+"notified_at": "2026-09-05T15:54:56.971760+00:00",
+"score": 63.2
 },
 "c71bec3ebf0dd75c": {
 "first_seen": "2026-08-31T14:05:34.250517+00:00",
@@ -8727,6 +8841,12 @@
 "notified_at": "2026-08-21T21:30:53.783487+00:00",
 "score": 67.1
 },
+"e628784c6928f769": {
+"first_seen": "2026-09-05T15:54:56.971676+00:00",
+"notified": true,
+"notified_at": "2026-09-05T15:54:56.971680+00:00",
+"score": 63.2
+},
 "e636e91666eae43a": {
 "first_seen": "2026-08-19T09:44:16.865206+00:00",
 "notified": true,
@@ -9329,6 +9449,12 @@
 "notified_at": "2026-08-28T22:43:28.834376+00:00",
 "score": 69.1
 },
+"f759381598b5c423": {
+"first_seen": "2026-09-05T15:54:56.971646+00:00",
+"notified": true,
+"notified_at": "2026-09-05T15:54:56.971650+00:00",
+"score": 54.3
+},
 "f766c768b1392eb9": {
 "first_seen": "2026-08-17T09:29:22.378886+00:00",
 "notified": true,
@@ -9457,6 +9583,12 @@
 "notified_at": "2026-09-02T09:06:09.192782+00:00",
 "score": 63.2
 },
+"fc2137ebb95daf07": {
+"first_seen": "2026-09-05T15:54:56.971728+00:00",
+"notified": true,
+"notified_at": "2026-09-05T15:54:56.971731+00:00",
+"score": 63.2
+},
 "fc448f28d248929b": {
 "first_seen": "2026-08-19T22:56:12.698090+00:00",
 "notified": true,
@@ -9532,9 +9664,9 @@
 },
 "meta": {
 "bootstrapped_at": "2026-08-16T09:42:23.450845+00:00",
-"last_run": "2026-09-05T12:58:52.187369+00:00",
-"last_simplify": "2026-09-05T12:58:52.187369+00:00",
-"last_tier2": "2026-09-05T12:58:52.187369+00:00"
+"last_run": "2026-09-05T15:54:56.971799+00:00",
+"last_simplify": "2026-09-05T15:54:56.971799+00:00",
+"last_tier2": "2026-09-05T15:54:56.971799+00:00"
 },
 "seen": {
 "000038b987bd67ff": "2026-08-16",
@@ -13317,6 +13449,7 @@
 "0c809144d86d3ae4": "2026-08-16",
 "0c817bf91b6ffba5": "2026-08-17",
 "0c82ac979989650f": "2026-08-25",
+"0c860265f4926014": "2026-09-05",
 "0c861405856d62d4": "2026-08-17",
 "0c8702c12c4d64f0": "2026-08-16",
 "0c873c6df078707c": "2026-08-19",
@@ -13381,6 +13514,7 @@
 "0cbd934be450e790": "2026-08-19",
 "0cc1c551b3c256a9": "2026-08-24",
 "0cc222aa8bc8c1df": "2026-08-17",
+"0cc369d704078f98": "2026-09-05",
 "0cc3d333909b852f": "2026-08-19",
 "0cc495a11cf59200": "2026-09-03",
 "0cc5bc4193896220": "2026-08-27",
@@ -13496,6 +13630,7 @@
 "0d23dd5a29ec9f9c": "2026-08-16",
 "0d2561345f4486f2": "2026-08-28",
 "0d25988051593746": "2026-09-03",
+"0d272dec24ef543d": "2026-09-05",
 "0d274ebcdbd4c247": "2026-08-19",
 "0d277e3e32d0cd7e": "2026-08-21",
 "0d279527dc75b3e4": "2026-08-25",
@@ -14488,6 +14623,7 @@
 "108e65c42aef9885": "2026-08-16",
 "108e7bceafd4ddf4": "2026-08-19",
 "108eb8c3af1ffe73": "2026-08-16",
+"108ecaf6a4b507e9": "2026-09-05",
 "1094a353170c4444": "2026-08-17",
 "10959d05b252e1f3": "2026-08-24",
 "1095d0c2f66415f2": "2026-08-19",
@@ -18699,6 +18835,7 @@
 "1f4502a959136c59": "2026-08-16",
 "1f469e60a71ce2ac": "2026-08-17",
 "1f46cbc0e77ce289": "2026-08-16",
+"1f46f4d030024ad6": "2026-09-05",
 "1f47c6b2b93418cd": "2026-08-19",
 "1f47ebf03ed6b5a4": "2026-08-16",
 "1f48c5f58bc70b1e": "2026-08-16",
@@ -18942,6 +19079,7 @@
 "2018e4c49e7ef1ad": "2026-09-05",
 "201983256a571729": "2026-08-28",
 "201a5a5b102a7bed": "2026-08-17",
+"201aeef2645b9d01": "2026-09-05",
 "201c11c9ea6c60ea": "2026-08-17",
 "201c95f8936575d0": "2026-09-05",
 "201d1f3233c031da": "2026-08-19",
@@ -20864,6 +21002,7 @@
 "26c777d030080428": "2026-08-16",
 "26c787cebb0f5ecb": "2026-08-19",
 "26c8440e0f3f3d17": "2026-08-19",
+"26c99f0b3111268e": "2026-09-05",
 "26cae43ae545cad7": "2026-08-17",
 "26ccee773858f4d2": "2026-08-19",
 "26cd28fcc4aa731c": "2026-08-16",
@@ -21397,6 +21536,7 @@
 "289b78e233f52261": "2026-08-19",
 "289c62658bebf660": "2026-08-17",
 "289cbcebc4a61415": "2026-08-16",
+"289cc498672998c3": "2026-09-05",
 "289d613ced7b5feb": "2026-08-16",
 "289dc81ed7cbf2fd": "2026-08-19",
 "289e5845fa051d31": "2026-08-16",
@@ -23583,6 +23723,7 @@
 "30088c7df531da15": "2026-08-19",
 "300c474575fcb5ad": "2026-08-19",
 "300e0c8189753568": "2026-08-16",
+"30111eefcbee880b": "2026-09-05",
 "30119422fc189364": "2026-08-17",
 "3012cab84de76a8d": "2026-08-26",
 "3012debcd198550d": "2026-09-01",
@@ -24809,6 +24950,7 @@
 "3452165b467fa31e": "2026-08-19",
 "3452ecf0796a08a4": "2026-09-04",
 "345446fe096b4dd9": "2026-08-26",
+"3456c35ac6edb1fb": "2026-09-05",
 "3457c17969c79e08": "2026-08-16",
 "3459a07264be6a78": "2026-08-19",
 "3459dffff0b0aa3f": "2026-08-16",
@@ -25329,6 +25471,7 @@
 "362116699e6f0e4c": "2026-09-05",
 "36215298472d106a": "2026-08-16",
 "362296c2b266bd4d": "2026-08-16",
+"3624aca02aad99ff": "2026-09-05",
 "3624e55f9bf6c757": "2026-08-16",
 "36254e4a34f5e111": "2026-08-19",
 "3625a0550d0ea793": "2026-08-26",
@@ -25549,6 +25692,7 @@
 "36eff73ed41cdafc": "2026-08-16",
 "36f0a5d500e8e405": "2026-08-16",
 "36f2e779d0756638": "2026-08-19",
+"36f39c813ae9a02f": "2026-09-05",
 "36f7c245f03c66b8": "2026-08-17",
 "36f8963346f2d44f": "2026-08-24",
 "36f98d53d8f451d4": "2026-08-21",
@@ -25802,6 +25946,7 @@
 "37c4743324ed424f": "2026-08-19",
 "37c58e0841d04a49": "2026-08-18",
 "37c76d164183aa71": "2026-08-17",
+"37c80b0800d90b88": "2026-09-05",
 "37c9d02f2471507a": "2026-08-26",
 "37cc9c166397c8e5": "2026-08-17",
 "37ce0196d01474d3": "2026-08-16",
@@ -43149,6 +43294,7 @@
 "74338cf8577e8732": "2026-08-19",
 "74341cc0883348c4": "2026-08-28",
 "743465e781970fd1": "2026-08-19",
+"743518ea587bdc20": "2026-09-05",
 "7439684b19bf1cb7": "2026-08-16",
 "7439b709e4c61c13": "2026-08-17",
 "743a0cd465ed44b0": "2026-09-03",
@@ -46425,6 +46571,7 @@
 "7f953a87cbf5b9e2": "2026-08-17",
 "7f9581bc4c93fb47": "2026-08-19",
 "7f97e351464fae5b": "2026-08-20",
+"7f992bf4f61ff8be": "2026-09-05",
 "7f9a38b3261c50df": "2026-08-22",
 "7f9a9bfa543026c9": "2026-08-16",
 "7f9ea2171407feda": "2026-08-19",
@@ -50009,6 +50156,7 @@
 "8bcb8e49996b956d": "2026-09-03",
 "8bcc4ae89c315381": "2026-08-19",
 "8bcd47ff69c20ef5": "2026-08-19",
+"8bce73d6de715173": "2026-09-05",
 "8bced2d8731ab552": "2026-08-16",
 "8bcede655812f3fe": "2026-08-16",
 "8bcfd5b54fb37aaa": "2026-09-02",
@@ -51347,6 +51495,7 @@
 "90b2f04d0bd6055e": "2026-08-16",
 "90b33b22743e68a4": "2026-08-16",
 "90b47dcf1452fdea": "2026-08-24",
+"90b4d7bd555db597": "2026-09-05",
 "90b5a4b1c7dd116d": "2026-08-19",
 "90b5d02d7db975ff": "2026-08-19",
 "90b610e554002b39": "2026-08-17",
@@ -61961,6 +62110,7 @@
 "b589ad26d7c84d81": "2026-08-16",
 "b589e050820eff7f": "2026-08-19",
 "b58ce303c8f2a6bd": "2026-08-17",
+"b58cf597e95bd5f5": "2026-09-05",
 "b58de30c704e1312": "2026-08-22",
 "b59019a2fcdc2d3b": "2026-08-19",
 "b5902c518c1e4655": "2026-09-05",
@@ -64922,6 +65072,7 @@
 "bff4e4384369d635": "2026-08-28",
 "bff5275b8b6e31c8": "2026-08-16",
 "bff55aa0590b50fa": "2026-08-26",
+"bff76632c9cb53b6": "2026-09-05",
 "bffa0b84d8a6c9b2": "2026-08-19",
 "bffb3f820b33c86c": "2026-08-16",
 "bffc703c2f6c4699": "2026-08-19",
@@ -68291,6 +68442,7 @@
 "cb5d4af2b37afe42": "2026-09-04",
 "cb5e1b9a11892fad": "2026-08-25",
 "cb5f8a1dee84e813": "2026-08-17",
+"cb617e7050379fa2": "2026-09-05",
 "cb6212c1c67c6aaf": "2026-08-25",
 "cb621eaa5f84430f": "2026-09-01",
 "cb625b23bafd4dc9": "2026-08-19",
@@ -70740,6 +70892,7 @@
 "d3d8aba1bbe2458b": "2026-08-17",
 "d3d91b77d065f3ea": "2026-09-05",
 "d3d960b80f2973fe": "2026-09-03",
+"d3da0488b96953fe": "2026-09-05",
 "d3daee9550486741": "2026-08-23",
 "d3db21902b276927": "2026-08-16",
 "d3de23f76fd41e1d": "2026-08-19",
@@ -72017,6 +72170,7 @@
 "d8343f7533b2c1d2": "2026-08-27",
 "d8353685d2b474db": "2026-08-19",
 "d835479d982e99ca": "2026-08-17",
+"d8359b9a69ccf286": "2026-09-05",
 "d836d7115274d4ff": "2026-09-01",
 "d8385874c779ea01": "2026-08-16",
 "d838b664906b75b6": "2026-08-17",
@@ -73729,6 +73883,7 @@
 "de25e5da18c5d8ac": "2026-08-16",
 "de25f5d801ab14b4": "2026-08-19",
 "de271ae985f2f7f0": "2026-08-16",
+"de27246f76a079b1": "2026-09-05",
 "de293fde7596008e": "2026-08-28",
 "de29d86b114329a4": "2026-09-05",
 "de2a61987257d4e4": "2026-09-04",
@@ -73935,6 +74090,7 @@
 "decf837ac79b4f81": "2026-08-16",
 "decfe973b755023e": "2026-08-16",
 "ded0b7a11a597ce3": "2026-08-30",
+"ded15ce038139ff2": "2026-09-05",
 "ded1d2d43137b5c4": "2026-08-16",
 "ded5bf8e4166b14a": "2026-08-16",
 "ded8cbddcefcced4": "2026-08-19",
@@ -78542,6 +78698,7 @@
 "ef3aead043d81d8a": "2026-09-05",
 "ef3afd31c6fe5d37": "2026-09-05",
 "ef3bef3820120923": "2026-08-21",
+"ef3dd110dc70f245": "2026-09-05",
 "ef3dd1511c3a73bc": "2026-09-03",
 "ef3e7651b3d80513": "2026-08-19",
 "ef3ee5e3116bb8fc": "2026-08-17",
@@ -79648,6 +79805,7 @@
 "f334d89717a7377e": "2026-09-05",
 "f33514af728bf1c2": "2026-09-05",
 "f336832994eef0c1": "2026-08-19",
+"f33704bd473cddfe": "2026-09-05",
 "f3374f8631e2fd49": "2026-08-19",
 "f3380cfe0d95b9eb": "2026-08-16",
 "f33821aba4a925dd": "2026-09-05",
@@ -83321,6 +83479,6 @@
 "fffdda90117443ae": "2026-08-19",
 "ffff2e932d6cd349": "2026-08-17"
 },
-"updated_at": "2026-09-05T12:58:52.257797+00:00",
+"updated_at": "2026-09-05T15:54:57.007008+00:00",
 "version": 2
 }
