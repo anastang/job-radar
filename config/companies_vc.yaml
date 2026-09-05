@@ -5,68 +5,132 @@
 ashby:
   tier1: []
   tier2:
+    - aaru
     - abridge
     - adaptive
     - adaptivesecurity
     - addi
+    - adonis
+    - agentmail
+    - aim
     - airgarage
     - akasa
+    - alan
     - alchemy
     - alleviatehealth
     - amber
     - ambiencehealthcare
+    - amigo
+    - anagram
+    - ando
+    - ankorstore
+    - anrok
     - anyscale
+    - apron
+    - arca
     - arena
+    - arq
+    - artie
     - asimov
     - astro-mechanica
     - atlys
+    - atob
+    - august-health
+    - aureliussystems
+    - authzed
+    - autoscience
+    - aven
+    - baba
+    - backbone
     - base-power
     - bastion
     - bayesianhealth
-    - beacons
+    - beamery
     - believer
     - benchling
     - bereal
-    - bold
+    - beside
+    - bevel
+    - biggergames
+    - birdie
+    - black-forest-labs
+    - bolna
     - bounce
+    - brainly
     - braintrust
+    - brinc
+    - build
     - camber
+    - campus
     - cape
+    - cargo-one
+    - cartesia
+    - castle
+    - causaly
     - cedar
+    - chaidiscovery
     - charthop
     - chestnut
+    - clerk
+    - clickhouse
     - clickup
     - clipboard
     - clubhouse
     - cluely
+    - codat
+    - cognition
+    - cohere
     - compound
     - concourse
+    - conduct
+    - confluent
+    - cowboyspace
+    - crosby
+    - crusoe
     - cursor
+    - datasnipper
+    - daydream
     - decagon
-    - deeptune
+    - deepl
+    - deepnote
+    - deliveroo
     - dispatch
     - doppel
+    - double
+    - duffel
+    - duna
+    - eisen
     - elevenlabs
     - eliseai
     - endgame
     - endra
     - engflow
     - envoy
+    - evervault
     - exa
     - favorited
+    - feathery
+    - ferryhealth
     - filmhub
+    - fireworks
     - fleek
     - flock
+    - fonoa
+    - footprint
+    - fortell
     - fortuna-health
+    - found
     - foundation
-    - foursquare
+    - fundingcircle
     - furtherai
     - genesis-molecular-ai
     - glimpse
     - glow
+    - goody
+    - granola
     - graphite
-    - grepr
     - halliday
+    - harmonic
     - harvey
     - headway
     - hedra
@@ -76,17 +140,22 @@ ashby:
     - ideogram
     - illumio
     - improbable
+    - impulse
     - inductive-bio
+    - ineffable
     - inferact
     - infinite-machine
     - infinitus
+    - inherent
     - inngest
     - insitro
+    - intelligence
     - intro
+    - iterable
+    - jump
     - k-id
     - kaizenlabs
     - kalshi
-    - keep
     - kindred
     - knownwell
     - kodex
@@ -94,7 +163,9 @@ ashby:
     - krea
     - lassie
     - lightspark
+    - linear
     - lio
+    - livekit
     - lumaai
     - lumos
     - marianaminerals
@@ -104,33 +175,50 @@ ashby:
     - mindrobotics
     - mintlify
     - mirage
+    - mirelo
     - mirendil
     - modernfi
     - moment
+    - monaco
     - morpho
     - mosaic
     - motherduck
+    - motorway
+    - multiverse
     - mux
     - mystenlabs
     - nash
+    - netic
+    - nexos-ai
     - northwoodspace
+    - notion
+    - nubank
     - odyssey
     - openai
     - openevidence
     - opengov
     - openrouter
     - opensea
+    - oratomic
     - orchestra-bio
     - palmstreet
+    - parallel
+    - patreon
+    - paxos
     - payrails
     - pearlhealth
     - periodic-labs
+    - persona
     - petual
     - phantom
     - phylo
+    - physicalintelligence
     - pinecone
     - plaid
+    - plain
     - podium-automation
+    - pointfive
+    - polymarket
     - probook
     - promise
     - propel
@@ -138,24 +226,32 @@ ashby:
     - protege
     - pryzm
     - pylon
+    - quilter
     - quora
     - radiant
+    - ramp
     - rasa
     - reducto
     - relace
     - relay
     - replit
     - resend
+    - revel
+    - revenuecat
     - rillet
+    - river
+    - rohlik
     - runloop
-    - runway
     - rutter
     - salient
     - sardine
     - saronic
+    - savvy
     - sentilink
     - sequence
     - sesame
+    - simile
+    - siro
     - skydio
     - skymavis
     - sleeper
@@ -169,21 +265,29 @@ ashby:
     - sprig
     - sprinter-health
     - stacker
+    - stytch
     - substack
     - svix
     - swan
+    - sylvera
+    - tacto
     - tako
+    - taktile
     - talkiatry
+    - tebi
+    - tekion
     - temporal
     - tennr
     - tessera-labs
+    - thread-ai
     - thyme-care
     - tilt
     - titan
     - town
-    - trucksmarter
+    - traba
     - truemed
     - turquoise-health
+    - twelve-labs
     - uniswap
     - unlimitedindustries
     - valon
@@ -191,92 +295,170 @@ ashby:
     - vantage
     - vesta
     - viggle
+    - vinylequity
     - vitally
+    - vizcom
     - voldex
     - volta
+    - vooma
+    - weaviate
+    - wetravel
+    - wonderful
+    - worldlabs
     - wrapbook
     - zeromark
 
 greenhouse:
   tier1: []
   tier2:
+    - adyen
     - affirm
     - airbnb
+    - allego
     - alpha9oncology
     - alta
+    - altoslabs
     - amca
+    - amperity
+    - andesite
+    - aninebing
+    - anthropic
+    - apex
+    - apiiro
+    - argmax
+    - array
     - asana
     - astranis
     - atoms
+    - aura
+    - aviatrix
+    - awardco
     - azragames
-    - blackforestlabs
+    - b12
+    - beam
+    - behavox
+    - bird
+    - blackduck
+    - blankstreet
     - boku
+    - bold
+    - boulevard
+    - brighthire
+    - bugcrowd
+    - buildkite
+    - buildops
     - buzzfeed
+    - cambridgemobiletelematics
     - capitolis
     - carta
     - chariotdefense
     - clutch
     - coactive
+    - coalition
+    - cockroachlabs
+    - cocoon
     - coinbase
+    - collibra
+    - complyadvantage
     - cresta
     - crossriverbank
+    - cultureamp
     - current
+    - cutover
     - databricks
+    - datadog
     - daylight
+    - deepmind
     - descript
     - dialpad
+    - discord
     - dollarshaveclub
+    - dreamgames
     - dynotherapeutics
     - earli
     - earnin
     - erasca
     - eve
     - everlaw
+    - expel
+    - faire
     - figma
+    - fireblocks
     - fivetran
     - flexport
     - flockhomes
     - formationbio
     - forward
     - freenome
+    - garnerhealth
+    - gather
+    - generalmatter
     - genius
     - gensyn
+    - glossier
+    - gremlin
     - honor
     - imply
     - inceptive
+    - instabase
     - instacart
+    - intercom
+    - justworks
     - koboldmetals
     - komodohealth
     - labelbox
+    - lightningai
+    - lithic
+    - lookout
     - lyft
-    - magicleap
     - matik
     - mazetherapeutics
     - medium
     - mercury
     - mixpanel
+    - monograph
+    - motive
+    - myheritage
     - nansen
     - netlify
+    - neuralink
+    - novacredit
     - octantbio
     - offerup
     - okta
     - omadahealth
+    - oscar
     - otter
     - pagerduty
     - patch
+    - phaidra
     - pinterest
     - planetscale
     - pomelocare
+    - psiquantum
+    - raisin
+    - rebtel
     - reddit
+    - remote
     - rigup
     - robinhood
     - roblox
     - samsara
     - senrasystems
+    - shopmonkey
     - spacex
+    - squarespace
     - starburst
     - stripe
+    - superapp
+    - tactilegames
     - tanium
+    - thatch
+    - traderepublic
+    - trufflesecurity
+    - trustpilot
+    - twilio
+    - typeform
     - udacity
     - udio
     - ultimagenomics
@@ -288,32 +470,47 @@ greenhouse:
     - wise
     - wonderschool
     - workboard
-    - worldlabs
     - xai
     - yubico
     - zencoder
+    - zocdoc
 
 lever:
   tier1: []
   tier2:
+    - airslate
     - alluxio
     - anchorage
+    - anomali
     - anyroad
+    - bighealth
+    - blablacar
+    - crossing-minds
     - cx2
     - doxel
-    - dwolla
     - exowatt
     - greenlight
     - jito
     - kavak
     - kinter
     - mega
+    - moo
     - neighbor
+    - okendo
+    - openx
+    - palantir
     - sandboxvr
     - shieldai
     - snaplogic
+    - spotify
     - supermove
+    - swile
+    - swordhealth
+    - theathletic
     - theorycraftgames
+    - until
+    - valdera
     - verygoodsecurity
+    - wealthfront
     - yuno
     - zushealth
