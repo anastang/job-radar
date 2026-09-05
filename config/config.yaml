@@ -26,10 +26,19 @@ fetch:
 
 filters:
   # Never alert on a posting older than this, even if we have only just seen it.
-  # Being early is the whole point, and this also contains two burst risks: adding
-  # a new company would otherwise dump its entire back catalogue into one run, and
-  # the 90-day state prune can make a long-lived posting look new again.
-  max_age_days: 30
+  # Its real job is containing bursts: adding a company would otherwise dump its
+  # entire back catalogue into one run, and the 90-day state prune can make a
+  # long-lived posting look new again.
+  #
+  # Raised from 30 after a real miss. A Parafin "Data Analytics Engineer" in San
+  # Francisco was still open and worth applying to at 50 days old, and the gate
+  # would have hidden it permanently. Age is already penalised in scoring through
+  # the freshness component, so a hard cutoff double-counts it.
+  #
+  # Measured over 13,753 postings across 119 boards: 30 days yields 41 alerts,
+  # 60 yields 70, and removing the gate yields 182. The last of those brings back
+  # listings whose median age is over 200 days, which is why the gate still exists.
+  max_age_days: 60
 
   # Reject a posting whose stated minimum experience exceeds this. New grad is the
   # emphasis, not the requirement: 1-2 year roles are a fair match and 3 years is a
@@ -45,6 +54,16 @@ filters:
   # posting through. Note that "Software Engineer" is not itself a USMCA TN
   # profession, whereas data and analytics titles generally map cleanly.
   allow_data_adjacent_swe: true
+  # A generic engineering title is admitted when the body either carries enough
+  # data-context keywords, or names at least this many technologies from the resume
+  # core (dbt, Airflow, Kafka, Spark, PostgreSQL and so on). Two independent tests,
+  # either sufficient, so nothing that used to pass is cut off.
+  #
+  # Scoring these on raw skill overlap instead would admit far too much: Kubernetes,
+  # AWS and Python appear in nearly every backend posting, and on a live sample that
+  # pushed 172 of 271 SWE postings over the threshold, including several matching
+  # none of the core stack at all.
+  swe_min_core_skills: 2
   # Postings with no parseable location ("Hybrid", "Remote") still alert - several
   # real matches surfaced this way - they just score lower than SF/NYC/Toronto.
   allow_unknown_location: true

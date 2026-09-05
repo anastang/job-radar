@@ -146,6 +146,10 @@ def process(
     startup_slugs: frozenset[str] | None = None,
 ) -> tuple[list[tuple[Job, Score]], dict[str, int]]:
     """Gate and score only postings we have never seen. Returns (matches, stats)."""
+    # Resume-core technologies, used to judge whether a generic engineering title
+    # is worth surfacing. Built once rather than per posting.
+    core_terms = profile.core_terms()
+
     matches: list[tuple[Job, Score]] = []
     stats: dict[str, int] = {"total": 0, "new": 0, "passed": 0, "notify": 0}
     rejections: dict[str, int] = {}
@@ -156,7 +160,7 @@ def process(
             continue
         stats["new"] += 1
 
-        verdict: Verdict = evaluate(job, filter_cfg)
+        verdict: Verdict = evaluate(job, filter_cfg, core_terms)
         if not verdict.passed:
             rejections[verdict.reason] = rejections.get(verdict.reason, 0) + 1
             state.mark_seen(job)

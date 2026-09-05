@@ -78,5 +78,31 @@ def test_vc_extraction_skips_exit_annotations(discover_vc):
 
 
 def test_vc_only_verified_sources_are_configured(discover_vc):
-    """Adding an unverified portfolio would contribute zero and look like it worked."""
-    assert set(discover_vc.SOURCES) == {"a16z"}
+    """Each source was checked against the live page before being added.
+
+    Accel, Techstars and Creative Destruction Lab render their listings client-side
+    and yield zero names from the markup; Sequoia yields 21 household brands already
+    covered elsewhere. Adding any of them would contribute nothing while appearing
+    to work, so they stay out.
+    """
+    assert set(discover_vc.SOURCES) == {
+        "a16z", "index", "foundersfund", "generalcatalyst"
+    }
+    for url, pattern, firm in discover_vc.SOURCES.values():
+        assert url.startswith("https://")
+        assert pattern and firm
+
+
+def test_vc_strips_the_firm_name_from_labels(discover_vc):
+    """Founders Fund labels each entry "Affirm - Founders Fund"."""
+    page = '"name":"Affirm - Founders Fund" "name":"Airbnb - Founders Fund"'
+    names = discover_vc.extract_names(page, r'"name"\s*:\s*"([^"]{2,40})"', "Founders Fund")
+    assert names == ["Affirm", "Airbnb"]
+
+
+def test_vc_drops_navigation_chrome(discover_vc):
+    """Filter and nav labels sit in the same markup as the company names."""
+    page = ('<h2>All</h2><h2>Portfolio</h2><h2>Series A</h2>'
+            '<h2>Aaru</h2><h2>Accordance</h2>')
+    names = discover_vc.extract_names(page, r'<h[23][^>]*>([^<]{2,40})</h[23]>', "")
+    assert names == ["Aaru", "Accordance"]

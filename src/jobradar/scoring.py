@@ -107,6 +107,13 @@ def _compile_term(term: str) -> re.Pattern[str]:
     return re.compile(f"{left}{escaped}{right}", flags)
 
 
+# Groups that represent technologies actually shipped, as opposed to near-neighbour
+# tooling ("adjacent") or terms every backend posting contains ("foundational",
+# "platform"). Used to decide whether a generic engineering title is relevant:
+# Kubernetes and Python say nothing, dbt and Airflow say a great deal.
+CORE_GROUPS = ("core_data", "ai_ml", "storage", "practice")
+
+
 @dataclass
 class Profile:
     groups: list[SkillGroup]
@@ -138,6 +145,14 @@ class Profile:
             skill_target=float(data.get("skill_target", 18.0)),
             index=index,
         )
+
+    def core_terms(self) -> list[re.Pattern[str]]:
+        """Compiled patterns for the resume-core groups only."""
+        return [
+            pattern
+            for group in self.groups if group.name in CORE_GROUPS
+            for _, pattern in group.terms
+        ]
 
     def match(self, text: str) -> tuple[float, list[str]]:
         """Return (weighted score, matched term names). Each term counts once."""

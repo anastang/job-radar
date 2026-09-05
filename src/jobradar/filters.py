@@ -18,6 +18,7 @@ from __future__ import annotations
 
 import re
 from dataclasses import dataclass, field
+from typing import Sequence
 
 from .models import Job
 
@@ -339,7 +340,51 @@ def early_career_signals(text: str) -> list[str]:
     return [name for name, pattern in EARLY_SIGNALS if pattern.search(text)]
 
 
-def evaluate(job: Job, cfg: dict | None = None) -> Verdict:
+def _swe_is_relevant(
+    job: Job,
+    cfg: dict,
+    core_terms: Sequence[re.Pattern[str]] | None,
+    mts: bool = False,
+) -> bool:
+    """Whether a generic engineering title is worth surfacing.
+
+    Two independent tests, either of which admits the posting:
+
+    * Data-context keywords in the body. Catches roles written as "Software
+      Engineer, Data Platform" whose descriptions list a stack.
+    * Resume-core technologies actually named. Catches roles described in prose
+      that still want dbt, Airflow, Kafka, Spark or similar.
+
+    Measured on 271 viable SWE-titled postings: the keyword test alone admitted 24
+    and the resume test alone admitted 28, with only partial overlap. Scoring them
+    on raw skill overlap instead would have admitted 172, because terms like
+    Kubernetes, AWS and Python appear in nearly every backend posting and inflate
+    the total without indicating any real fit. "Software Engineer, Observability"
+    scored 54 on exactly that, matching none of the core stack.
+    """
+    signals = len(set(m.group(0).lower() for m in DATA_CONTEXT.finditer(job.haystack)))
+    if signals >= (DATA_CONTEXT_MIN_HITS_MTS if mts else DATA_CONTEXT_MIN_HITS):
+        return True
+    needed = int(cfg.get("swe_min_core_skills", 2))
+    return count_core_matches(job.haystack, core_terms) >= needed
+
+
+def count_core_matches(text: str, core_terms: Sequence[re.Pattern[str]] | None) -> int:
+    """How many resume-core technologies a posting actually names.
+
+    Passed in as compiled patterns rather than imported, because scoring.py imports
+    from this module and the dependency cannot run both ways.
+    """
+    if not core_terms:
+        return 0
+    return sum(1 for pattern in core_terms if pattern.search(text))
+
+
+def evaluate(
+    job: Job,
+    cfg: dict | None = None,
+    core_terms: Sequence[re.Pattern[str]] | None = None,
+) -> Verdict:
     """Apply every hard gate. Returns a Verdict carrying signals for scoring."""
     cfg = cfg or {}
     max_years = int(cfg.get("max_years_experience", 3))
@@ -384,8 +429,7 @@ def evaluate(job: Job, cfg: dict | None = None) -> Verdict:
             cfg.get("allow_data_adjacent_swe")
             and SWE_TITLE.search(title)
             and not NEGATIVE_TITLE.search(title)
-            and len(set(m.group(0).lower() for m in DATA_CONTEXT.finditer(job.haystack)))
-            >= (DATA_CONTEXT_MIN_HITS_MTS if mts else DATA_CONTEXT_MIN_HITS)
+            and _swe_is_relevant(job, cfg, core_terms, mts=bool(mts))
         ):
             family, weight = "software_engineer", 0.85
         else:

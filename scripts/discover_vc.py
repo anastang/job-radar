@@ -36,12 +36,38 @@ from jobradar.sources import ashby, greenhouse, lever, workable  # noqa: E402
 from jobradar.sources.base import Fetcher  # noqa: E402
 
 # name -> (portfolio url, regex capturing company names from the page source)
-SOURCES: dict[str, tuple[str, str]] = {
-    "a16z": ("https://a16z.com/portfolio/", r'"title":"([^"]{2,40})"'),
+# firm key -> (portfolio url, name-capturing regex, firm name to strip from labels)
+#
+# Each entry was verified against the live page before being added. Several other
+# well-known portfolios are deliberately absent because their listings are rendered
+# client-side and the HTML carries almost nothing:
+#
+#   Accel, Techstars, Creative Destruction Lab   zero names in the markup
+#   Sequoia                                      21 names, all household brands
+#                                                already covered elsewhere
+#
+# Adding one of those blind would contribute nothing while appearing to work, which
+# is worse than leaving it out.
+SOURCES: dict[str, tuple[str, str, str]] = {
+    "a16z": ("https://a16z.com/portfolio/", r'"title":"([^"]{2,40})"', "a16z"),
+    "index": ("https://www.indexventures.com/companies/",
+              r'"name"\s*:\s*"([^"]{2,40})"', "Index Ventures"),
+    "foundersfund": ("https://foundersfund.com/portfolio/",
+                     r'"name"\s*:\s*"([^"]{2,40})"', "Founders Fund"),
+    "generalcatalyst": ("https://www.generalcatalyst.com/portfolio",
+                        r'<h[23][^>]*>([^<]{2,40})</h[23]>', "General Catalyst"),
 }
 
 # Portfolio pages annotate exits inline; those are not companies to poll.
 NOT_A_COMPANY = re.compile(r"^(acquired by|ipo|merged|exited)\b", re.I)
+
+# Navigation and filter labels that sit in the same markup as the company names.
+UI_CHROME = re.compile(
+    r"^(all|portfolio|companies|about|team|news|contact|search|filter|sort|menu"
+    r"|close|home|more|load more|view all|back|next|previous|our companies"
+    r"|seed|series [a-z]|ipo|acquired|exited|stage|sector|industry)$",
+    re.I,
+)
 
 PROVIDERS = [
     ("ashby", ashby.fetch),
@@ -60,11 +86,23 @@ def candidate_slugs(name: str) -> list[str]:
     return [s for s in dict.fromkeys([compact, hyphen]) if 3 <= len(s) <= 40]
 
 
-def extract_names(page: str, pattern: str) -> list[str]:
-    names = {
-        n.strip() for n in re.findall(pattern, page)
-        if n.strip() and not NOT_A_COMPANY.match(n) and not re.search(r"[<>{}]", n)
-    }
+def extract_names(page: str, pattern: str, firm: str = "") -> list[str]:
+    """Pull company names out of a portfolio page.
+
+    Several firms label each entry with their own name appended ("Affirm - Founders
+    Fund"), which would otherwise produce slugs that resolve to nothing.
+    """
+    names: set[str] = set()
+    for raw in re.findall(pattern, page):
+        name = re.sub(rf"\s*[-–]\s*{re.escape(firm)}\s*$", "", raw.strip(), flags=re.I)
+        name = re.sub(r"\s+", " ", name).strip()
+        if not name or len(name) < 2 or len(name) > 40:
+            continue
+        if NOT_A_COMPANY.match(name) or UI_CHROME.match(name):
+            continue
+        if re.search(r"[<>{}]|^\W+$", name):
+            continue
+        names.add(name)
     return sorted(names)
 
 
@@ -96,13 +134,18 @@ async def main() -> None:
             if source not in SOURCES:
                 print(f"Unknown source {source!r}; skipping")
                 continue
-            url, pattern = SOURCES[source]
+            url, pattern, firm = SOURCES[source]
             page = await fetcher.get_text(url)
             if not page:
                 print(f"{source}: could not fetch the portfolio page")
                 continue
 
-            names = extract_names(page, pattern)
+            names = extract_names(page, pattern, firm)
+            if len(names) < 25:
+                # A portfolio page that yields almost nothing has gone client-side.
+                # Say so rather than silently contributing zero companies.
+                print(f"{source}: only {len(names)} names extracted - the page markup "
+                      f"has probably changed, check the regex")
             if args.limit:
                 names = names[: args.limit]
             print(f"{source}: {len(names)} company names, probing for job boards...")

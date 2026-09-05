@@ -6,9 +6,12 @@ from datetime import datetime, timedelta, timezone
 
 import pytest
 
+import re
+
 from jobradar.filters import (
     classify_location,
     classify_role,
+    count_core_matches,
     evaluate,
     min_years_required,
 )
@@ -422,3 +425,62 @@ def test_research_engineer_ranks_below_the_data_families():
     """A real but weaker fit: it should surface without crowding the top."""
     assert classify_role("Research Engineer")[1] < classify_role("Data Engineer")[1]
     assert classify_role("Research Engineer")[1] < classify_role("Data Analyst")[1]
+
+
+# ------------------------------------- generic engineering titles, resume-relevance
+
+# Deliberately terms that are on the resume but absent from DATA_CONTEXT, so these
+# tests exercise the resume-core route rather than quietly passing via the keyword
+# route. An earlier version used Kafka and Airflow, which are in both, so the test
+# passed without the code under test ever being reached.
+CORE_TERMS = [re.compile(r"\b" + t + r"\b", re.I)
+              for t in ("PySpark", "PyTorch", "LangChain", "pgvector",
+                        "PostgreSQL", "Aurora", "OpenCV")]
+
+SWE_CFG = {"allow_data_adjacent_swe": True, "swe_min_core_skills": 2}
+
+# Prose-style description: names the stack but carries few data-context keywords.
+PROSE_CORE = (
+    "You will join a small team owning ingestion. Comfort with PostgreSQL and "
+    "PyTorch matters more to us than any particular framework."
+)
+# Generic backend posting: infrastructure words every such posting contains.
+GENERIC_BACKEND = (
+    "Build reliable services on Kubernetes and AWS. Python and Terraform experience "
+    "welcome. You will own uptime, on-call rotation and CI/CD pipelines."
+)
+
+
+def test_swe_admitted_on_resume_core_even_without_keyword_density():
+    """Roles described in prose still count when they name the actual stack."""
+    job = make_job("Software Engineer, Ingestion", description=PROSE_CORE)
+    assert evaluate(job, SWE_CFG, CORE_TERMS).passed
+
+
+def test_generic_backend_role_still_rejected():
+    """Kubernetes, AWS and Python appear in nearly every backend posting.
+
+    Admitting on raw overlap put 172 of 271 sampled SWE postings over the alert
+    threshold, including ones matching none of the core stack.
+    """
+    job = make_job("Software Engineer, Observability", description=GENERIC_BACKEND)
+    assert not evaluate(job, SWE_CFG, CORE_TERMS).passed
+
+
+def test_swe_keyword_route_still_works_without_core_terms():
+    """The original data-context test stays intact when no profile is supplied."""
+    dense = ("Own the data pipeline and data warehouse, running Spark and Airflow "
+             "for streaming ingestion and analytics.")
+    assert evaluate(make_job("Software Engineer, Data Platform", description=dense),
+                    SWE_CFG).passed
+
+
+def test_core_threshold_is_configurable():
+    job = make_job("Software Engineer, Ingestion", description=PROSE_CORE)
+    assert evaluate(job, {**SWE_CFG, "swe_min_core_skills": 5}, CORE_TERMS).reason == "role_family"
+
+
+def test_count_core_matches_counts_distinct_patterns():
+    assert count_core_matches("PySpark, PyTorch and pgvector", CORE_TERMS) == 3
+    assert count_core_matches("Kubernetes and AWS only", CORE_TERMS) == 0
+    assert count_core_matches("anything", None) == 0

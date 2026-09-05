@@ -289,12 +289,19 @@ hiring, and in a major North American hub, and guesses each ATS slug from the co
 name and website domain. About a third resolve, helped by the directory's `isHiring`
 flag and by YC names mapping to slugs predictably.
 
-`discover_vc.py` does the same for venture portfolio companies. Expect a lower yield,
-around 10%, because portfolio pages carry no hiring signal, so most probes land on
-companies that are not recruiting. Only a16z is wired up: several other firms return a
-large page to one HTTP client and a near-empty one to another, so each needs its own
-extraction rule verified first. Adding one blind would contribute nothing and still
-look like it worked.
+`discover_vc.py` does the same for venture portfolio companies, walking a16z, Index
+Ventures, Founders Fund and General Catalyst. Expect a lower yield than YC, because
+portfolio pages carry no hiring signal, so many probes land on companies that are not
+recruiting.
+
+Each portfolio needed its own extraction rule, verified against the live page. Some
+firms label entries with their own name appended ("Affirm - Founders Fund"), which has
+to be stripped or the slug resolves to nothing, and nav labels sit in the same markup
+as the company names. Accel, Techstars and Creative Destruction Lab are deliberately
+absent: their listings render client-side and the HTML yields zero names. Sequoia
+yields 21, all household brands already covered. Adding any of them would contribute
+nothing while appearing to work, so `discover_vc.py` warns when a source returns fewer
+than 25 names rather than failing quietly.
 
 `discover_from_feed.py` harvests Workday, Workable, and Oracle HCM boards from real
 posting URLs in the community feed. Those boards are addressed by host, tenant, and
