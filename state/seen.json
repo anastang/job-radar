@@ -152,7 +152,7 @@
 "ashby:confluent": "W/\"job-board:d2466ea1a725018022454ad3764c4018838713c75698283b236082b988c3694e\"",
 "ashby:coperniq": "W/\"job-board:d3679268784d0b21b34f8115fb4dab816770393ef2ef91b3b12af621389b8f79\"",
 "ashby:corgi": "W/\"job-board:0850582c7ca0f3db76568c8655e26a27d9816ee44bc7240c364757ca24fc6729\"",
-"ashby:cowboyspace": "W/\"job-board:f3847b114dae26bf35d8fcc59f27a0376953ce8cbf989575ca8602443d91e7f8\"",
+"ashby:cowboyspace": "W/\"job-board:08d73bef77d49df97ed6c44f9eabd7e615cedb7c7fbaf0a89644a0db6d62b795\"",
 "ashby:cranston": "W/\"job-board:7aac1f7acf4f21e80ff97f609e27916d015970665e43099e568f3014dff479f6\"",
 "ashby:credal": "W/\"job-board:4b8328b65ef172da1ba15cde94fd1cb56346b6901215127fe4ce612fa78cf93e\"",
 "ashby:crosby": "W/\"job-board:251d117865003448d5d09feb8e11787d71fcc0c557890bc227868fe6356a5c16\"",
@@ -579,7 +579,7 @@
 "ashby:zeromark": "W/\"job-board:3cf627e82ada2a775fd95b1ca4435364b2083c640d420e5beb3416e9e370eac9\"",
 "ashby:zip": "W/\"job-board:f05544ac45c373be5a41bf8b760dc8da0ee46378e14b8a5f1539abd4ca3fe220\"",
 "greenhouse:adyen": "W/\"9ccdc52703621ae8424ff3d2e1dc86b2\"",
-"greenhouse:affirm": "W/\"fe250f9d5f7aa824556a24db7d53beb2\"",
+"greenhouse:affirm": "W/\"3110b27ba1c2085c558e5facbc60e11e\"",
 "greenhouse:agency": "W/\"56be039e8898fb8f28f22128ddc642c4\"",
 "greenhouse:airbnb": "W/\"f4f731a1139c79a96ca5b276b1a11a3c\"",
 "greenhouse:airtable": "W/\"b3e5402e2818aa2a1d51411c9f4ea004\"",
@@ -595,7 +595,7 @@
 "greenhouse:amplitude": "W/\"c40df436c8c9eebec5df7fcdf0baf577\"",
 "greenhouse:andesite": "W/\"7765ccc01fabd36e9a05378b3043b6b3\"",
 "greenhouse:aninebing": "W/\"44a0dcf6517e28c091764684e562d176\"",
-"greenhouse:anthropic": "W/\"c534f1d887295dc6e3b0d16e30532510\"",
+"greenhouse:anthropic": "W/\"e9a223bc979147c432173d9ebb00ae95\"",
 "greenhouse:apex": "W/\"27b55ed08a430360cf69cf22e5dbf24c\"",
 "greenhouse:apiiro": "W/\"d57713ddf4db7285a17388d76c27c95f\"",
 "greenhouse:apolloio": "W/\"5e2df75250937807eb04141e541cd249\"",
@@ -641,7 +641,7 @@
 "greenhouse:chime": "W/\"0920329b4be77edb1854759f79777c91\"",
 "greenhouse:clara": "W/\"e6125eee2427f8213d2155ce25a72b4e\"",
 "greenhouse:clickhouse": "W/\"8d18588ddec09ece13f543af992f6deb\"",
-"greenhouse:cloudflare": "W/\"97ccb45c4e32fe80bb44f676be1a0641\"",
+"greenhouse:cloudflare": "W/\"062f3ae9aedb2c37cb92b378cb55a154\"",
 "greenhouse:clutch": "W/\"e874783c7d3a7e49993dd67ea2177a2d\"",
 "greenhouse:coactive": "W/\"45ee2d11dde38f885c14e7ca71412a0c\"",
 "greenhouse:coalition": "W/\"10b22ad8d17237078d29fc525f636a5d\"",
@@ -657,7 +657,7 @@
 "greenhouse:current": "W/\"3a4a4b779b24602203cb74603e4c0c6d\"",
 "greenhouse:cutover": "W/\"3ffe72fad894f297a56d6287c4df0ca5\"",
 "greenhouse:d2l": "W/\"f5fddbe432a0a7c063ff3f37465c9a57\"",
-"greenhouse:databricks": "W/\"aab171f747118280f9a001a10a042bf5\"",
+"greenhouse:databricks": "W/\"1cd68fb257ccf842dc018f7bc5fc51ca\"",
 "greenhouse:datadog": "W/\"cb3f2b8d50ee7c52105ee7b1d3bd69b0\"",
 "greenhouse:daylight": "W/\"8441eeb0ba1921b4573b44e188cd1778\"",
 "greenhouse:deepmind": "W/\"b596c02e34fe41ae944b30f7ffde530f\"",
@@ -798,8 +798,8 @@
 "greenhouse:rigup": "W/\"08064fedbeb170426574f972f76f505e\"",
 "greenhouse:ritual": "W/\"24aa4bd036603f5d3d0475382ef81c94\"",
 "greenhouse:robinhood": "W/\"ca0b0fc891750a6e23660d9aae6067c2\"",
-"greenhouse:roblox": "W/\"68e99f8899736c7b21b7dcd23c1d6096\"",
-"greenhouse:samsara": "W/\"1bae93f95a8bc5837c486eb7fcc774f9\"",
+"greenhouse:roblox": "W/\"ba17abc5b40321c914004f890b94698b\"",
+"greenhouse:samsara": "W/\"2d24922dfdf74caed5ce02bddd595fdd\"",
 "greenhouse:scaleai": "W/\"084911484b300240874a33fd83f694b2\"",
 "greenhouse:sendbird": "W/\"40ffb54d8e1c1af03f0a4be1a8e577fb\"",
 "greenhouse:senrasystems": "W/\"14bb641dae1eadcef467fded7d7e640c\"",
@@ -847,8 +847,8 @@
 "greenhouse:yubico": "W/\"b38902abf5b9c87981b47c7402326728\"",
 "greenhouse:zencoder": "W/\"e9ae55d2e6dbd625e26492263e0a33cb\"",
 "greenhouse:zocdoc": "W/\"372d113733ea983062755eea56368511\"",
-"jobright:https://raw.githubusercontent.com/jobright-ai/2025-Data-Analysis-New-Grad/master/README.md": "W/\"b88e60c6162edd30ec9bc1342e7a5d4c13a9384faabbe1d23e845925f25913f7\"",
-"jobright:https://raw.githubusercontent.com/jobright-ai/2025-Software-Engineer-New-Grad/master/README.md": "W/\"64689e37b0b87617bfdbe995266afa4d273f321e2efad868f4792d25822bdcf4\"",
+"jobright:https://raw.githubusercontent.com/jobright-ai/2025-Data-Analysis-New-Grad/master/README.md": "W/\"bd89b9f61a3b04a4d0fc5e998f131e511dfaaacf599e3e9cfd38731fee6fbe3b\"",
+"jobright:https://raw.githubusercontent.com/jobright-ai/2025-Software-Engineer-New-Grad/master/README.md": "W/\"b0b89993aeb45fa6ffc60f5be58399ee028a893a8adc9d2975e24d1af6896069\"",
 "lever:airslate": "W/\"39dfe-7bFq9i0E9BysFEwWagjW0SDKOL8\"",
 "lever:alloy": "W/\"34d2e-5kN6lQ7/lm791K9yzsa20qlcc+8\"",
 "lever:alluxio": "W/\"15ec6-RojfMi1CTATl4f0vD5sGlrNyRIM\"",
@@ -918,7 +918,7 @@
 "lever:yuno": "W/\"b4f13-cspq9sM4RRGluP2u1JHK90/r82c\"",
 "lever:zoox": "W/\"250b64-ZOBxlJEcQLlme0um/JQgAaXlVcw\"",
 "lever:zushealth": "W/\"138ba-bvBX35xopj+nMMI3XrvyjDo5Sw0\"",
-"simplify:listings": "W/\"2093997f32b3a5c84d91842b8eb9344294fe109c189fe80aa36ea5d890c74a3b\""
+"simplify:listings": "W/\"7f735a7770103c7d866a5ec61cbe47f1937c1c957e3363fc5efdb2e6c9b6f0eb\""
 },
 "matches": {
 "00cb55851aef7616": {
@@ -980,6 +980,12 @@
 "notified": true,
 "notified_at": "2026-08-19T09:44:16.863839+00:00",
 "score": 79.3
+},
+"02bfca53b0f70348": {
+"first_seen": "2026-09-06T05:59:32.308165+00:00",
+"notified": true,
+"notified_at": "2026-09-06T05:59:32.308170+00:00",
+"score": 63.2
 },
 "02d0b3c1004813ed": {
 "first_seen": "2026-08-19T09:44:16.865383+00:00",
@@ -2263,6 +2269,12 @@
 "notified_at": "2026-08-23T08:42:28.125212+00:00",
 "score": 72.1
 },
+"2843d0de5576c90e": {
+"first_seen": "2026-09-06T05:59:32.308226+00:00",
+"notified": true,
+"notified_at": "2026-09-06T05:59:32.308233+00:00",
+"score": 63.2
+},
 "284973cd918d3e94": {
 "first_seen": "2026-09-03T13:39:50.415540+00:00",
 "notified": true,
@@ -2298,6 +2310,12 @@
 "notified": true,
 "notified_at": "2026-08-21T17:30:28.515227+00:00",
 "score": 68.0
+},
+"2939a3347fc18c51": {
+"first_seen": "2026-09-06T05:59:32.308080+00:00",
+"notified": true,
+"notified_at": "2026-09-06T05:59:32.308097+00:00",
+"score": 73.0
 },
 "2995e7b331dcee67": {
 "first_seen": "2026-08-19T09:44:16.863362+00:00",
@@ -2846,6 +2864,12 @@
 "notified": true,
 "notified_at": "2026-09-05T09:28:24.196241+00:00",
 "score": 62.8
+},
+"3a64a6461b40affb": {
+"first_seen": "2026-09-06T05:59:32.308105+00:00",
+"notified": true,
+"notified_at": "2026-09-06T05:59:32.308111+00:00",
+"score": 73.0
 },
 "3a6ee751f2e17a86": {
 "first_seen": "2026-09-02T19:54:31.656664+00:00",
@@ -3937,6 +3961,12 @@
 "notified_at": "2026-09-05T09:28:24.196156+00:00",
 "score": 49.8
 },
+"596aa8156845fef7": {
+"first_seen": "2026-09-06T05:59:32.308261+00:00",
+"notified": true,
+"notified_at": "2026-09-06T05:59:32.308268+00:00",
+"score": 63.2
+},
 "5974f189df9a3d64": {
 "first_seen": "2026-08-29T03:55:12.835583+00:00",
 "notified": true,
@@ -4150,6 +4180,12 @@
 "notified": true,
 "notified_at": "2026-08-19T09:44:16.864569+00:00",
 "score": 73.0
+},
+"5f476cdacb0b4a61": {
+"first_seen": "2026-09-06T05:59:32.308141+00:00",
+"notified": true,
+"notified_at": "2026-09-06T05:59:32.308145+00:00",
+"score": 63.2
 },
 "5f48388148c4a00e": {
 "first_seen": "2026-08-17T09:29:22.379010+00:00",
@@ -4649,6 +4685,12 @@
 "notified_at": "2026-09-05T09:28:24.196493+00:00",
 "score": 63.2
 },
+"6d8b70def7c9a538": {
+"first_seen": "2026-09-06T05:59:32.308188+00:00",
+"notified": true,
+"notified_at": "2026-09-06T05:59:32.308195+00:00",
+"score": 63.2
+},
 "6db619ffcfd53984": {
 "first_seen": "2026-08-22T03:27:18.413718+00:00",
 "notified": true,
@@ -4995,6 +5037,12 @@
 "notified_at": "2026-09-03T19:56:22.874559+00:00",
 "score": 51.4
 },
+"7a136f7519d50a14": {
+"first_seen": "2026-09-06T05:59:32.308173+00:00",
+"notified": true,
+"notified_at": "2026-09-06T05:59:32.308178+00:00",
+"score": 63.2
+},
 "7a1696e6931e8792": {
 "first_seen": "2026-08-28T22:43:28.834654+00:00",
 "notified": true,
@@ -5030,6 +5078,12 @@
 "notified": true,
 "notified_at": "2026-08-17T22:37:03.092528+00:00",
 "score": 54.3
+},
+"7af65d52cfc89267": {
+"first_seen": "2026-09-06T05:59:32.308132+00:00",
+"notified": true,
+"notified_at": "2026-09-06T05:59:32.308136+00:00",
+"score": 63.2
 },
 "7b39a4b661310cf3": {
 "first_seen": "2026-08-20T15:17:56.671271+00:00",
@@ -5561,6 +5615,12 @@
 "notified_at": "2026-08-27T16:24:31.228991+00:00",
 "score": 54.3
 },
+"8a5fa7175a7289b3": {
+"first_seen": "2026-09-06T05:59:32.308273+00:00",
+"notified": true,
+"notified_at": "2026-09-06T05:59:32.308279+00:00",
+"score": 63.2
+},
 "8a8a62853f67f960": {
 "first_seen": "2026-08-22T12:55:06.195832+00:00",
 "notified": true,
@@ -5642,6 +5702,12 @@
 "notified": true,
 "notified_at": "2026-08-19T09:44:16.864283+00:00",
 "score": 76.2
+},
+"8cc70212c777f663": {
+"first_seen": "2026-09-06T05:59:32.308250+00:00",
+"notified": true,
+"notified_at": "2026-09-06T05:59:32.308256+00:00",
+"score": 63.2
 },
 "8cfd07db937a29fb": {
 "first_seen": "2026-09-02T09:06:09.192673+00:00",
@@ -5778,6 +5844,12 @@
 "notified": true,
 "notified_at": "2026-08-28T22:43:28.834561+00:00",
 "score": 57.9
+},
+"91396febd0973826": {
+"first_seen": "2026-09-06T05:59:32.308309+00:00",
+"notified": true,
+"notified_at": "2026-09-06T05:59:32.308315+00:00",
+"score": 63.2
 },
 "916c0b3879f42946": {
 "first_seen": "2026-08-24T04:00:25.867852+00:00",
@@ -6175,6 +6247,12 @@
 "notified_at": "2026-09-02T09:06:09.192695+00:00",
 "score": 63.2
 },
+"9b0554bce0bc4b61": {
+"first_seen": "2026-09-06T05:59:32.308297+00:00",
+"notified": true,
+"notified_at": "2026-09-06T05:59:32.308304+00:00",
+"score": 63.2
+},
 "9b10d30b15f1e96d": {
 "first_seen": "2026-08-22T20:53:05.381548+00:00",
 "notified": true,
@@ -6549,6 +6627,12 @@
 "notified_at": "2026-09-05T19:51:42.927769+00:00",
 "score": 63.2
 },
+"a4114595beafb9c9": {
+"first_seen": "2026-09-06T05:59:32.308285+00:00",
+"notified": true,
+"notified_at": "2026-09-06T05:59:32.308291+00:00",
+"score": 63.2
+},
 "a44cdac8ad5a3f80": {
 "first_seen": "2026-08-25T09:56:40.411228+00:00",
 "notified": true,
@@ -6768,6 +6852,12 @@
 "notified": true,
 "notified_at": "2026-08-28T01:03:09.200666+00:00",
 "score": 73.6
+},
+"a9c297ff86892776": {
+"first_seen": "2026-09-06T05:59:32.308238+00:00",
+"notified": true,
+"notified_at": "2026-09-06T05:59:32.308244+00:00",
+"score": 63.2
 },
 "a9c31887fed21fa9": {
 "first_seen": "2026-08-19T09:44:16.865499+00:00",
@@ -7475,6 +7565,12 @@
 "notified_at": "2026-09-01T17:00:36.778528+00:00",
 "score": 66.2
 },
+"bb04245ed836b9e7": {
+"first_seen": "2026-09-06T05:59:32.308116+00:00",
+"notified": true,
+"notified_at": "2026-09-06T05:59:32.308120+00:00",
+"score": 63.2
+},
 "bb082879efdd79e5": {
 "first_seen": "2026-08-19T09:44:16.864203+00:00",
 "notified": true,
@@ -7728,6 +7824,12 @@
 "notified": true,
 "notified_at": "2026-08-20T20:39:47.005621+00:00",
 "score": 65.6
+},
+"c2f83878a0970ef0": {
+"first_seen": "2026-09-06T05:59:32.308214+00:00",
+"notified": true,
+"notified_at": "2026-09-06T05:59:32.308220+00:00",
+"score": 63.2
 },
 "c33165315724d80a": {
 "first_seen": "2026-08-20T10:36:49.466152+00:00",
@@ -8192,6 +8294,18 @@
 "notified": true,
 "notified_at": "2026-08-25T12:02:12.760186+00:00",
 "score": 73.0
+},
+"d0c6d51168c4f5c9": {
+"first_seen": "2026-09-06T05:59:32.308124+00:00",
+"notified": true,
+"notified_at": "2026-09-06T05:59:32.308128+00:00",
+"score": 63.2
+},
+"d0cf47bd86a1eb28": {
+"first_seen": "2026-09-06T05:59:32.308157+00:00",
+"notified": true,
+"notified_at": "2026-09-06T05:59:32.308162+00:00",
+"score": 63.2
 },
 "d0d56754db8f012c": {
 "first_seen": "2026-08-19T09:44:16.864949+00:00",
@@ -8785,6 +8899,12 @@
 "notified_at": "2026-08-19T09:44:16.864710+00:00",
 "score": 72.1
 },
+"e18e490bcb44776d": {
+"first_seen": "2026-09-06T05:59:32.308149+00:00",
+"notified": true,
+"notified_at": "2026-09-06T05:59:32.308152+00:00",
+"score": 63.2
+},
 "e1a3fd8c179abaab": {
 "first_seen": "2026-08-21T21:53:19.805599+00:00",
 "notified": true,
@@ -8850,6 +8970,12 @@
 "notified": true,
 "notified_at": "2026-08-19T09:44:16.864271+00:00",
 "score": 74.2
+},
+"e327cea093231187": {
+"first_seen": "2026-09-06T05:59:32.308201+00:00",
+"notified": true,
+"notified_at": "2026-09-06T05:59:32.308208+00:00",
+"score": 63.2
 },
 "e3566bf3ce641d35": {
 "first_seen": "2026-08-23T20:41:18.505149+00:00",
@@ -9754,9 +9880,9 @@
 },
 "meta": {
 "bootstrapped_at": "2026-08-16T09:42:23.450845+00:00",
-"last_run": "2026-09-06T01:12:03.499729+00:00",
-"last_simplify": "2026-09-06T01:12:03.499729+00:00",
-"last_tier2": "2026-09-06T01:12:03.499729+00:00"
+"last_run": "2026-09-06T05:59:32.308318+00:00",
+"last_simplify": "2026-09-06T05:59:32.308318+00:00",
+"last_tier2": "2026-09-06T05:59:32.308318+00:00"
 },
 "seen": {
 "000038b987bd67ff": "2026-08-16",
@@ -70119,6 +70245,7 @@
 "d09e9c6f8654e997": "2026-09-05",
 "d09fe674bc6d53ce": "2026-08-17",
 "d0a5b98f657f0386": "2026-09-05",
+"d0a5ef9427a95117": "2026-09-06",
 "d0a63218680865ae": "2026-08-16",
 "d0a6e279e60c508d": "2026-08-16",
 "d0a6ecbea38b6508": "2026-08-21",
@@ -74135,6 +74262,7 @@
 "de89888196e12e57": "2026-08-16",
 "de8a2c267ddf5867": "2026-08-16",
 "de8c9e82cf513d4f": "2026-09-03",
+"de8d1b74ced74904": "2026-09-06",
 "de8d49f46a231d49": "2026-08-16",
 "de8d4bcce86ee201": "2026-08-16",
 "de8e6a547bbde404": "2026-08-19",
@@ -78836,6 +78964,7 @@
 "ef3dd1511c3a73bc": "2026-09-03",
 "ef3e7651b3d80513": "2026-08-19",
 "ef3ee5e3116bb8fc": "2026-08-17",
+"ef3fb79420b4525c": "2026-09-06",
 "ef3fcf787614e33a": "2026-09-01",
 "ef413fb9787328fa": "2026-08-25",
 "ef43410f47c1b39d": "2026-08-19",
@@ -83618,6 +83747,6 @@
 "fffdda90117443ae": "2026-08-19",
 "ffff2e932d6cd349": "2026-08-17"
 },
-"updated_at": "2026-09-06T01:12:03.567429+00:00",
+"updated_at": "2026-09-06T05:59:32.375133+00:00",
 "version": 2
 }
