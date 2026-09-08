@@ -5,13 +5,16 @@ Data-Analysis list is curated to roughly the roles this tool is looking for rath
 than to software engineering in general. That makes it a higher-signal breadth
 source, at the cost of a markdown table instead of JSON.
 
-Two quirks of the format drive the parsing:
+Three quirks drive the handling:
 
 * A row whose company cell is the continuation marker belongs to the company named
   in the row above. Treating each row independently would attribute those postings
   to a company literally called an arrow.
 * Dates carry no year ("Aug 18"). A date that lands more than a few days in the
   future must belong to the previous year.
+* The feed carries reposts. The same role appears many times over, each copy with
+  its own listing id, so the rows have to be collapsed on what they describe rather
+  than on the id.
 
 Links point at jobright's own listing page rather than the employer's ATS, so these
 postings carry no description and no trustworthy posting date. Both are handled the
@@ -122,6 +125,37 @@ def parse(markdown: str) -> list[Job]:
     return jobs
 
 
+def collapse_repeats(jobs: list[Job]) -> list[Job]:
+    """Keep one posting per (company, title, location).
+
+    Some employers repost an identical role dozens of times, and every copy carries
+    its own listing id, so id-based dedupe leaves all of them standing. Measured on
+    the Data-Analysis feed, one company accounted for 39 identical "Data Analyst"
+    rows and a second for 19: together 13% of the whole feed, all of it reaching the
+    alert as separate jobs.
+
+    Location belongs in the key because a real multi-site posting is worth seeing
+    once per site. Gotion lists the same analyst role in Fremont and in Manteno, and
+    those are two different jobs to apply to.
+
+    The surviving row is picked by lowest listing id rather than by feed order, so
+    the choice holds steady when the feed is reordered. Picking by position would
+    hand the same role a different dedupe key on a later poll, and it would alert a
+    second time.
+    """
+    best: dict[tuple[str, str, str], Job] = {}
+    for job in jobs:
+        key = (
+            job.company.strip().lower(),
+            job.title.strip().lower(),
+            (job.location_raw or "").strip().lower(),
+        )
+        current = best.get(key)
+        if current is None or job.external_id < current.external_id:
+            best[key] = job
+    return list(best.values())
+
+
 async def fetch(fetcher: Fetcher) -> list[Job]:
     found: dict[str, Job] = {}
     for url in FEEDS:
@@ -130,4 +164,4 @@ async def fetch(fetcher: Fetcher) -> list[Job]:
             continue
         for job in parse(markdown):
             found.setdefault(job.key, job)
-    return list(found.values())
+    return collapse_repeats(list(found.values()))

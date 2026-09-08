@@ -55,6 +55,20 @@ are exempt from the staleness gate, score neutrally on freshness, and appear in 
 labelled "Listed ... (feed index, check listing)" rather than claiming a posting date.
 See `UNTRUSTED_DATE_SOURCES` in `models.py`.
 
+### The same role, filed many times over
+
+The jobright feed carries reposts. One employer had 39 copies of a single remote
+"Data Analyst" listing in the Data-Analysis feed and a second had 19, together 13% of
+that whole feed. Every copy carries its own listing id, so dedupe by id keeps all of
+them, and all 58 were reaching Discord as separate alerts.
+
+The adapter collapses rows on company, title and location instead. Location stays in
+the key because a real multi-site posting is a different job to apply to at each site:
+Gotion lists the same analyst role in Fremont and in Manteno, and both are worth
+seeing. The surviving row is chosen by lowest listing id rather than by feed position,
+so a reordered feed does not hand the same role a new dedupe key and alert it twice.
+See `collapse_repeats` in `sources/jobright.py`.
+
 ## Setup
 
 Install the package so that `jobradar` lands on your PATH:

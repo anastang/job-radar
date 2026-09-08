@@ -68,10 +68,12 @@ filters:
   # real matches surfaced this way - they just score lower than SF/NYC/Toronto.
   allow_unknown_location: true
 
-  # Cleared/defense employers. Their postings state the clearance requirement in the
-  # description, which the auth gate catches - but community-feed entries have no
-  # description, so they leak through on title alone. Matched as a substring against
-  # the company name, case-insensitively.
+  # Employers to drop on name alone. Matched as a substring against the company
+  # name, case-insensitively.
+  #
+  # Two groups. First, cleared/defense employers: their postings state the clearance
+  # requirement in the description, which the auth gate catches, but community-feed
+  # entries have no description and so leak through on title alone.
   blocked_companies:
     - johns hopkins
     - mantech
@@ -102,6 +104,13 @@ filters:
     # Workday tenants are sometimes opaque: "globalhr" is RTX/Raytheon, whose
     # postings would otherwise slip past a name-based blocklist entirely.
     - globalhr
+
+    # Second group: repost mills. Between them these two filed 58 copies of the same
+    # remote "Data Analyst" listing into the jobright Data-Analysis feed, 13% of that
+    # entire feed. The adapter now collapses repeats, which would leave one alert
+    # each, and neither is a company worth an alert.
+    - helping hand renovation
+    - a full renovation
 
 scoring:
   # Out of 100. Below notify_min the posting is recorded but not sent.

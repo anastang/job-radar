@@ -273,6 +273,53 @@ def test_jobright_dates_are_untrusted():
     assert jobright.parse(md)[0].date_trusted is False
 
 
+def _jobright_rows(*rows: str) -> str:
+    header = ("| Company | Job Title | Location | Work Model | Date Posted |\n"
+              "| --- | --- | --- | --- | --- |\n")
+    return header + "\n".join(rows)
+
+
+def test_jobright_collapses_a_role_reposted_under_many_ids():
+    """One employer filed 39 copies of a single listing, each with its own id."""
+    md = _jobright_rows(*[
+        f"| **[Renovation LLC](https://r.com)** | "
+        f"**[Data Analyst](https://jobright.ai/jobs/info/id{n})** "
+        f"| United States | Remote | Sep 07 |"
+        for n in range(5)
+    ])
+    assert len(jobright.parse(md)) == 5, "parse keeps every row"
+    assert len(jobright.collapse_repeats(jobright.parse(md))) == 1
+
+
+def test_jobright_keeps_the_same_role_in_different_locations():
+    """A genuine multi-site posting is a separate job to apply to at each site."""
+    md = _jobright_rows(
+        "| **[Gotion](https://g.com)** | **[Data Analyst](https://jobright.ai/jobs/info/a1)**"
+        " | Fremont, CA, United States | On Site | Sep 07 |",
+        "| ↳ | **[Data Analyst](https://jobright.ai/jobs/info/b2)**"
+        " | Manteno, Illinois | On Site | Sep 07 |",
+    )
+    assert len(jobright.collapse_repeats(jobright.parse(md))) == 2
+
+
+def test_jobright_collapse_survivor_does_not_depend_on_feed_order():
+    """The kept row decides the dedupe key, so reordering must not re-alert.
+
+    The feed reorders between refreshes. If the survivor were chosen by position,
+    a reordered feed would hand the same role a different external id, the state
+    file would read it as a job never seen before, and it would alert again.
+    """
+    rows = [
+        "| **[Acme](https://a.com)** | **[Data Analyst](https://jobright.ai/jobs/info/ccc)**"
+        " | Remote | Remote | Sep 07 |",
+        "| **[Acme](https://a.com)** | **[Data Analyst](https://jobright.ai/jobs/info/aaa)**"
+        " | Remote | Remote | Sep 06 |",
+    ]
+    forward = jobright.collapse_repeats(jobright.parse(_jobright_rows(*rows)))
+    reverse = jobright.collapse_repeats(jobright.parse(_jobright_rows(*reversed(rows))))
+    assert [j.key for j in forward] == [j.key for j in reverse]
+
+
 @pytest.mark.parametrize("text,expected", [
     ("May 21, 2026", (2026, 5, 21)),
     ("December 1, 2025", (2025, 12, 1)),
