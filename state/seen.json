@@ -92,7 +92,7 @@
 "ashby:bounce": "W/\"job-board:864fabdec076b4f59c17c41e8c2eb34746ed212a0e4caca4596e33f71d9e27c8\"",
 "ashby:brainbaselabs": "W/\"job-board:0fdf6986c2f6fcf7f4d6a3eda763da09af1feb14baa443632ce958e737842d30\"",
 "ashby:brainly": "W/\"job-board:2a4e85d11d79b492c5042502a775c5c09ffedc2c59ab223e8a7bc74a0cca98d8\"",
-"ashby:braintrust": "W/\"job-board:c2bd5280a94808baa2c29968223fe26b970204a5aae38f37557233e6ca469a80\"",
+"ashby:braintrust": "W/\"job-board:28d96e7cb0081b7d6613acb4926677ef1f89c8aaba5b4e1e1c789e0a358610b8\"",
 "ashby:brettonai": "W/\"job-board:fa406b1d8b5270efc7da1a08aa965e98c259f6ab744e6b3763bc12fbce2cffd6\"",
 "ashby:brinc": "W/\"job-board:c418538b337ab82abf09c0474c95431847b75119d70389c1443053b445ad51b4\"",
 "ashby:broccoli": "W/\"job-board:19c9107ce3178f4bf7ce56d9a7d948a4f7950c86cf3fa1c25e3d5e43809ada87\"",
@@ -136,7 +136,7 @@
 "ashby:cluely": "W/\"job-board:c8370d6ce3483b4133ec49943de5a66ebab743d6f8f013b67f3f3b6ebc9fe9fb\"",
 "ashby:codat": "W/\"job-board:c166f3973a75dff164bf4c258d061faa7b955e8b057096bf2d9669c5630d8a02\"",
 "ashby:codes-health": "W/\"job-board:7c11ab42ab03134bc063e4238cb2f96103b1b285c5c76cbfee775173b8f1ef53\"",
-"ashby:cognition": "W/\"job-board:e642e6aac7519305ff010020500fc0c0c0b11121b6689dcc2e07fc7c33797bfb\"",
+"ashby:cognition": "W/\"job-board:017610e47d5582c9d71e0c7758d8597c8141ee6a03582eba53b3b7158c340f5f\"",
 "ashby:cohere": "W/\"job-board:279eeab6afab2f38732c06199cf232daf58347aedf5062760a89297ba2c3f383\"",
 "ashby:cointracker": "W/\"job-board:5cd3b4daa58b6bb9fc9666c0dc85a3bdcfd0f71018af8f42c99f1203c9a8f9af\"",
 "ashby:column": "W/\"job-board:1958f25992ea48748948ffdaae875b7f3f446fa2f2ec5369ca9bc281a7473601\"",
@@ -379,7 +379,7 @@
 "ashby:oratomic": "W/\"job-board:366dc71304c9e45ad09bb51da4b9c9b074010daa295265a456ed4035b3c76de2\"",
 "ashby:orchestra-bio": "W/\"job-board:d093a49c6b0a562a3fee775a397446587c644fb3208c2a8d31a8e272dc69192d\"",
 "ashby:outset": "W/\"job-board:91a73c28f5cc9b9763853b8d5d55f569f1ecf577fb51feb57af858d91c72d7ec\"",
-"ashby:overview": "W/\"job-board:a602dabfff17fdfeae703d8ec5107bf69287d57cd555465e27f91d3070270a70\"",
+"ashby:overview": "W/\"job-board:f8c1af947d0ab1a4973b8f9e5735f98ed8b73bf82f799fca20291bb197573469\"",
 "ashby:padlet": "W/\"job-board:402f5d671aae8b5c19938520c370f0048bebe02ea6a350d88e47151e201c1a60\"",
 "ashby:palmstreet": "W/\"job-board:fb53818fbfacf553a688a9b93de83d01ee6d7df63261b8efd434e0badabae232\"",
 "ashby:parafin": "W/\"job-board:64a588a3f61997a43a536d515fdbe42f993e422e4325f2ee1b49da0fffcccbd6\"",
@@ -657,7 +657,7 @@
 "greenhouse:current": "W/\"3a4a4b779b24602203cb74603e4c0c6d\"",
 "greenhouse:cutover": "W/\"3ffe72fad894f297a56d6287c4df0ca5\"",
 "greenhouse:d2l": "W/\"cf32b545e5c10c99b7a95af6a1d7d121\"",
-"greenhouse:databricks": "W/\"865ec740343da655ba47a97adf2e9568\"",
+"greenhouse:databricks": "W/\"c761a702472bdddde2af97dfec8f523b\"",
 "greenhouse:datadog": "W/\"d9e4a9673a8f246a0e585f13e256c44e\"",
 "greenhouse:daylight": "W/\"8441eeb0ba1921b4573b44e188cd1778\"",
 "greenhouse:deepmind": "W/\"b596c02e34fe41ae944b30f7ffde530f\"",
@@ -666,7 +666,7 @@
 "greenhouse:discord": "W/\"0dd897349d02f557314b1de321e46555\"",
 "greenhouse:dispatch": "W/\"f6b129b7e9989c63a5c305562179791b\"",
 "greenhouse:dollarshaveclub": "W/\"7d269ea954bedc9b1269244bb7068439\"",
-"greenhouse:doordashusa": "W/\"57093f864f60047fb89826f7dbd5ce62\"",
+"greenhouse:doordashusa": "W/\"3c79682bc6dfbdb96fc12567465deee5\"",
 "greenhouse:dots": "W/\"f99d6135cb8e3c3fcb105d79d5e4cb1c\"",
 "greenhouse:dreamgames": "W/\"798cd8f961421020a89ce07ee7506f96\"",
 "greenhouse:dremio": "W/\"c3b106a9112646791aad25e954c46884\"",
@@ -733,7 +733,7 @@
 "greenhouse:lithic": "W/\"10e52f2c2ef19dc59590d1d225d29d99\"",
 "greenhouse:lob": "W/\"a2ba6e5c3f171859f43d00a6be28b3f5\"",
 "greenhouse:lookout": "W/\"2d5e865b1d3a42d38d8052f7d23bef8e\"",
-"greenhouse:lucidmotors": "W/\"0bf584eb9f35b71a0d39b56bd308af2a\"",
+"greenhouse:lucidmotors": "W/\"97936ac78818e16a93fa527de92ccda2\"",
 "greenhouse:lyft": "W/\"47572fd77d0d31b7bf8308de0d9523a0\"",
 "greenhouse:magicleap": "W/\"99b07c5ed4c882e59b5af85877163d76\"",
 "greenhouse:make": "W/\"24d6ccfac7e8c9682f8c0d838b6c73c7\"",
@@ -798,8 +798,8 @@
 "greenhouse:rigup": "W/\"3762ddddd1cca6b7de70144a08bde895\"",
 "greenhouse:ritual": "W/\"24aa4bd036603f5d3d0475382ef81c94\"",
 "greenhouse:robinhood": "W/\"444f78931e1fb347e671478d09ba8887\"",
-"greenhouse:roblox": "W/\"50405786d2f06ffbde6da5ef12c5b050\"",
-"greenhouse:samsara": "W/\"c72975706faad3f9290f2902161ea44c\"",
+"greenhouse:roblox": "W/\"b217aad0a8664cb6ae592eb4a96ed976\"",
+"greenhouse:samsara": "W/\"fa7d8f623df3ab7f184fd79d038a7d5d\"",
 "greenhouse:scaleai": "W/\"66fa47a95350ebb5bbc29b318eb338f2\"",
 "greenhouse:sendbird": "W/\"7ed5883d32dfadb4e77b132e78ebdee8\"",
 "greenhouse:senrasystems": "W/\"0d7fbc6f47b21c0350941a53bc53a469\"",
@@ -847,8 +847,8 @@
 "greenhouse:yubico": "W/\"ef0edf1aabf29de42b19561d2b325b76\"",
 "greenhouse:zencoder": "W/\"522231a21d7c41b8eb2ed73fcd4c1865\"",
 "greenhouse:zocdoc": "W/\"d7d92b7b726c73dc39fc00759a0d9a52\"",
-"jobright:https://raw.githubusercontent.com/jobright-ai/2025-Data-Analysis-New-Grad/master/README.md": "W/\"b3a70720dedc5b81757ee8b8db1a27e97d801344c0efd73f5c107fa2b826b67a\"",
-"jobright:https://raw.githubusercontent.com/jobright-ai/2025-Software-Engineer-New-Grad/master/README.md": "W/\"a1b58bf00974a8eef2182746d00103d566a94411a60fb67c6fd8f6d975e6a36b\"",
+"jobright:https://raw.githubusercontent.com/jobright-ai/2025-Data-Analysis-New-Grad/master/README.md": "W/\"f2cf9ce7162d9e8b7566ff0f8fbe1be5c03de72a6b520407988013f76c539fca\"",
+"jobright:https://raw.githubusercontent.com/jobright-ai/2025-Software-Engineer-New-Grad/master/README.md": "W/\"626e711eec231167c0dcf4ecae47e94ef53b7dea272f4f20d1e3c130aeb4c9ed\"",
 "lever:airslate": "W/\"3134d-gI4hmRC/mdQ2MaiNrkAAQqeecmI\"",
 "lever:alloy": "W/\"3888a-YSb21/YiFCYgzKQfju+Ujrza4J0\"",
 "lever:alluxio": "W/\"d268-9ete9qVIXbaClZjusBR4BF5Dbb4\"",
@@ -918,7 +918,7 @@
 "lever:yuno": "W/\"bfda5-q9/FlGKKro9D6gKm1CgujeaKjRw\"",
 "lever:zoox": "W/\"25f6dd-dbKLAPJSERSmOvlw2guVq8Hbv/c\"",
 "lever:zushealth": "W/\"138ba-bvBX35xopj+nMMI3XrvyjDo5Sw0\"",
-"simplify:listings": "W/\"bc76e059c2ae06730c9b5b04a5f60bbd9873b7b9d277e553e80203be23216233\""
+"simplify:listings": "W/\"279fe92c553223bae8bfaadfc3689dd8d34f86e656311f6d028ca0c575ff79ba\""
 },
 "matches": {
 "00cb55851aef7616": {
@@ -5263,6 +5263,12 @@
 "notified_at": "2026-08-26T16:26:45.039333+00:00",
 "score": 63.2
 },
+"67b989120c44f149": {
+"first_seen": "2026-09-13T09:44:26.971468+00:00",
+"notified": true,
+"notified_at": "2026-09-13T09:44:26.971473+00:00",
+"score": 63.2
+},
 "67bc130c70b1d2f8": {
 "first_seen": "2026-08-20T22:39:07.620972+00:00",
 "notified": true,
@@ -5394,6 +5400,12 @@
 "notified": true,
 "notified_at": "2026-08-27T05:01:45.350717+00:00",
 "score": 63.2
+},
+"6b724b6586f4eeb3": {
+"first_seen": "2026-09-13T09:44:26.971430+00:00",
+"notified": true,
+"notified_at": "2026-09-13T09:44:26.971449+00:00",
+"score": 75.7
 },
 "6b741260d32862be": {
 "first_seen": "2026-08-25T04:09:24.697021+00:00",
@@ -5776,6 +5788,12 @@
 "notified": true,
 "notified_at": "2026-09-01T02:06:17.721651+00:00",
 "score": 53.7
+},
+"756922455f74bee1": {
+"first_seen": "2026-09-13T09:44:26.971457+00:00",
+"notified": true,
+"notified_at": "2026-09-13T09:44:26.971463+00:00",
+"score": 71.5
 },
 "757f5d1838f31459": {
 "first_seen": "2026-09-02T09:06:09.192702+00:00",
@@ -11936,9 +11954,9 @@
 },
 "meta": {
 "bootstrapped_at": "2026-08-16T09:42:23.450845+00:00",
-"last_run": "2026-09-13T04:40:44.763083+00:00",
-"last_simplify": "2026-09-13T04:40:44.763083+00:00",
-"last_tier2": "2026-09-13T04:40:44.763083+00:00"
+"last_run": "2026-09-13T09:44:26.971475+00:00",
+"last_simplify": "2026-09-13T09:44:26.971475+00:00",
+"last_tier2": "2026-09-13T09:44:26.971475+00:00"
 },
 "seen": {
 "000038b987bd67ff": "2026-08-16",
@@ -14338,6 +14356,7 @@
 "076edba31c330787": "2026-08-28",
 "076ee9e27d88f305": "2026-08-17",
 "077127a484b540c9": "2026-09-05",
+"07712b7b29be98c2": "2026-09-13",
 "07728471fb92bd42": "2026-09-03",
 "0772a68d7d0773ea": "2026-08-16",
 "07745ccc0023e07a": "2026-08-19",
@@ -17064,6 +17083,7 @@
 "0fcc669df4fbab10": "2026-08-16",
 "0fcc8f85a499f0f2": "2026-08-16",
 "0fcd72d519f62570": "2026-08-16",
+"0fcdfe48882fe61a": "2026-09-13",
 "0fce483a5b9c2599": "2026-08-16",
 "0fcfc0b2169037ef": "2026-09-04",
 "0fd249e540a3cf7f": "2026-09-09",
@@ -21823,6 +21843,7 @@
 "1f0074a69b82b38c": "2026-08-16",
 "1f00c99ff1b912cb": "2026-08-19",
 "1f00dc401fa5412b": "2026-08-17",
+"1f0236e0c0e685ec": "2026-09-13",
 "1f02d204959435b8": "2026-08-16",
 "1f035adef757ce04": "2026-08-19",
 "1f036862c28f197c": "2026-08-17",
@@ -31815,6 +31836,7 @@
 "3ed4b1b6fb9b6b86": "2026-08-16",
 "3ed4bc465a33e78c": "2026-08-19",
 "3ed5a05584d78cd8": "2026-09-05",
+"3ed6194df7973ce4": "2026-09-13",
 "3ed6353fde370d46": "2026-08-19",
 "3edb6ed3192e9f6f": "2026-08-19",
 "3edb916f76298030": "2026-08-17",
@@ -58954,6 +58976,7 @@
 "96b80fb30d5abe59": "2026-08-19",
 "96b9ba013a225236": "2026-08-31",
 "96bbb0e300ab7bfb": "2026-08-20",
+"96bbc00956312eb1": "2026-09-13",
 "96bd5e501e04dadd": "2026-09-05",
 "96bd82524127b06a": "2026-09-05",
 "96bf02ba8bee7be7": "2026-09-11",
@@ -61404,6 +61427,7 @@
 "9e4913bacb54a5b8": "2026-08-16",
 "9e498baf0909dd8a": "2026-08-17",
 "9e49fc2e9ce083ba": "2026-08-16",
+"9e4a89a888afe17a": "2026-09-13",
 "9e4ad3648789c80d": "2026-08-17",
 "9e4b5615b0e21b6a": "2026-08-26",
 "9e4c86e99ca26934": "2026-08-17",
@@ -65139,6 +65163,7 @@
 "aa27088dffcf505e": "2026-09-03",
 "aa27d97dac70ee93": "2026-09-09",
 "aa28a2ee7b5c1d01": "2026-08-16",
+"aa28bade33caca4e": "2026-09-13",
 "aa293b7117a81436": "2026-09-11",
 "aa29812b7e2336bd": "2026-08-19",
 "aa29903221d15d24": "2026-09-05",
@@ -77099,6 +77124,7 @@
 "d08fb7c18ccf3f49": "2026-08-17",
 "d08fcd003b5fdafb": "2026-08-25",
 "d08fdc4d5e73c7c4": "2026-08-17",
+"d0906038aacbafad": "2026-09-13",
 "d090b9132c21482e": "2026-08-17",
 "d091c0b4a76c1a1e": "2026-08-19",
 "d091f15d937edf9f": "2026-08-19",
@@ -91422,6 +91448,7 @@
 "fee26b8f84bd8d75": "2026-08-16",
 "fee282f632c41dba": "2026-08-16",
 "fee3563616ec1fac": "2026-08-19",
+"fee39326b531bee8": "2026-09-13",
 "fee48bd2cdeadf33": "2026-08-16",
 "fee5db88b1df4bc7": "2026-08-21",
 "fee7eed35bf3588b": "2026-08-16",
@@ -91758,6 +91785,6 @@
 "fffdda90117443ae": "2026-08-19",
 "ffff2e932d6cd349": "2026-08-17"
 },
-"updated_at": "2026-09-13T04:40:44.840225+00:00",
+"updated_at": "2026-09-13T09:44:27.044564+00:00",
 "version": 2
 }
