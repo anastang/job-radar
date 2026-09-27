@@ -57,7 +57,7 @@
 "ashby:atomic": "W/\"job-board:478f443b381ed9a82450150080b0cb72de94cd3a68d46b941436470073a19e39\"",
 "ashby:auctor": "W/\"job-board:f779d537a149c68dd2b888d031b48b7ecb221639e03e7fe06bb6b546866e8b7d\"",
 "ashby:august-health": "W/\"job-board:4b18d91fbf1534b75ddcce93143df7c84941491041c1451baa67af6905cda549\"",
-"ashby:aureliussystems": "W/\"job-board:35ca847a343a29a11bb9fe7f702a8baf5fee6971fb5a21c224de3204e51ab995\"",
+"ashby:aureliussystems": "W/\"job-board:d94305b486e2e4576b0135f9d5dba18f997cd516b76589af7a72dd4373eab925\"",
 "ashby:authzed": "W/\"job-board:978f3d4243902319af59d98406a7606c5b7e5e568ef176ce57e7d9c33cac105a\"",
 "ashby:automat": "W/\"job-board:bdaaf4d70872598fcb7b680019b32a029888eb29e4601ed8521784e86ba4ed82\"",
 "ashby:autoscience": "W/\"job-board:72044372b813b0e9390d77497ee0610dbd69c30aa95daad06d969f80c0dd3c37\"",
@@ -137,7 +137,7 @@
 "ashby:codat": "W/\"job-board:c166f3973a75dff164bf4c258d061faa7b955e8b057096bf2d9669c5630d8a02\"",
 "ashby:codes-health": "W/\"job-board:7c11ab42ab03134bc063e4238cb2f96103b1b285c5c76cbfee775173b8f1ef53\"",
 "ashby:cognition": "W/\"job-board:1d355a11c1b477c1ea735f5b9b015ee6765bde331c94544196c1f607ba34b6e5\"",
-"ashby:cohere": "W/\"job-board:368c3a365c9f943cde675ae973ddee90c3d828a5fe9b2c4ff307e48b05bae27a\"",
+"ashby:cohere": "W/\"job-board:d3d75ef82616653c4141d2035671b3da6c3adb7a03ba16cbbef162c5a598986e\"",
 "ashby:cointracker": "W/\"job-board:5cd3b4daa58b6bb9fc9666c0dc85a3bdcfd0f71018af8f42c99f1203c9a8f9af\"",
 "ashby:column": "W/\"job-board:615ac0aebe26d207d6a5d9d66bbca29f87d44d61cefb07b99e3712c9148ab2fe\"",
 "ashby:commodityai": "W/\"job-board:b022e1ece6cfe355d7af6a8119f8196b2ac3c011cea63b3cbf18f7aa88c292b0\"",
@@ -459,7 +459,7 @@
 "ashby:sagecare": "W/\"job-board:45fe11d4b21f6bdc8b1a20f25e3ba379e113aefbfbd0a618a0dd4f3e9ae9a39f\"",
 "ashby:salespatriot": "W/\"job-board:e947c9cc50c85617aa62e487d85fc65d36ae5ecc24b6a4a5bfcb68fff75882f9\"",
 "ashby:salient": "W/\"job-board:afb81ea6c25298c7e31847db73984f13ab14e60963cae2f2e7d6062c10855a6d\"",
-"ashby:sardine": "W/\"job-board:5c4336956d29a2bea9c5426361b20f97a3bcada86d853d05e4fa765da416b1bd\"",
+"ashby:sardine": "W/\"job-board:e83b771de9f3afc6db6d8042f21dc599503f07cb2b8f9c607229da9a2c672ab3\"",
 "ashby:saronic": "W/\"job-board:1538e65e998a6c9f30f10ff9fc857fa92fa61408a7ed7516e64ff883774f91ee\"",
 "ashby:savvy": "W/\"job-board:648b17c02e73924e52348eb48e736659ceee77453a8ac67ccef4f98fa0594998\"",
 "ashby:sentilink": "W/\"job-board:af5d7b4e2bd526df3ee0897ff875dd8810506ee2da363b50480b25f72d009c1c\"",
@@ -792,7 +792,7 @@
 "greenhouse:rebtel": "W/\"0fbc3fda17e182e739a1ffec8a5590c2\"",
 "greenhouse:recall": "W/\"3b05d2c5e8c94f742fd5b1563b8440a5\"",
 "greenhouse:recidiviz": "W/\"1bbc8755eee742b902fa90a75d00c121\"",
-"greenhouse:reddit": "W/\"ec096cc3c170c88c4cc5acd147a84937\"",
+"greenhouse:reddit": "W/\"9a0b3c0b495c1643f41d0bb0d7378e41\"",
 "greenhouse:reflex": "W/\"b77fa67e8af029ea3117744fa14bb4b7\"",
 "greenhouse:remote": "W/\"7485486fa43b23f106215f54b0484b70\"",
 "greenhouse:rigup": "W/\"26387a6389c5339c1c2198d50b106d3f\"",
@@ -847,8 +847,8 @@
 "greenhouse:yubico": "W/\"5e863e96d04ee22d86aca3d5cc8777f3\"",
 "greenhouse:zencoder": "W/\"522231a21d7c41b8eb2ed73fcd4c1865\"",
 "greenhouse:zocdoc": "W/\"0ab21de1b1c6740dcb254a9c18e7c470\"",
-"jobright:https://raw.githubusercontent.com/jobright-ai/2025-Data-Analysis-New-Grad/master/README.md": "W/\"c82c3f44156615a43d1c6d194b088f73c9face3f92da584d95980b2a19907dd4\"",
-"jobright:https://raw.githubusercontent.com/jobright-ai/2025-Software-Engineer-New-Grad/master/README.md": "W/\"8b6396e4f6c77b31da5b52c087ab48c5e32e4113665ec44628923412d75f6079\"",
+"jobright:https://raw.githubusercontent.com/jobright-ai/2025-Data-Analysis-New-Grad/master/README.md": "W/\"402e9fd8502d9a464c30f9c2c2a8fc334114ba94bbdd0172b2995c9e22549c4d\"",
+"jobright:https://raw.githubusercontent.com/jobright-ai/2025-Software-Engineer-New-Grad/master/README.md": "W/\"63ab3c50475de91d6b47707663744062df1d39409164cc1bf2310570a6301435\"",
 "lever:airslate": "W/\"2ac2b-CWCZzcglzYK5sQT/pKatTPLMebk\"",
 "lever:alloy": "W/\"2dc54-XZVc2/ZHNaSB7577SLiBBCPVKzQ\"",
 "lever:alluxio": "W/\"d268-9ete9qVIXbaClZjusBR4BF5Dbb4\"",
@@ -866,7 +866,7 @@
 "lever:doola": "W/\"14229-kbJBn30GuSlB2S5xbMvV5U9w6c0\"",
 "lever:doxel": "W/\"2dce4-xQq0IjD6+f2pamVhTYqZlKwFhqE\"",
 "lever:dwolla": "W/\"2-l9Fw4VUO7kr8CvBlt4zaMCqXZ0w\"",
-"lever:exowatt": "W/\"2d71f-JLhTwGEuOEegDzBexNHwEFhcntI\"",
+"lever:exowatt": "W/\"2f65f-wCkIy6w+OAIYLC01LcUeDTtC6GM\"",
 "lever:greenlight": "W/\"389bb-WhEeggvxJONOQggG9EJYzdteMfI\"",
 "lever:gridware": "W/\"3bb54-JZVSoxvNJG1PEyDgIMgBvBbwm/0\"",
 "lever:includedhealth": "W/\"cb31d-PKnXP5EHDiDMvEIMEF70JFw77Yk\"",
@@ -918,7 +918,7 @@
 "lever:yuno": "W/\"c69d6-2/Rkjs8qvSoQZLH92AFn8RBfeeg\"",
 "lever:zoox": "W/\"24fe62-BnU6v3hfc1W+TM43sKA2w6wO/3Q\"",
 "lever:zushealth": "W/\"138ba-bvBX35xopj+nMMI3XrvyjDo5Sw0\"",
-"simplify:listings": "W/\"d621196deaca9b9bb101d6fbe8f5728352e8b752e3906c6f73e637f37aeb3cbd\""
+"simplify:listings": "W/\"41928eb99982d7f49141d1af8709f03d4989b387721781bef01d787e37f862a9\""
 },
 "matches": {
 "0058423723a27928": {
@@ -14696,9 +14696,9 @@
 },
 "meta": {
 "bootstrapped_at": "2026-08-16T09:42:23.450845+00:00",
-"last_run": "2026-09-26T23:35:09.794517+00:00",
-"last_simplify": "2026-09-26T23:35:09.794517+00:00",
-"last_tier2": "2026-09-26T23:35:09.794517+00:00"
+"last_run": "2026-09-27T01:46:24.397676+00:00",
+"last_simplify": "2026-09-27T01:46:24.397676+00:00",
+"last_tier2": "2026-09-27T01:46:24.397676+00:00"
 },
 "seen": {
 "000038b987bd67ff": "2026-08-16",
@@ -70223,6 +70223,7 @@
 "99ab32ad0e35fd1d": "2026-08-17",
 "99ac80a9f4dbb94b": "2026-09-05",
 "99ada977fc1a44a8": "2026-08-17",
+"99ae1912bebecd6c": "2026-09-27",
 "99ae6c39ee12fe18": "2026-09-05",
 "99ae899a1755fbbd": "2026-08-19",
 "99af84b54d127d63": "2026-08-16",
@@ -87725,6 +87726,7 @@
 "ca5269fa2480cc07": "2026-08-19",
 "ca546e3dff9bcb1a": "2026-08-16",
 "ca54f87a75d720a5": "2026-08-19",
+"ca56c8058b474384": "2026-09-27",
 "ca56eb9ce714cbe3": "2026-09-05",
 "ca574b3e9466eca6": "2026-08-16",
 "ca575a70f34f8c5d": "2026-08-19",
@@ -96624,6 +96626,7 @@
 "e2f3e7e1a19fb58c": "2026-08-25",
 "e2f3ee8456fc8ff9": "2026-08-17",
 "e2f56357ad25dd43": "2026-08-17",
+"e2f57b29df35a4c3": "2026-09-27",
 "e2f5fdb3d223105e": "2026-08-31",
 "e2f61982e5acfac2": "2026-09-14",
 "e2f6ca7ec023f1ce": "2026-09-02",
@@ -106969,6 +106972,6 @@
 "fffdda90117443ae": "2026-08-19",
 "ffff2e932d6cd349": "2026-08-17"
 },
-"updated_at": "2026-09-26T23:35:09.885124+00:00",
+"updated_at": "2026-09-27T01:46:24.454749+00:00",
 "version": 2
 }
