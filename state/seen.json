@@ -120,7 +120,7 @@
 "ashby:charge-robotics": "W/\"job-board:46286d507c5a892946e18052285569bced8b76471f917cc7324d2be06f6653ea\"",
 "ashby:chariot": "W/\"job-board:395224f101994348348b6e76af05f10e2f6d2833df594d8bfafeb7860c25c535\"",
 "ashby:chartahealth": "W/\"job-board:9c05176146c636f329efab253782cc22f135279d820a9af0c0a6ce069768e90b\"",
-"ashby:charthop": "W/\"job-board:0923d0500259b749cdf5a5405e858ff041f272acffadacbda9440ea9482f7bff\"",
+"ashby:charthop": "W/\"job-board:a70cd544f147fb1699a296d58bc2028b2a856304e19a61a9eb3b3938f0a025d3\"",
 "ashby:chestnut": "W/\"job-board:bf411dea3e8e2e472faf14050939f988a2dc064fcffff5b80e49cc7932c045ce\"",
 "ashby:cinder": "W/\"job-board:58843d7979631c68c918ed838855f531e21a1be6a940404ca7931ff805f8d27b\"",
 "ashby:circleback": "W/\"job-board:c1608c0a7d85eca6773216f16ec6788de2fa990b8e00caea149a0f1b7f5c523d\"",
@@ -504,7 +504,7 @@
 "ashby:substack": "W/\"job-board:942da4ae1df9d1f10c4bce9743beed9f1c07ea802e1a57a0666e0f0fe19e10ef\"",
 "ashby:substrate": "W/\"job-board:01aabe52b4e38076810102562208f4dc90e20500e80cc8ede78fa892cf9fac7f\"",
 "ashby:suno": "W/\"job-board:2c5cf351d9ca742766ff8c0538ceeed67ad8c9562f2dfe9777f45985e757ee33\"",
-"ashby:supabase": "W/\"job-board:0699a86743f0788ca623cba94b13c13208b8090859a611a6f8a77c8c2c15fbab\"",
+"ashby:supabase": "W/\"job-board:4212e09156028107bcb7c3440c7708698353a1e8409c904afb4ec8d08f150421\"",
 "ashby:svix": "W/\"job-board:dc6637c0fac7937695212cb2f0d398b90031084d7c4dd1de82a60300fa876b0c\"",
 "ashby:swan": "W/\"job-board:da9c7c1bee7b6973e9a2f5216f9dc5434b71fcaea2a73f309d0c9c657c38efdf\"",
 "ashby:sweep": "W/\"job-board:319be4c371516f42d6584fb65e893478c310ad578d07479cb9da22a0fd082b8e\"",
@@ -602,7 +602,7 @@
 "greenhouse:argmax": "W/\"13082d5e938c7c3c85f90cda425cbf08\"",
 "greenhouse:array": "W/\"f6104e5a4aec62cec1f232cd942f7ee1\"",
 "greenhouse:asana": "W/\"3ad2d19a231f0972609cdab74a65c7b5\"",
-"greenhouse:assemblyai": "W/\"2132a389e7c132c731a4c5ece1957b17\"",
+"greenhouse:assemblyai": "W/\"5464b15260fdd121b0b64a121af44032\"",
 "greenhouse:astranis": "W/\"4fc5c66fb33aebe740e0eaf6a5219a60\"",
 "greenhouse:atoms": "W/\"9eebd0d8d02bfa8355be86c849c9c94a\"",
 "greenhouse:attain": "W/\"208604a1ca62ab6e5d30569be1a9c4cd\"",
@@ -700,7 +700,7 @@
 "greenhouse:gensyn": "W/\"44f4536da6c5554d27c1d349a0b4695c\"",
 "greenhouse:gigs": "W/\"81a511fb349d551fe035368e58406bcd\"",
 "greenhouse:gitlab": "W/\"2b0ac3395ca79d7a3f68c38ae5fc34df\"",
-"greenhouse:gleanwork": "W/\"9cfaeff70dc818d5a98cf0d55ee83f32\"",
+"greenhouse:gleanwork": "W/\"c7f0c0d6ac1ad6d80a32b193ba98c58d\"",
 "greenhouse:glossier": "W/\"cf774d76ec32bfd3e47a510ed77d0c61\"",
 "greenhouse:greenhouse": "W/\"be371345c36daa63542f4a2db39e604a\"",
 "greenhouse:gremlin": "W/\"ef5c23261efc78c294be4f928d17f145\"",
@@ -727,7 +727,7 @@
 "greenhouse:komodohealth": "W/\"adec4341d37153cb75d259cf5897e9b5\"",
 "greenhouse:labelbox": "W/\"d644117932a9d76e624489c84dfd7040\"",
 "greenhouse:lattice": "W/\"5b87f0981dd4a372dea02ee796b06e6d\"",
-"greenhouse:launchdarkly": "W/\"9a938430a1c7d40eb5068d1dd8c60a2b\"",
+"greenhouse:launchdarkly": "W/\"77d2cd206ec31e39253f09896f1f9223\"",
 "greenhouse:legalist": "W/\"77a05410d33b335797df9182b8573b2c\"",
 "greenhouse:lightningai": "W/\"57a5da8539cf6282e8d5ef035c6d2fc6\"",
 "greenhouse:lithic": "W/\"4b15729c25e4cb5a354bc852b3cb0fdb\"",
@@ -797,15 +797,15 @@
 "greenhouse:remote": "W/\"7485486fa43b23f106215f54b0484b70\"",
 "greenhouse:rigup": "W/\"cd335ddd3179c98fb72ed3b76b0fa6e1\"",
 "greenhouse:ritual": "W/\"8c887cda42d0bec8a0c6b04d4f71b6b7\"",
-"greenhouse:robinhood": "W/\"64d4c36f531a434af0055a2a77f94af2\"",
-"greenhouse:roblox": "W/\"37462d31e4ae7354ee183214a4c7d4e7\"",
-"greenhouse:samsara": "W/\"373aa862fd45c25aef44c3ac9cd8fdc2\"",
+"greenhouse:robinhood": "W/\"f8873cd77b5e49d0203eae42c8912bc4\"",
+"greenhouse:roblox": "W/\"2a085fdb29d7f23b844b49688b8acf25\"",
+"greenhouse:samsara": "W/\"c270dcdd0161c325d10df04607fb6043\"",
 "greenhouse:scaleai": "W/\"dafa29a6d3931bd217209f3a5ab1a1f7\"",
 "greenhouse:sendbird": "W/\"c3d90f56d22f1a0a740ade41daefdeee\"",
 "greenhouse:senrasystems": "W/\"cf1e215edff739cf81d5fc839ea9d981\"",
 "greenhouse:shopmonkey": "W/\"f8305767c18ca619596de03165e0582a\"",
 "greenhouse:sigmacomputing": "W/\"74af940d0753afca4fd49d2e90ef6a92\"",
-"greenhouse:spacex": "W/\"37e4618932227200b918139eb4af9d5a\"",
+"greenhouse:spacex": "W/\"d11d6a0b96d187c50c9134e86725a29a\"",
 "greenhouse:squarespace": "W/\"33c1858a3f2c7b78fc58f4872b803305\"",
 "greenhouse:starburst": "W/\"3fdc74b5aabfbc478a6f6ca26e36620b\"",
 "greenhouse:stripe": "W/\"ff474bb9a575a4eae758a912df912fd5\"",
@@ -840,15 +840,15 @@
 "greenhouse:webflow": "W/\"09aefc0c2d96e9c065aab057f04eaa35\"",
 "greenhouse:wingspan": "W/\"cf8f0b7a150d2827d040b73df77927d5\"",
 "greenhouse:wise": "W/\"8f165e81bb60d43a722ea578913ab248\"",
-"greenhouse:wonderschool": "W/\"2b01aae0cd04e95edc1ae5948094c69f\"",
+"greenhouse:wonderschool": "W/\"a86cf34db1609887cb2cb1ac7c666e7c\"",
 "greenhouse:workboard": "W/\"9c669d51fb295abf91b36509d606a375\"",
 "greenhouse:worldlabs": "W/\"3d55d1477fc8658d6d8e497bb33ec62b\"",
 "greenhouse:xai": "W/\"132c827ccf748d0f26259b47878304d7\"",
 "greenhouse:yubico": "W/\"c74b48ae3bc5d09f25478f3d76128314\"",
 "greenhouse:zencoder": "W/\"b7161bd86eafc114dc3f50ff83fd3740\"",
 "greenhouse:zocdoc": "W/\"13ad0b1859d18e2a16881a62a5eb431d\"",
-"jobright:https://raw.githubusercontent.com/jobright-ai/2025-Data-Analysis-New-Grad/master/README.md": "W/\"3359c4fb0a881ff0363f8ce40fc234e8df6dfc0475a641807b0d559011641b1c\"",
-"jobright:https://raw.githubusercontent.com/jobright-ai/2025-Software-Engineer-New-Grad/master/README.md": "W/\"32118bd5b10790bda7a7d4a42f5212dcef3f7d2db88494d18d79fa003637f5fe\"",
+"jobright:https://raw.githubusercontent.com/jobright-ai/2025-Data-Analysis-New-Grad/master/README.md": "W/\"1b58ea13555a7086459d26b79cc8ff8be3fd3cf95dfbae917bd3160233dd7bf7\"",
+"jobright:https://raw.githubusercontent.com/jobright-ai/2025-Software-Engineer-New-Grad/master/README.md": "W/\"5e77a5c1070af21fbd8aaae2854e036ac5f4300631167986b90502fed72fd306\"",
 "lever:airslate": "W/\"444fe-Nbp4uo4TeMvz27XtU+dBSgxL3Pk\"",
 "lever:alloy": "W/\"35471-8qvK8sunI3vSEQkyW29P2WdnevM\"",
 "lever:alluxio": "W/\"13684-S2Vl6pR0pN7xTO5apqie6sDR6Ls\"",
@@ -918,7 +918,7 @@
 "lever:yuno": "W/\"dc24b-J1onj1XpN1dw/67fo09sEJbqNiE\"",
 "lever:zoox": "W/\"25ae69-DegrvfQjX4cUrZTwiXeOz7yyTnI\"",
 "lever:zushealth": "W/\"138ba-bvBX35xopj+nMMI3XrvyjDo5Sw0\"",
-"simplify:listings": "W/\"6856b8d789597d02f706836f3ec6963fa47b1c7f9a2f32be955291a320c01919\""
+"simplify:listings": "W/\"6d68b859fc38eae1555ce5fa663469f481492ae6188b66ef6e7f4b521017569b\""
 },
 "matches": {
 "00399e6138109ab5": {
@@ -17231,6 +17231,12 @@
 "notified_at": "2026-09-05T09:28:24.196036+00:00",
 "score": 66.3
 },
+"ef59a0e04670e6ed": {
+"first_seen": "2026-10-17T21:03:32.214849+00:00",
+"notified": true,
+"notified_at": "2026-10-17T21:03:32.214865+00:00",
+"score": 73.0
+},
 "ef73eabd7158470e": {
 "first_seen": "2026-09-05T09:28:15.363203+00:00",
 "score": 40.6
@@ -18236,9 +18242,9 @@
 },
 "meta": {
 "bootstrapped_at": "2026-08-16T09:42:23.450845+00:00",
-"last_run": "2026-10-17T18:47:15.413024+00:00",
-"last_simplify": "2026-10-17T18:47:15.413024+00:00",
-"last_tier2": "2026-10-17T18:47:15.413024+00:00"
+"last_run": "2026-10-17T21:03:32.214869+00:00",
+"last_simplify": "2026-10-17T21:03:32.214869+00:00",
+"last_tier2": "2026-10-17T21:03:32.214869+00:00"
 },
 "seen": {
 "000038b987bd67ff": "2026-08-16",
@@ -70903,6 +70909,7 @@
 "79ebb33669919aaa": "2026-09-06",
 "79ec21b463796955": "2026-08-19",
 "79ec44df52948462": "2026-08-21",
+"79eca6f7f5bb89dd": "2026-10-17",
 "79ed2817565a8d55": "2026-08-19",
 "79ed44ff2a4462c7": "2026-08-18",
 "79edabd9e5ac59cf": "2026-09-18",
@@ -119888,6 +119895,7 @@
 "eba9c866211f875f": "2026-08-16",
 "ebaa584fcdd8f4e9": "2026-08-16",
 "ebaba6c7bc0d6a19": "2026-09-29",
+"ebabf762b507bbbc": "2026-10-17",
 "ebac78de8ff72903": "2026-08-31",
 "ebad3d170d3336a0": "2026-10-06",
 "ebaed49488d9c136": "2026-09-24",
@@ -128569,6 +128577,6 @@
 "ffff2e932d6cd349": "2026-08-17",
 "ffff691236a39621": "2026-10-02"
 },
-"updated_at": "2026-10-17T18:47:15.477492+00:00",
+"updated_at": "2026-10-17T21:03:32.320205+00:00",
 "version": 2
 }
