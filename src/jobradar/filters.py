@@ -35,20 +35,28 @@ ROLE_FAMILIES: list[tuple[str, float, re.Pattern[str]]] = [
     ("data_engineer", 1.00, re.compile(
         r"\bdata engineer(ing)?\b|\bdata platform engineer\b|\bdata infrastructure\b"
         r"|\bbig data engineer\b|\bdata pipeline engineer\b|\betl developer\b", re.I)),
-    ("analytics_engineer", 0.97, re.compile(
+    ("analytics_engineer", 1.00, re.compile(
         r"\banalytics engineer(ing)?\b", re.I)),
-    ("ai_engineer", 0.93, re.compile(
+    ("ai_engineer", 1.00, re.compile(
         r"\b(ai|a\.i\.) engineer\b|\bapplied ai\b|\bgen(erative )?ai engineer\b"
         r"|\bllm engineer\b|\bapplied scientist\b|\bai/ml engineer\b", re.I)),
-    ("data_analyst", 0.90, re.compile(
+    # Promoted to a first-class family once a tailored FDE resume existed. It was
+    # 0.85 while forward-deployed work was a fringe target, and the pattern matched
+    # only the literal phrase - which missed the titles these roles actually carry.
+    # Palantir alone posts "Deployment Strategist" and "Forward Deployed Software
+    # Engineer" as separate listings, and the sibling titles below are the same job
+    # at other companies.
+    ("forward_deployed", 1.00, re.compile(
+        r"\bforward[- ]deployed\b|\bdeployment strategist\b"
+        r"|\b(deployment|implementation|delivery|field|customer) engineer\b"
+        r"|\bsolutions? (engineer|architect)\b|\bimplementation consultant\b", re.I)),
+    ("ml_engineer", 0.95, re.compile(
+        r"\b(machine learning|ml) engineer\b", re.I)),
+    ("data_analyst", 0.92, re.compile(
         r"\bdata analyst\b|\banalytics analyst\b|\bproduct analyst\b"
         r"|\bbusiness intelligence\b|\bbi (analyst|engineer|developer)\b", re.I)),
     ("data_scientist", 0.88, re.compile(
         r"\bdata scientist\b|\bdata science\b", re.I)),
-    ("ml_engineer", 0.87, re.compile(
-        r"\b(machine learning|ml) engineer\b", re.I)),
-    ("forward_deployed", 0.85, re.compile(
-        r"\bforward[- ]deployed\b", re.I)),
     # Weighted low on purpose, and lowered again after measurement. At 0.70 these
     # scored 43 to 50, which put four Research Scientist roles at OpenAI and
     # Anthropic above the alert threshold. Those are PhD-track and not a realistic
@@ -57,6 +65,22 @@ ROLE_FAMILIES: list[tuple[str, float, re.Pattern[str]]] = [
     ("research_engineer", 0.55, re.compile(
         r"\bresearch engineer\b|\bresearch scientist\b", re.I)),
 ]
+
+# Which resume a family naturally calls for. Used by scoring to break a close race
+# between tracks in favour of the job title, because the title is what a reviewer
+# screens the resume against. A family absent from this map lets skill overlap
+# decide on its own.
+FAMILY_TRACK: dict[str, str] = {
+    "data_engineer": "data",
+    "analytics_engineer": "data",
+    "data_analyst": "data",
+    "data_scientist": "data",
+    "ai_engineer": "ai",
+    "ml_engineer": "ai",
+    "research_engineer": "ai",
+    "forward_deployed": "fde",
+    "software_engineer": "swe",
+}
 
 # Titles that contain a family keyword but are not the job he wants.
 NEGATIVE_TITLE = re.compile(
@@ -229,6 +253,28 @@ DATA_CONTEXT_MIN_HITS_MTS = 2
 
 MTS_TITLE = re.compile(r"\bmember of technical staff\b", re.I)
 
+# Engineering disciplines the resume does not support. These are not junior-versus-
+# senior calls, they are different jobs: an embedded firmware or Unreal rendering
+# role screens on experience this profile has none of, so applying is not worth the
+# slot. Only applied to the generic-engineering admission route below - a posting
+# that names a data or AI family in its title is never filtered on this.
+SWE_MISMATCH = re.compile(
+    r"\bembedded\b|\bfirmware\b|\brtos\b|\bdevice driver\b|\bkernel\b|\bcompiler\b"
+    r"|\bfpga\b|\bverilog\b|\basic\b|\bsilicon\b|\bhardware engineer\b"
+    r"|\bios\b|\bandroid\b|\bmobile\b|\bswift\b|\bkotlin\b|react native|\bflutter\b"
+    r"|\bunity\b|\bunreal\b|game engine|\bgraphics\b|\bshader\b|\brendering\b"
+    r"|site reliability|\bsre\b|network engineer|security engineer"
+    r"|\bpenetration\b|\bservicenow\b|\bsap\b",
+    re.I,
+)
+
+# How many distinct SWE-resume technologies a generic engineering posting must name
+# to be worth surfacing on the SWE track alone. The SWE core groups are backend,
+# frontend, testing and distributed systems, so three distinct hits means the
+# posting genuinely overlaps the resume rather than sharing Python and Docker with
+# every other backend listing.
+SWE_TRACK_MIN_HITS = 3
+
 CANADA_HINT = re.compile(r"canada|ontario|,\s*on\b|,\s*bc\b|,\s*ab\b|,\s*qc\b", re.I)
 
 TIER2_LOC = re.compile(
@@ -344,29 +390,46 @@ def _swe_is_relevant(
     job: Job,
     cfg: dict,
     core_terms: Sequence[re.Pattern[str]] | None,
+    swe_terms: Sequence[re.Pattern[str]] | None = None,
     mts: bool = False,
 ) -> bool:
     """Whether a generic engineering title is worth surfacing.
 
-    Two independent tests, either of which admits the posting:
+    Three independent tests, any one of which admits the posting:
 
     * Data-context keywords in the body. Catches roles written as "Software
       Engineer, Data Platform" whose descriptions list a stack.
-    * Resume-core technologies actually named. Catches roles described in prose
-      that still want dbt, Airflow, Kafka, Spark or similar.
+    * Resume-core technologies actually named, across any track. Catches roles
+      described in prose that still want dbt, Airflow, Kafka, Spark or similar.
+    * The SWE track on its own terms. Added with the four-resume model: a dedicated
+      SWE resume exists, so a React, TypeScript, FastAPI and pytest posting is a
+      strong fit on its own merits and no longer has to prove it is secretly a data
+      job. This route carries a higher bar than the others, because the SWE
+      vocabulary is the one most likely to appear incidentally.
 
     Measured on 271 viable SWE-titled postings: the keyword test alone admitted 24
     and the resume test alone admitted 28, with only partial overlap. Scoring them
     on raw skill overlap instead would have admitted 172, because terms like
     Kubernetes, AWS and Python appear in nearly every backend posting and inflate
     the total without indicating any real fit. "Software Engineer, Observability"
-    scored 54 on exactly that, matching none of the core stack.
+    scored 54 on exactly that, matching none of the core stack. The SWE-track route
+    is narrower than that failed experiment for the same reason: it counts only the
+    backend, frontend, testing and distributed groups, never the shared
+    infrastructure ones.
     """
+    # A different engineering discipline is not a near miss, so it is rejected
+    # before any of the admission routes get a say.
+    if SWE_MISMATCH.search(job.title):
+        return False
+
     signals = len(set(m.group(0).lower() for m in DATA_CONTEXT.finditer(job.haystack)))
     if signals >= (DATA_CONTEXT_MIN_HITS_MTS if mts else DATA_CONTEXT_MIN_HITS):
         return True
     needed = int(cfg.get("swe_min_core_skills", 2))
-    return count_core_matches(job.haystack, core_terms) >= needed
+    if count_core_matches(job.haystack, core_terms) >= needed:
+        return True
+    swe_needed = int(cfg.get("swe_min_track_skills", SWE_TRACK_MIN_HITS))
+    return count_core_matches(job.haystack, swe_terms) >= swe_needed
 
 
 def count_core_matches(text: str, core_terms: Sequence[re.Pattern[str]] | None) -> int:
@@ -384,8 +447,15 @@ def evaluate(
     job: Job,
     cfg: dict | None = None,
     core_terms: Sequence[re.Pattern[str]] | None = None,
+    swe_terms: Sequence[re.Pattern[str]] | None = None,
 ) -> Verdict:
-    """Apply every hard gate. Returns a Verdict carrying signals for scoring."""
+    """Apply every hard gate. Returns a Verdict carrying signals for scoring.
+
+    ``core_terms`` is every track's distinguishing vocabulary; ``swe_terms`` is the
+    SWE track's alone. Both are passed in as compiled patterns rather than imported,
+    because scoring.py imports from this module and the dependency cannot run both
+    ways.
+    """
     cfg = cfg or {}
     max_years = int(cfg.get("max_years_experience", 3))
     allow_internships = bool(cfg.get("allow_internships", False))
@@ -429,9 +499,12 @@ def evaluate(
             cfg.get("allow_data_adjacent_swe")
             and SWE_TITLE.search(title)
             and not NEGATIVE_TITLE.search(title)
-            and _swe_is_relevant(job, cfg, core_terms, mts=bool(mts))
+            and _swe_is_relevant(job, cfg, core_terms, swe_terms, mts=bool(mts))
         ):
-            family, weight = "software_engineer", 0.85
+            # Raised from 0.85 alongside the tailored SWE resume. A generic
+            # engineering title that clears the relevance gate is now as wanted as a
+            # data-titled one, and the resume to send is decided by scoring.
+            family, weight = "software_engineer", 1.00
         else:
             return Verdict(False, "role_family")
     else:

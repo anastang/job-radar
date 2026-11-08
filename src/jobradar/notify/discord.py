@@ -17,6 +17,7 @@ import httpx
 
 from ..models import Job
 from ..scoring import Score
+from .outreach import outreach_field
 
 log = logging.getLogger(__name__)
 
@@ -97,8 +98,24 @@ def build_embed(job: Job, score: Score, priority: bool) -> dict:
         {"name": "Match", "value": f"**{score.total:.0f}**/100", "inline": True},
         {"name": "Wants", "value": experience, "inline": True},
         date_field,
-        {"name": "Source", "value": job.ats, "inline": True},
     ]
+
+    # Which of the four resumes to attach. This is the first decision to make once a
+    # role is worth applying to, so it sits above the stack overlap that justifies it.
+    if score.track_label:
+        fields.append({
+            "name": "Send",
+            "value": f"**{score.track_label}** resume",
+            "inline": True,
+        })
+    fields.append({"name": "Source", "value": job.ats, "inline": True})
+
+    if score.track_scores:
+        fields.append({
+            "name": "Track fit",
+            "value": score.track_summary()[:1024],
+            "inline": True,
+        })
     if score.matched_skills:
         overlap = ", ".join(score.matched_skills[:14])
         fields.append({"name": "Stack overlap", "value": overlap[:1024], "inline": False})
@@ -107,6 +124,13 @@ def build_embed(job: Job, score: Score, priority: bool) -> dict:
         lo = f"{job.salary_min:,.0f}" if job.salary_min else "?"
         hi = f"{job.salary_max:,.0f}" if job.salary_max else "?"
         fields.append({"name": "Comp", "value": f"{lo}-{hi} {currency}", "inline": True})
+
+    # Emailing a recruiter or hiring lead has been the highest-response channel in
+    # this search, so the alert carries the searches that find them. See outreach.py
+    # for why addresses are not scraped out of the posting itself.
+    contact = outreach_field(pretty_company(job.company), score.track)
+    if contact:
+        fields.append(contact)
 
     return {
         "title": job.title[:256],

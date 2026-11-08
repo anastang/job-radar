@@ -86,6 +86,24 @@ class Fetcher:
             "GET", url, etag_key=etag_key, headers=headers, as_text=True
         )
 
+    async def get_bytes(
+        self,
+        url: str,
+        *,
+        etag_key: str | None = None,
+        headers: dict[str, str] | None = None,
+    ) -> bytes | None:
+        """GET a raw body, undecoded.
+
+        Needed for sitemaps: a ``.xml.gz`` URL may arrive still gzipped or already
+        decompressed by a CDN, and the caller has to look at the magic bytes to
+        tell. Decoding to text first would turn the gzipped case into mojibake that
+        silently matches nothing.
+        """
+        return await self._request(
+            "GET", url, etag_key=etag_key, headers=headers, as_bytes=True
+        )
+
     async def post_json(
         self,
         url: str,
@@ -104,6 +122,7 @@ class Fetcher:
         headers: dict[str, str] | None = None,
         json: dict[str, Any] | None = None,
         as_text: bool = False,
+        as_bytes: bool = False,
     ) -> Any | None:
         if self._client is None:
             raise RuntimeError("Fetcher must be used as an async context manager")
@@ -150,6 +169,10 @@ class Fetcher:
 
                 if etag_key and (tag := resp.headers.get("ETag")):
                     self.etags[etag_key] = tag
+
+                if as_bytes:
+                    self.stats["ok"] += 1
+                    return resp.content
 
                 if as_text:
                     self.stats["ok"] += 1

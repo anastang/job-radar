@@ -29,12 +29,13 @@ Indeed.**
 | Amazon | `posted_date` | yes | yes, including qualifications |
 | Oracle HCM | `PostedDate` | yes | short description only |
 | SmartRecruiters | `releasedDate` | yes | no, but gives `experienceLevel` |
+| Rippling | `createdOn`, on the detail endpoint only | yes | yes, plus pay ranges |
 | Workday | `postedOn`, prose like "Posted 13 Days Ago" | coarse | no |
 | SimplifyJobs new-grad feed | `date_posted` | **no, it is an index date** | no |
 | jobright new-grad feed | table column | **no, it is an index date** | no |
 
-That covers eight ATS providers plus two community feeds, roughly 600 boards,
-including about 350 YC startups.
+That covers nine ATS providers plus two community feeds, roughly 1,190 boards,
+including about 350 YC startups and 188 companies found through aggregator sitemaps.
 
 Amazon and Oracle HCM are queried rather than enumerated. Both boards are far too
 large to walk, so each is swept with a handful of role-specific searches and the
@@ -68,6 +69,167 @@ Gotion lists the same analyst role in Fremont and in Manteno, and both are worth
 seeing. The surviving row is chosen by lowest listing id rather than by feed position,
 so a reordered feed does not hand the same role a new dedupe key and alert it twice.
 See `collapse_repeats` in `sources/jobright.py`.
+
+### Rippling needs two requests per posting
+
+Rippling is the only provider that splits what we need across two endpoints. Its
+board listing is cheap but thin, carrying a uuid, title, department and one location
+string, with **no posting date and no description at all**. Both live on a
+per-posting detail endpoint.
+
+That shape cannot be ignored. Without a date every Rippling posting would bypass the
+staleness gate and score as unknown-age forever; without a description the
+generic-engineering gate could never admit one.
+
+What makes fetching details affordable is filtering on the title first. On Rippling's
+own board, 665 live postings reduce to 19 once senior, intern and plainly irrelevant
+titles are dropped, which is 2.9%. One list request plus about twenty small detail
+requests per board buys real dates, real descriptions and published pay ranges.
+
+The pre-filter re-uses the same title predicates the real gate applies later, so it
+can only discard postings `evaluate` would have rejected anyway. Two further quirks:
+the readable employment type sits in `id` rather than `label`, and pay is published
+per period, so monthly bands are dropped rather than shown as a salary a tenth of the
+real figure.
+
+### Where the company list comes from
+
+ATS APIs have no global search, so the tool can only poll companies it already knows
+by name. Curating that list by hand is the wrong job for a human, because most
+applications go to companies you have never heard of and hearing of them is the hard
+part.
+
+Aggregator sites have already solved exactly that, and three of them put the company
+and the job title **into the URL** and publish every URL in a sitemap:
+
+    https://hiringtempo.com/company/stripe/jobs/account-executive-platforms-grower-060e3115
+    https://himalayas.app/companies/onepilot/jobs/data-engineer
+    https://startup.jobs/forward-deployed-software-engineer-palantir-23813
+
+So a handful of sitemap fetches yield tens of thousands of company-and-title pairs
+with no page scraping, and the titles let us keep only companies hiring for something
+relevant right now. `scripts/discover_from_boards.py` does that, then resolves each
+company name to an ATS board.
+
+The yield is far better than the other generators: **92%**, against 34% for YC and
+35-44% for VC portfolios. The reason is that these companies are known to be hiring a
+relevant role at this moment, and their slugs are clean. One run added 188 boards and
+took the pollable total from 1,000 to 1,188. Those new boards produced 152 alerts on
+the next sweep, including Cerebras, CoreWeave, Chainguard, Airwallex, Abnormal
+Security and CircleCI, none of which were reachable before.
+
+Neither site's API is touched: hiringtempo disallows `/api/` in robots.txt and
+startup.jobs disallows its apply paths, and nothing here requests either. The job
+pages themselves are never fetched either, because the ATS the company already runs
+is a better source for the posting than an aggregator's copy, and polling it directly
+is what makes this tool early.
+
+The pool is much larger than one run should resolve politely, so each run takes the
+next batch and the committed yaml makes already-resolved companies skippable next
+time. Measured across the three sources, roughly **6,000 companies** are identified
+as currently hiring a relevant role and not yet polled: ~205 from hiringtempo, ~2,060
+from himalayas and ~4,020 from startup.jobs, with overlap between them.
+
+`.github/workflows/discover.yml` runs this twice a week and commits what it finds, so
+the company list grows without anyone going looking for employers to add. It warns
+when a run resolves nothing, because that usually means an aggregator changed its URL
+shape, which otherwise looks exactly like a successful run.
+
+startup.jobs is supported but off by default. It is larger, at 272,407 job URLs
+behind 4,320 relevant-hiring companies, but its company slugs carry legal-entity
+prefixes from a bulk import, so the same employer appears as `0020-paypal-inc` and
+`100-salesforce-inc`. Even after cleaning those, resolving the full pool would take
+roughly 72,000 probe requests, which is more traffic than one job search should put on
+other people's endpoints. Run it deliberately with `--source startupjobs --limit`.
+
+Its post URLs also need the company list it publishes separately: nothing in the URL
+marks where the title ends and the company begins, both halves contain hyphens, and
+guessing the last token produced companies called "1", "10" and "091614".
+
+### Searching the whole of a board host (built, off by default)
+
+Direct polling only ever sees companies on the list. A search engine has crawled all
+of `jobs.ashbyhq.com`, so `"New Grad" site:ashbyhq.com` reaches employers no
+portfolio page or aggregator ever named. `config/searches.yaml` holds the query list,
+crossed as `"<term>" site:<site>`, and `search_every_minutes` in `config.yaml` sets
+the cadence.
+
+It ships disabled, because this is the only part of the tool that costs money. There
+is no free programmatic search left: Google's Custom Search JSON API is closed to new
+customers as of 2026, its site-restricted variant stopped serving traffic in January
+2025, and Brave's free allowance is credit-based behind a card. At 58 queries a run
+that is roughly $35/month at six hours and $209/month hourly. Set
+`search_every_minutes` and `BRAVE_SEARCH_API_KEY` to turn it on, and run
+`scripts/probe_search.py` first to confirm the response parsing against a live key.
+
+The free route to the same outcome is the sitemap discovery below, which reaches more
+companies than these queries would.
+
+The design choice that matters is what happens to a hit. A search result is a weak
+object: a title, a URL and a snippet, with no posting date, no years-of-experience
+line and no stack list, so it cannot be gated or scored properly. So results are not
+treated as postings. The company slug is parsed out of the URL and that company's
+real ATS board is fetched through the normal adapter, which returns the employer's
+own date and full description. Three things follow, and they are the point:
+
+* Postings arrive with everything the gate and the four-track scorer need.
+* The dedupe key is identical to direct polling's, so a role found both ways alerts
+  once rather than twice.
+* The company is remembered in the state file and polled every few minutes from then
+  on. The search only has to find an employer once.
+
+That last point is worth understanding before paying for a fast cadence. The search
+lag applies to a company's **first** posting and never to its later ones, so going
+from daily to hourly makes a brand-new employer's debut arrive sooner and changes
+nothing for the 1,188 boards already polled.
+
+Two practical notes. Scraping a search engine's results page is against the terms of
+every major one and gets CAPTCHA'd, so this uses an official API; Google's Custom
+Search JSON API is closed to new customers as of 2026 and its site-restricted variant
+stopped serving traffic in January 2025, which leaves Brave's API as the usable
+option. And a missing key raises rather than returning an empty list, because a
+silent zero from this source reads exactly like a quiet day.
+
+LinkedIn is handled differently on purpose. Its robots.txt is
+`User-agent: * / Disallow: /`, so nothing here ever fetches a LinkedIn page. Those
+hits are used as search metadata only, with no date and no description, and they
+score through the same path the community feeds use. The alert links out for you to
+open yourself.
+
+### What a keyword search alone would miss
+
+Worth recording, because it is why the search source supplements the boards rather
+than replacing them. Searching only the early-career phrases looks appealing and
+performs terribly: measured against 727 alerts carrying a description, `"New Grad"`
+appears in 2.5%, `"Early Career"` in 0.8%, `"Entry Level"` in 0.1%, and **any** of
+them in 3.3%. The other 96.7% are titled "Data Engineer I" or "Software Engineer II"
+with "1-2 years" in the body, and are found by parsing the years requirement out of
+the description rather than by matching a phrase.
+
+That is why `searches.yaml` crosses the role titles as well as the markers, and why
+the gate still runs on the full posting afterwards.
+
+### Why contact emails are not scraped
+
+Emailing recruiters and hiring leads directly has been the highest-response channel in
+this search, so the alert carries two LinkedIn people searches: one for recruiters at
+the company, one for the functional lead that matches the winning track.
+
+It does not extract email addresses from postings, and that is a measured decision.
+Across 4,007 described postings from Greenhouse, Ashby and Lever, 949 email addresses
+appear in the body and **97.4% of them are accommodation or accessibility addresses**,
+the line employers are legally required to publish so candidates can request
+interview adjustments. Four occurrences were a generic careers inbox. None were a
+named person. An "extract the contact email" feature would therefore surface an ADA
+compliance queue and label it a hiring contact, which is both useless and the wrong
+thing to send a cold email to.
+
+Third-party contact databases would supply real addresses, but they hold personal
+data gathered without the subject's involvement, and using one here would mean this
+tool building a file on people who never published an address at all. A search the
+user runs as themselves lands on the same people, with their current titles, and
+stores nothing. `tests/test_outreach.py` has a regression guard that fails if an
+email regex ever appears in that module.
 
 ## Setup
 
@@ -155,14 +317,70 @@ To review what the tool currently sees:
 jobradar --dry-run --since 14 --min-score 0
 ```
 
+## Four resumes, four tracks
+
+There are four tailored resumes: Data, AI, FDE and SWE. The tool models them as four
+separate targets, scores every posting against all four, and keeps the best result.
+The winning track is shown on the alert as the resume to send.
+
+That is the point of the design rather than a side effect. Once a role is worth
+applying to, the first decision is which resume to attach, and a single blended
+profile cannot answer it. It also scores worse: averaging the four would judge a
+React-and-pytest posting on dbt terms it never mentions, and a dbt posting on React
+terms it never mentions, rating both mediocre instead of recognising each as a strong
+fit for one track.
+
+Weights are per track, because the same technology is worth different amounts
+depending on which resume is going out. Airflow is a headline on the Data resume and
+a supporting detail on the AI one, so it is weighted 3.0 there and 1.75 here.
+
+Two rules decide the track:
+
+* **Skill overlap picks the winner.** Each track scores as a fraction of its own
+  target, so the tracks are comparable despite holding different numbers of terms.
+* **A close race is broken by the job title.** When the family's natural track is
+  within 0.10 of the leader, the title wins, because the title is what a reviewer
+  screens the resume against. A decisive gap is never overridden: a posting titled
+  "Data Engineer" whose body is entirely RAG and evals is still answered with the AI
+  resume.
+
+On a live sweep of 1,188 boards the four tracks split the alerts 29% AI, 27% Data,
+25% FDE and 19% SWE, which is roughly the balance the four resumes imply.
+
+Groups named `foundational`, `platform`, `infra`, `storage` and `adjacent` are
+excluded from the "core" vocabulary that decides whether a generic engineering title
+is relevant at all. Python, Docker, AWS and PostgreSQL appear in nearly every
+engineering posting, so counting them would make all four tracks look alike.
+
 ## How filtering works
 
 A posting must clear every gate before it is scored:
 
-1. **Role family.** Data engineer, analytics engineer, data analyst, AI engineer, plus
-   data scientist, BI, ML engineer, forward-deployed, and research engineer roles.
-   Generic engineering titles, including "Member of Technical Staff", are admitted
-   only when the body carries at least three distinct data or AI signals.
+1. **Role family.** Data engineer, analytics engineer, data analyst, AI engineer and
+   forward-deployed roles all carry full weight, with data scientist, BI, ML engineer
+   and research engineer below them. Generic engineering titles, including "Member of
+   Technical Staff", are admitted by any one of three independent tests: the body
+   carries at least three distinct data or AI signals, it names at least two
+   technologies from the Data, AI or FDE tracks, or it names at least three from the
+   SWE track.
+
+   The third test arrived with the tailored SWE resume, and it is deliberately
+   stricter than the others because SWE vocabulary is the most likely to appear
+   incidentally. Keeping the SWE track *out* of the second test matters just as much:
+   when it was included, "React" plus "pytest" counted as two adjacency hits, 354
+   postings came in through the loose route, and the stricter route never fired once.
+   Separated, the SWE route admits 32 postings that nothing else catches.
+
+   Forward-deployed roles were promoted from a 0.85 weight and a pattern matching
+   only the literal phrase. That pattern missed the titles these roles actually
+   carry: Databricks posts "Solutions Engineer", Pallet posts "Associate Deployment
+   Strategist", Materialize posts "Forward Deployed Engineer", and all three now
+   surface in the low 90s.
+
+   Generic engineering titles in a different discipline are rejected outright rather
+   than scored down. An embedded firmware or Unreal rendering role is not a near miss
+   on this resume, it is a different job, and 402 such titles were filtered on a
+   single sweep.
 2. **Seniority.** Senior, staff, principal, lead, and manager titles are rejected, as
    is level III and above. The description is then parsed for a years-of-experience
    requirement, because the strongest matches often carry no seniority marker in the
@@ -246,7 +464,8 @@ postings and passes the filter. A regression test covers this.
 | `config/companies_vc.yaml` | generated, venture portfolio companies |
 | `config/companies_watchlist.yaml` | **hand-maintained**, never touched by a generator |
 | `config/companies_feed.yaml` | generated, Workday, Workable, Oracle HCM and Amazon |
-| `config/profile.yaml` | generated, resume-derived skill terms and weights |
+| `config/companies_boards.yaml` | generated, companies found hiring on aggregator sitemaps |
+| `config/profile.yaml` | **hand-maintained**, the four resume tracks and their weights |
 
 Every `config/companies*.yaml` file is merged at runtime. They stay separate so that
 re-running one generator leaves the others alone. A slug listed as tier1 anywhere wins
@@ -323,10 +542,18 @@ site together (`ngc.wd1` / `ngc` / `Northrop_Grumman_External_Site` for Workday,
 `host/siteNumber` for Oracle), which makes them impossible to guess. Blocked employers are dropped during discovery rather than at filter time, so no
 poll is spent on a board whose every posting would be rejected.
 
-Regenerate the skill profile whenever the resume changes:
+`config/profile.yaml` is hand-maintained, because the four tracks carry per-track
+weights that cannot be derived from one PDF. When a resume changes, edit the matching
+track.
+
+`build_profile.py` still exists to extract candidate terms from a resume, but it
+emits the older single-profile format and now refuses to write to
+`config/profile.yaml`, because doing so would collapse four targets into one and the
+alerts would stop naming which resume to send. Write it somewhere scratch and fold
+anything useful into the right track by hand:
 
 ```bash
-python scripts/build_profile.py --resume "path/to/resume.pdf"
+python scripts/build_profile.py --resume "path/to/resume.pdf" --out /tmp/terms.yaml
 ```
 
 ## Tests

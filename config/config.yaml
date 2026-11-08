@@ -48,11 +48,15 @@ filters:
   # This profile targets post-graduation roles, so internships and co-ops are noise.
   allow_internships: false
 
-  # Count generic software engineering titles when the posting is clearly data/AI
-  # centric (needs 3+ distinct data signals in the body). Widens the pool given the
-  # Spring Boot / Docker / Kubernetes internship, without letting every web-dev
-  # posting through. Note that "Software Engineer" is not itself a USMCA TN
-  # profession, whereas data and analytics titles generally map cleanly.
+  # Count generic software engineering titles. Note that "Software Engineer" is not
+  # itself a USMCA TN profession, whereas data and analytics titles generally map
+  # cleanly, which is why these are gated rather than accepted outright.
+  #
+  # There are now three ways in, any one sufficient: the posting is clearly data/AI
+  # centric, it names enough technologies from any resume track, or it matches the
+  # SWE resume on its own terms. The third route arrived with the tailored SWE
+  # resume - a React, TypeScript, FastAPI and pytest posting is a strong fit on its
+  # own merits and no longer has to prove it is secretly a data job.
   allow_data_adjacent_swe: true
   # A generic engineering title is admitted when the body either carries enough
   # data-context keywords, or names at least this many technologies from the resume
@@ -64,6 +68,12 @@ filters:
   # pushed 172 of 271 SWE postings over the threshold, including several matching
   # none of the core stack at all.
   swe_min_core_skills: 2
+  # The SWE-resume route carries a higher bar than the cross-track one, because the
+  # SWE vocabulary is the most likely to appear incidentally in a posting that is
+  # not really a fit. Counted over the backend, frontend, testing and distributed
+  # groups only, never the shared infrastructure ones: Python, Docker, AWS and
+  # PostgreSQL appear in nearly every backend listing and say nothing.
+  swe_min_track_skills: 3
   # Postings with no parseable location ("Hybrid", "Remote") still alert - several
   # real matches surfaced this way - they just score lower than SF/NYC/Toronto.
   allow_unknown_location: true
@@ -117,13 +127,31 @@ scoring:
   #
   # Set low deliberately: being slightly underqualified does not mean no chance, so
   # the tool errs toward over-notifying and relies on the score to signal which are
-  # worth dropping everything for. Raise this if the volume ever gets tiring.
+  # worth dropping everything for.
+  #
+  # Worth knowing what this actually does now: of 1,495 postings that clear the hard
+  # gates, 93% score 48 or above, so this is close to no filter at all. That is
+  # consistent with wanting to be over-notified rather than under, and the hard gates
+  # upstream are what do the real work, cutting 71,769 postings to 1,495. But it does
+  # mean the number is not holding anything back. Measured alternatives, as a share
+  # of gate-passers: 55 keeps 81%, 60 keeps 75%, 65 keeps 57%, 70 keeps 49%.
   notify_min: 48
   # At or above this the alert turns orange and @-mentions, so strong matches push to
   # your phone while ordinary ones stay quiet. Set at roughly the 90th percentile of
   # real scoring postings: at 70 about a third of matches pinged, which is too many
   # for the ping to mean anything. Everything below still arrives, just silently.
-  priority_min: 75
+  #
+  # Raised from 75 to 85 when the four resume tracks landed, because 75 had drifted
+  # into being exactly the problem described above. Scoring a posting against four
+  # tracks and keeping the best systematically lifts every score - the median skill
+  # overlap roughly doubles against the best single track - so the old number no
+  # longer sat at the 90th percentile. Measured over 1,495 gate-passing postings,
+  # 75 pinged 29% of them. The real p90 is 85, which is what this now tracks.
+  #
+  # Re-measure this whenever the tracks or the skill weights change. A threshold
+  # calibrated against a different scoring model silently stops meaning anything,
+  # and a ping that fires on a third of alerts is one nobody reads.
+  priority_min: 85
 
 notify:
   # Left empty on purpose: the Discord user ID is the only PII this repo would

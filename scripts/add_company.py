@@ -33,7 +33,7 @@ REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO / "src"))
 
 from jobradar.sources import (  # noqa: E402
-    ashby, greenhouse, lever, smartrecruiters, workable,
+    ashby, greenhouse, lever, rippling, smartrecruiters, workable,
 )
 from jobradar.sources.base import Fetcher  # noqa: E402
 
@@ -46,6 +46,9 @@ PROVIDERS = [
     ("lever", lever.fetch),
     ("workable", workable.fetch),
     ("smartrecruiters", smartrecruiters.fetch),
+    # rippling.probe rather than .fetch: discovery only needs to know the board
+    # exists, and .fetch would spend a detail request per candidate title.
+    ("rippling", rippling.probe),
 ]
 
 # Words companies routinely drop from their board slug.

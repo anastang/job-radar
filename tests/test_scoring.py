@@ -48,16 +48,47 @@ def score_for(job: Job, profile: Profile):
     return score_job(job, verdict, profile)
 
 
-def test_profile_loaded_from_resume(profile):
-    terms = {t.lower() for t in profile.index}
-    for expected in ("dbt", "airflow", "kafka", "databricks", "redshift", "pyspark"):
-        assert expected in terms, f"{expected} missing from generated profile"
+def test_all_four_resume_tracks_are_loaded(profile):
+    """One track per tailored resume, each naming the file to attach."""
+    assert {t.name for t in profile.tracks} == {"data", "ai", "fde", "swe"}
+    for track in profile.tracks:
+        assert track.resume, f"{track.name} names no resume file"
+        assert track.index, f"{track.name} has no terms"
 
 
-def test_terms_are_deduped_across_groups(profile):
-    """Databricks appears in two taxonomy groups; it must score once."""
-    keys = list(profile.index.keys())
-    assert len(keys) == len(set(keys))
+def test_each_track_carries_its_own_signature_vocabulary(profile):
+    """The tracks have to be distinguishable, or picking between them is noise."""
+    def terms(name):
+        return {t.lower() for t in profile.get(name).index}
+
+    assert {"dbt", "star schema", "power bi"} <= terms("data")
+    assert {"langchain", "pgvector", "llm judge"} <= terms("ai")
+    assert {"forward deployed", "stakeholder", "workshop"} <= terms("fde")
+    assert {"react", "pytest", "microservices"} <= terms("swe")
+    # And each must hold something the others do not.
+    for name in ("data", "ai", "fde", "swe"):
+        others = set().union(*(terms(o) for o in ("data", "ai", "fde", "swe")
+                               if o != name))
+        assert terms(name) - others, f"{name} has no vocabulary of its own"
+
+
+def test_terms_are_deduped_within_a_track(profile):
+    """A term in two groups of one track must score once, at its highest weight."""
+    for track in profile.tracks:
+        keys = list(track.index.keys())
+        assert len(keys) == len(set(keys)), f"{track.name} double-counts a term"
+
+
+def test_shared_infrastructure_is_not_core_to_any_track(profile):
+    """Python, Docker and AWS are in every posting, so they cannot signal a track.
+
+    If they counted as core the four tracks would look alike, and the generic
+    engineering gate would admit any backend posting that mentions them.
+    """
+    for track in profile.tracks:
+        core = track.core_terms()
+        for universal in ("Python", "Docker", "AWS"):
+            assert not any(p.search(universal) for p in core),                 f"{track.name} treats {universal} as core"
 
 
 def test_matched_skills_reported(profile):
@@ -232,3 +263,160 @@ def test_trusted_dates_still_drive_freshness(profile):
               url="", location_raw="San Francisco, CA", description=DESCRIPTION,
               posted_at=datetime.now(timezone.utc) - timedelta(days=10))
     assert score_for(new, profile).total > score_for(old, profile).total
+
+
+# ------------------------------------------------- picking the right resume
+
+GATE = {"max_years_experience": 3, "allow_data_adjacent_swe": True,
+        "allow_unknown_location": True}
+
+TRACK_CASES = [
+    ("data", "Analytics Engineer",
+     "Build and own dbt models on Snowflake with Airflow orchestration. You will "
+     "design star schema dimensional models, add data quality tests and freshness "
+     "SLAs, and serve a semantic layer to Looker dashboards. Strong SQL. 1-2 years."),
+    ("ai", "AI Engineer",
+     "Ship LLM features end to end. You will build RAG pipelines with LangChain over "
+     "a pgvector store, tune chunking and reranking with a cross-encoder, and gate "
+     "every prompt change with an eval harness and an LLM judge. Tracing in Langfuse. "
+     "Serve inference through FastAPI at low p95 latency. 1-3 years."),
+    ("fde", "Forward Deployed Software Engineer",
+     "You will sit with customers on site, scope their workflows with stakeholders, "
+     "and build bespoke integrations against their systems. Expect to run a pilot, "
+     "demo to leadership, win sign-off, and own the rollout end to end, including "
+     "workshops to train end users. REST API and connector work in Python. 2 years."),
+    ("swe", "Software Engineer II, Full Stack",
+     "Build product surfaces in React and TypeScript on a FastAPI backend. You will "
+     "own REST API design across our microservices, write pytest unit and integration "
+     "tests, and keep the GitHub Actions CI pipeline green. PostgreSQL schema design "
+     "and query optimization. Redis caching. 1-3 years of experience."),
+]
+
+
+@pytest.mark.parametrize("expected,title,description", TRACK_CASES)
+def test_posting_is_routed_to_the_matching_resume(profile, expected, title, description):
+    """The winning track is the answer to "which resume do I send", so it has to be
+    right. Each of these is written the way real postings in that discipline are."""
+    job = make_job(title=title, description=description)
+    verdict = evaluate(job, GATE, profile.core_terms(),
+                       profile.get("swe").core_terms())
+    assert verdict.passed, verdict.reason
+    score = score_job(job, verdict, profile)
+    assert score.track == expected, f"sent the {score.track} resume: {score.track_summary()}"
+    assert score.resume, "no resume filename to attach"
+
+
+def test_the_winning_track_leads_the_others_clearly(profile):
+    """A near-tie would mean the track vocabularies overlap too much to be useful."""
+    for expected, title, description in TRACK_CASES:
+        job = make_job(title=title, description=description)
+        verdict = evaluate(job, GATE, profile.core_terms(),
+                           profile.get("swe").core_terms())
+        score = score_job(job, verdict, profile)
+        ranked = sorted(score.track_scores.values(), reverse=True)
+        assert ranked[0] - ranked[1] > 0.2,             f"{title}: tracks too close -> {score.track_summary()}"
+
+
+def _track_for(profile, title, body):
+    job = make_job(title=title, description=body)
+    verdict = evaluate(job, GATE, profile.core_terms(),
+                       profile.get("swe").core_terms())
+    assert verdict.passed, verdict.reason
+    return score_job(job, verdict, profile).track
+
+
+# Data 0.77 against AI 0.72: inside TRACK_TITLE_MARGIN, so the title decides.
+CLOSE_BODY = (
+    "Own dbt models and Airflow DAGs on Spark, designing star schema marts and "
+    "Power BI reporting. You will also build RAG features with LangChain and "
+    "embeddings. Python and SQL. 1-3 years."
+)
+
+
+def test_a_close_race_is_broken_by_the_job_title(profile):
+    """Same body, two titles, two different resumes.
+
+    The title is what a reviewer screens the resume against, so when two tracks are
+    within a hair of each other it decides. Without this rule the resume sent would
+    flip on a single incidental keyword.
+    """
+    assert _track_for(profile, "Data Engineer", CLOSE_BODY) == "data"
+    assert _track_for(profile, "AI Engineer", CLOSE_BODY) == "ai"
+
+
+def test_the_title_cannot_override_a_decisive_skill_gap(profile):
+    """A mislabelled posting is answered with the resume that actually fits.
+
+    This body is unambiguously AI work. Titling it "Data Engineer" must not send the
+    Data resume, because the margin only breaks ties - it does not let the title
+    outvote the evidence.
+    """
+    body = ("Build RAG pipelines with LangChain over pgvector, tune chunking and "
+            "reranking with a cross-encoder, and gate prompt changes with an eval "
+            "harness and an LLM judge. Tracing in Langfuse. Serve inference through "
+            "FastAPI. 1-3 years.")
+    assert _track_for(profile, "Data Engineer", body) == "ai"
+
+
+def test_shared_core_pool_can_exclude_the_swe_track(profile):
+    """The two generic-engineering routes have to ask different questions.
+
+    Measured regression: with the SWE vocabulary inside the shared pool, "React"
+    plus "pytest" counted as two adjacency hits, so 354 postings were admitted by
+    the loose route and the stricter SWE-resume route never fired once.
+    """
+    shared = profile.core_terms(exclude=("swe",))
+    swe_only = profile.get("swe").core_terms()
+    assert len(shared) < len(profile.core_terms())
+    for swe_term in ("React", "pytest", "microservices"):
+        assert not any(p.search(swe_term) for p in shared), \
+            f"{swe_term} must not count toward the adjacency route"
+        assert any(p.search(swe_term) for p in swe_only), f"{swe_term} missing from SWE"
+
+
+# Phrases that appear in job postings of every kind. A core term matching any of
+# these measures whether a posting is written in corporate English, not whether it
+# fits a track, and it corrupts the resume recommendation.
+#
+# Measured regression: the FDE track once scored bare "requirements",
+# "cross-functional", "leadership", "executive" and "training" at weight 2.75. On
+# 2,378 postings carrying no deployment-ish title those fired on 52%, 39%, 34%, 30%
+# and 29% respectively, giving FDE a median 0.412 overlap on roles with nothing
+# forward-deployed about them and handing it 136 wrong resume recommendations.
+GENERIC_POSTING_PHRASES = (
+    "gather requirements from partner teams",
+    "work cross-functional with other groups",
+    "report to engineering leadership",
+    "present to executive sponsors",
+    "paid training and development budget",
+    "discovery calls with prospects",
+    "collaborate with partner teams on delivery",
+)
+
+
+@pytest.mark.parametrize("phrase", GENERIC_POSTING_PHRASES)
+def test_no_track_treats_generic_posting_prose_as_a_core_signal(profile, phrase):
+    for track in profile.tracks:
+        hit = [p.pattern for p in track.core_terms() if p.search(phrase)]
+        assert not hit, f"{track.name} matches generic prose {phrase!r} via {hit}"
+
+
+def test_fde_still_recognises_real_deployment_language(profile):
+    """The prune has to leave the signal intact, not just remove the noise."""
+    real = ("Sit on site with the customer, run a pilot, win sign-off, run user "
+            "training workshops and own the rollout. Forward deployed work.")
+    frac, matched = profile.get("fde").fraction(real)
+    assert frac > 0.5, f"FDE no longer recognises its own language: {matched}"
+
+
+def test_the_fde_track_does_not_read_model_training_as_stakeholder_training(profile):
+    """The exact original failure, pinned.
+
+    Bare "training" in the FDE stakeholder group matched "model training", so every
+    ML posting looked like it involved training customer staff. "model training"
+    remains a real signal for the AI track, which is why this is asserted per track
+    rather than globally.
+    """
+    phrase = "distributed model training on GPU clusters"
+    assert not any(p.search(phrase) for p in profile.get("fde").core_terms())
+    assert any(p.search(phrase) for p in profile.get("ai").core_terms())

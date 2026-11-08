@@ -147,8 +147,15 @@ def process(
 ) -> tuple[list[tuple[Job, Score]], dict[str, int]]:
     """Gate and score only postings we have never seen. Returns (matches, stats)."""
     # Resume-core technologies, used to judge whether a generic engineering title
-    # is worth surfacing. Built once rather than per posting.
-    core_terms = profile.core_terms()
+    # is worth surfacing. Built once rather than per posting. The SWE track is also
+    # passed separately, so a generic engineering posting can be admitted on the SWE
+    # resume's own vocabulary rather than only on data-centricity.
+    # The SWE track is deliberately left out of the shared pool and passed on its
+    # own, so the two admission routes stay independent questions rather than one
+    # loose test that subsumes the other. See Profile.core_terms.
+    core_terms = profile.core_terms(exclude=("swe",))
+    swe_track = profile.get("swe")
+    swe_terms = swe_track.core_terms() if swe_track else None
 
     matches: list[tuple[Job, Score]] = []
     stats: dict[str, int] = {"total": 0, "new": 0, "passed": 0, "notify": 0}
@@ -160,7 +167,7 @@ def process(
             continue
         stats["new"] += 1
 
-        verdict: Verdict = evaluate(job, filter_cfg, core_terms)
+        verdict: Verdict = evaluate(job, filter_cfg, core_terms, swe_terms)
         if not verdict.passed:
             rejections[verdict.reason] = rejections.get(verdict.reason, 0) + 1
             state.mark_seen(job)
@@ -186,8 +193,9 @@ def render_table(matches: list[tuple[Job, Score]], limit: int = 40) -> str:
         age = job.age_hours
         age_s = f"{age / 24:.0f}d" if age and age >= 24 else (f"{age:.0f}h" if age else "?")
         rows.append(
-            f"  [{score.total:5.1f}] {age_s:>4}  {job.company[:16]:<16} "
-            f"{job.title[:46]:<46} {(job.location_raw or '-')[:30]}"
+            f"  [{score.total:5.1f}] {score.track_label:<5} {age_s:>4}  "
+            f"{job.company[:16]:<16} {job.title[:44]:<44} "
+            f"{(job.location_raw or '-')[:26]}"
         )
     return "\n".join(rows)
 

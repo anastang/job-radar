@@ -93,7 +93,13 @@ def detect(text: str, terms: list[str]) -> list[str]:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--resume", required=True)
-    parser.add_argument("--out", default=str(REPO / "config" / "profile.yaml"))
+    # No longer defaults to config/profile.yaml. That file now holds four tailored
+    # resume tracks with per-track weights, and this script emits the older
+    # single-profile format, so writing there would silently collapse four targets
+    # into one and the alerts would stop naming which resume to send. Point --out at
+    # a scratch file, compare, and fold anything useful into the right track by hand.
+    parser.add_argument("--out", required=True,
+                        help="output path; must NOT be config/profile.yaml")
     # Raised from 18: at that level a posting mentioning Python, SQL and one tool
     # already maxed the skill points, so a deep stack match looked identical to a
     # shallow one. At 20, near-saturation needs most of the core data stack.
@@ -103,6 +109,15 @@ def main() -> None:
     resume_path = Path(args.resume)
     if not resume_path.exists():
         raise SystemExit(f"Resume not found: {resume_path}")
+
+    out_path = Path(args.out).resolve()
+    if out_path == (REPO / "config" / "profile.yaml").resolve():
+        raise SystemExit(
+            "Refusing to overwrite config/profile.yaml: it holds the four resume "
+            "tracks, and this script writes the older single-profile format."
+            "\n"
+            "Write somewhere else and merge the terms you want by hand."
+        )
 
     text = extract_text(resume_path)
     if not text.strip():

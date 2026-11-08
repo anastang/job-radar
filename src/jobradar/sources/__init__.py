@@ -9,6 +9,7 @@ from . import (
     jobright,
     lever,
     oraclehcm,
+    rippling,
     simplify,
     smartrecruiters,
     workable,
@@ -26,6 +27,8 @@ ATS_ADAPTERS = {
     smartrecruiters.ATS: smartrecruiters.fetch,
     workable.ATS: workable.fetch,
     workday.ATS: workday.fetch,
+    # rippling splits the board listing from per-posting detail; see rippling.py.
+    rippling.ATS: rippling.fetch,
     # oraclehcm slugs are "host/siteNumber"; amazon takes no meaningful slug and
     # sweeps its own board by keyword.
     oraclehcm.ATS: oraclehcm.fetch,
@@ -46,6 +49,7 @@ __all__ = [
     "jobright",
     "lever",
     "oraclehcm",
+    "rippling",
     "simplify",
     "smartrecruiters",
     "workable",
